@@ -35,3 +35,49 @@
 Bonus: Mark reviews funny, cool, useful etc.
 Bonus: Profile
 Bonus: Friends
+
+https://app.quickdatabasediagrams.com/#/
+```PROFILE
+-----
+profileID PK int IDENTITY
+name
+email
+username
+password
+information
+
+RESTAURANT
+-----
+restaurantID PK int IDENTITY
+name
+phoneNumber
+location
+foodCategory
+foodID
+
+PHOTO
+-----
+photoID pk int IDENTITY FK >- restaurantToPhoto.photoID
+profileID int FK >- PROFILE.profileID
+url
+
+REVIEW
+-----
+reviewID PK int IDENTITY
+rating
+comment
+likes
+profileID int FK >- PROFILE.profileID
+
+restaurantToPhoto
+-----
+restaurantToPhotoID pk int IDENTITY
+restaurantID int FK >- RESTAURANT.restaurantID
+photoID int
+
+
+reviewToPhoto
+-----
+reviewToPhotoID PK int IDENTITY
+photoID int FK >- PHOTO.photoID
+reviewID int FK >- REVIEW.reviewID```
