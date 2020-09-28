@@ -27,9 +27,6 @@
 -leave review on other reviews
 
 
-5. Map
--get direction (from user location / general store location)
-
 
 
 Bonus: Mark reviews funny, cool, useful etc.
