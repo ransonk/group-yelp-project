@@ -10,15 +10,13 @@
 -restaurant website link (main page)
 -food category
 -business hours
--map
 -phone #
--sidebar (Main site / Get Directions / phone # / messaging / related restaurants)
+-sidebar (Main site /  / phone # /  / related restaurants)
 
 
 
 3. Search / filters
 -sortby feature (restaurants / delivery / takeout / food genre)
--uses location (enter your address)
 
 
 
@@ -32,8 +30,18 @@
 Bonus: Mark reviews funny, cool, useful etc.
 Bonus: Profile
 Bonus: Friends
+-map
+-Get Directions(from side bar)
+-messaging (from side bar)
+-uses location (enter your address) (from search/filter)
+
 
 https://app.quickdatabasediagrams.com/#/
+(edit: profile's information)
+(edit: review's like)
+(edit: review table, include photo? => restaurant)
+
+
 ```PROFILE
 -----
 profileID PK int IDENTITY
