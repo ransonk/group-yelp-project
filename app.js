@@ -5,49 +5,43 @@ const port = 8080;
 const loginRouter = require('./routes/log-in')
 const signupRouter = require('./routes/sign-up')
 const searchRouter = require('./routes/search')
+const restaurant = require('./routes/restaurant')
+const writeReview = require('./routes/write-a-review')
+const users = require('./routes/users')
 
 
 app.set('view engine', 'pug')
+app.use(express.json());
+app.use('/login', loginRouter);
+app.use('/signup', signupRouter);
+app.use('/search', searchRouter)
+app.use('/restaurant', restaurant)
+app.use('/write-a-review', writeReview)
+app.use('/users', users)
+
+
+
+
+
+
+
+
+
+
 //home page
 app.get('/', (req, res) => {
-    res.render('home')
+    res.render('index', {})
 })
 
-//login/signup/demo
-
-app.get('/login/', (req, res) => {
-    //redirects to home page as signed in user
-
-})
-app.get('/signup/', (req, res) => {
-    //redirects to home page as signed in user
-
-})
-
-
+//login/signup/
+//demo
 //search results
 //sorted by category
-
-app.get('/search/:id', (req, res) => {
-
-})
-
 //restaurant
-app.get('/restaurant/:id(\\d+)', (req, res) => {
-
-})
-
 //user/profile
-app.get('/user/:id(\\d+)', (req, res) => {
-
-})
-
 //write review
-app.get('/write-a-review/:id(\\d+)', (req, res) => { })
+//comment
 
-app.post('/write-a-review/:id(\\d+)', (req, res) => {
-
-})
 
 
 // Catch unhandled requests and forward to error handler.
@@ -80,3 +74,5 @@ app.use((err, req, res, next) => {
 
 
 app.listen(port, () => console.log(`Listening to port: ${port}`))
+
+module.exports = app;
