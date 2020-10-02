@@ -37,6 +37,7 @@
         - date
         - Description
         - Comment on reviews (troll)
+        - Likes
     - Get directions
         - embedded google map
     - Sidebar
@@ -44,6 +45,16 @@
         - phone
         - directions
         - related restaurants (order by rating)
+
+## Search Results Page
+
+    - Header Searchbar
+    - Sort by options
+        - Price point
+        - Food category
+        - Rating
+        - Service offered (dine-in, takeout, delivery)
+    - List of results
 
 ## Profile Page - optional
     - Name
@@ -57,11 +68,11 @@
 
 | USER TABLE |
 | ---------  |
-|    ID  pk not null not null   |
-| profilePic url   |
+| ID  pk not null not null   |
+| profilePic url  |
 | lastName  VARCHAR not null|
 | firstName VARCHAR not null|
-| email  VARCHAR  not null  |
+| email  VARCHAR  not null unique |
 | Password  VARCHAR not null|
 
 | RESTAURANT TABLE  |
@@ -71,10 +82,17 @@
 | phone integer            |
 | city VARCHAR not null  |
 | state VARCHAR not null    |
-| address VARCHAR not null
+| address VARCHAR not null |
 | food category VARCHAR not null |
-| service type   VARCHAR not null |
-| images |
+| dine-in boolean not null|
+| takeout boolean not null |
+| delivery boolean not null |
+
+| IMAGES TABLE |
+|--------------|
+| imagecategory|
+| restaurantid |
+| imageurl     |
 
 | REVIEW TABLE |
 |--------------|
@@ -84,19 +102,21 @@
 | userid FK integer not null    |
 | restaurantid FK integer not null |
 
-| comments table |
+<!-- | COMMENTS TABLE |
 |----------------|
 | ID int pk not null |
 | reviewid int not null |
 | userid |
-| description text(5000) |
+| description text(5000) | -->
+
+| LIKES TABLE |
+|-------------|
+| reviewid |
+| userid |
+| likeType |
 
 
 
-
-
-
-Bonus: Mark reviews funny, cool, useful etc.
 Bonus: Profile
     - Business login
     ** Customer/business login have different authorizations
@@ -138,8 +158,3 @@ rating
 comment
 likes
 profileID int FK >- PROFILE.profileID
-
-
-Q's
-
-- Roles?
