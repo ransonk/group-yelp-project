@@ -92,6 +92,7 @@
 | firstName VARCHAR not null|
 | email  VARCHAR  not null unique |
 | Password  VARCHAR not null|
+| type VARCHAR not null |
 
 | RESTAURANT TABLE  |
 |-------------------|
@@ -105,6 +106,7 @@
 | dine-in boolean not null|
 | takeout boolean not null |
 | delivery boolean not null |
+| userId integer not null |
 
 | IMAGES TABLE |
 |--------------|
