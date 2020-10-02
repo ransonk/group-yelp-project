@@ -9,7 +9,6 @@ const restaurant = require('./routes/restaurant')
 const writeReview = require('./routes/write-a-review')
 const users = require('./routes/users')
 
-
 app.set('view engine', 'pug')
 app.use(express.json());
 app.use('/login', loginRouter);
@@ -18,15 +17,6 @@ app.use('/search', searchRouter)
 app.use('/restaurant', restaurant)
 app.use('/write-a-review', writeReview)
 app.use('/users', users)
-
-
-
-
-
-
-
-
-
 
 //home page
 app.get('/', (req, res) => {
@@ -43,7 +33,6 @@ app.get('/', (req, res) => {
 //comment
 
 
-
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {
     const err = new Error("The requested resource couldn't be found.");
@@ -51,7 +40,6 @@ app.use((req, res, next) => {
     next(err);
 });
 
-// Custom error handlers.
 
 // Generic error handler.
 app.use((err, req, res, next) => {
@@ -64,13 +52,6 @@ app.use((err, req, res, next) => {
         stack: isProduction ? null : err.stack,
     });
 });
-
-
-
-
-
-
-
 
 
 app.listen(port, () => console.log(`Listening to port: ${port}`))
