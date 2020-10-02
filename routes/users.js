@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-app.get('/user/:id(\\d+)', (req, res) => {
+app.get('/:id(\\d+)', (req, res) => {
 
 })
 

@@ -2,12 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 app.get('/', (req, res) => {
-    //redirects to home page as signed in user
-
-})
-
-app.get('/demo-signup', (req, res) => {
-    //redirects to home page as signed in guest
+    //redirects to homepage as guest user if user clicks demo user button
+    //redirects to home page as signed in user (if successful)
 
 })
 

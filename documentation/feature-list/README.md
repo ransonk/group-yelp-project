@@ -14,6 +14,9 @@
         - Guest/demo login button ("click to login as guest")
             - Pre-made guest account
         - Customer signup/login
+        - Login / signup option if not logged in
+        - Profile link/icon when logged in
+        - If login / signup unsuccessful, show errors
 
     - Search / filters
         - Search by restaurant name
@@ -52,6 +55,32 @@
     - Location
     - List of reviews
 
+### Backend
+|    Path    |   HTTP Verb   |          Meaning            |
+|------------|---------------|-----------------------------|
+|    /api/users/token     |      GET      |     logs in user      |
+|    /api/users     |     POST      |       logs in user          |
+|  /api/businesses  |      GET      |   shows a list of restaur    |
+|   /api/users/id/reviews    |      GET      |    gets list of reviews     |
+|  /api/businesses/id/reviews  |  GET  | gets all reviews for one business |
+|  /api/businesses/id/reviews  |  POST  | gets all reviews for one business |
+
+### Frontend
+|    Path            |   HTTP Verb   |          Meaning                   |
+|--------------------|---------------|------------------------------------|
+|         /          |      GET      |       Show main page               |
+|         /          |      POST     |      search restaurants            |
+|       /log-in      |      GET      |      Show a log-in form            |
+|       /log-in      |      POST     |         logs in user               |
+|      /sign-up      |      GET      |      show a sign-up form           |
+|      /sign-up      |      POST     |      creates a new user            |
+|      /search       |      GET      |   gets list of businesses          |
+|      /search       |      POST     |    searches for businesses         |
+| /write-a-review/2  |      GET      |        shows review form           |
+| /write-a-review/2  |     POST      |    creates a review for restaurant |
+|  /restaurants/id   |      GET      |  lists the restaurant and its info |
+|      /users/id     |      GET      |        shows uer info              |
+
 
 
 
@@ -82,6 +111,7 @@
 | imagecategory|
 | restaurantid |
 | imageurl     |
+| userId      |
 
 | REVIEW TABLE |
 |--------------|
@@ -90,6 +120,8 @@
 | description text(5000) not null |
 | userid FK integer not null    |
 | restaurantid FK integer not null |
+| parentId integer |
+
 
 <!-- | COMMENTS TABLE |
 |----------------|

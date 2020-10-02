@@ -14,7 +14,7 @@ app.use(express.json());
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/search', searchRouter)
-app.use('/restaurant', restaurant)
+app.use('/restaurants', restaurants)
 app.use('/write-a-review', writeReview)
 app.use('/users', users)
 
