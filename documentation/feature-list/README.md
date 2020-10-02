@@ -37,7 +37,6 @@
         - date
         - Description
         - Comment on reviews (troll)
-        - Likes
     - Get directions
         - embedded google map
     - Sidebar
@@ -45,16 +44,6 @@
         - phone
         - directions
         - related restaurants (order by rating)
-
-## Search Results Page
-
-    - Header Searchbar
-    - Sort by options
-        - Price point
-        - Food category
-        - Rating
-        - Service offered (dine-in, takeout, delivery)
-    - List of results
 
 ## Profile Page - optional
     - Name
@@ -117,11 +106,19 @@
 
 
 
+
+
+
+Bonus: Mark reviews funny, cool, useful etc.
+Bonus: Comments on comments
+-add 1 column parent(id)
+recursively call comments matching parent(id)
+
 Bonus: Profile
     - Business login
     ** Customer/business login have different authorizations
 Bonus: Friends
--map
+-map (embed)
 -Get Directions(from side bar)
 -messaging (from side bar)
 -uses location (enter your address) (from search/filter)
@@ -158,3 +155,8 @@ rating
 comment
 likes
 profileID int FK >- PROFILE.profileID
+
+
+Q's
+
+- Roles?
