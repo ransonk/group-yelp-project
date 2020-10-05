@@ -5,8 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     likeType: DataTypes.STRING
   }, {});
-  Like.associate = function(models) {
+  Like.associate = function (models) {
     // associations can be defined here
+    Like.belongsTo(models.Review, { foreignKey: "reviewId" })
+    Like.belongsTo(models.User, { foreignKey: "userId" })
   };
   return Like;
 };

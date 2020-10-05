@@ -9,13 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       reviewId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       userId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       likeType: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       createdAt: {
         allowNull: false,
