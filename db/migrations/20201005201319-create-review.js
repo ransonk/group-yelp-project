@@ -9,19 +9,26 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       rating: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER(5)
       },
       description: {
-        type: Sequelize.TEXT
+        allowNull: false,
+        type: Sequelize.TEXT(5000)
       },
       userId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Users' }
       },
       restaurantId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Restaurants' }
       },
       parentId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: 'Reviews' }
       },
       createdAt: {
         allowNull: false,
