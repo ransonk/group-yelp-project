@@ -1,22 +1,26 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 const port = 8080;
+const environment = require('./config/index');
+const apiUser = require('./apiRoutes/user');
+// const loginRouter = require('./routes/log-in')
+// const signupRouter = require('./routes/sign-up')
+// const searchRouter = require('./routes/search')
+// const restaurant = require('./routes/restaurant')
+// const writeReview = require('./routes/write-a-review')
+// const users = require('./routes/users')
 
-const loginRouter = require('./routes/log-in')
-const signupRouter = require('./routes/sign-up')
-const searchRouter = require('./routes/search')
-const restaurant = require('./routes/restaurant')
-const writeReview = require('./routes/write-a-review')
-const users = require('./routes/users')
-
+app.use(morgan('dev'));
 app.set('view engine', 'pug')
 app.use(express.json());
-app.use('/login', loginRouter);
-app.use('/signup', signupRouter);
-app.use('/search', searchRouter)
-app.use('/restaurants', restaurants)
-app.use('/write-a-review', writeReview)
-app.use('/users', users)
+app.use('/api/user', apiUser);
+// app.use('/login', loginRouter);
+// app.use('/signup', signupRouter);
+// app.use('/search', searchRouter)
+// app.use('/restaurants', restaurant)
+// app.use('/write-a-review', writeReview)
+// app.use('/users', users)
 
 //home page
 app.get('/', (req, res) => {

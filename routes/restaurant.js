@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-app.get('/restaurant/:id(\\d+)', (req, res) => {
+router.get('/restaurant/:id(\\d+)', (req, res) => {
 
 })
 
