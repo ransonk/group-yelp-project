@@ -1,14 +1,30 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
-    rating: DataTypes.INTEGER,
-    description: DataTypes.TEXT,
-    userId: DataTypes.INTEGER,
-    restaurantId: DataTypes.INTEGER,
-    parentId: DataTypes.INTEGER
+    rating: {
+      allowNull: false,
+      type: DataTypes.INTEGER(5),
+    },
+    description: {
+      allowNull: false,
+      type: DataTypes.TEXT(5000),
+    },
+    userId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    restaurantId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    parentId: {
+      type: DataTypes.INTEGER
+    }
   }, {});
-  Review.associate = function(models) {
-    // associations can be defined here
+  Review.associate = function (models) {
+    Review.belongsTo(models.User, { foreignKey: 'userId' }),
+      Review.belongsTo(models.Restaurant, { foreignKey: 'restaurantId' }),
+      Review.belongsTo(models.Reviews, { foreignKey: 'parentId' })
   };
   return Review;
 };
