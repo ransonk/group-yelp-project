@@ -11,12 +11,13 @@ module.exports = {
       imageCategory: {
         type: Sequelize.STRING(50),
         allowNull: false,
-        unique: true,
       },
       restaurantId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true
+        references: {
+          model: 'Restaurants'
+        }
       },
       imageUrl: {
         type: Sequelize.STRING,
@@ -24,7 +25,6 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true,
         references: {
           model: 'Users',
           key: 'id'

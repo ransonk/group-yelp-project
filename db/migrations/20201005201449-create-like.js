@@ -10,11 +10,17 @@ module.exports = {
       },
       reviewId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Reviews'
+        }
       },
       userId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users'
+        }
       },
       likeType: {
         allowNull: false,

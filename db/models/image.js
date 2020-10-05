@@ -22,13 +22,16 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Users',
         key: 'id'
       }
-      
+
     }
   }, {});
-  Image.associate = function(models) {
+  Image.associate = function (models) {
     // associations can be defined here
     Image.belongsTo(models.User, {
       foreignKey: 'userId'
+    })
+    Image.belongsTo(models.Restaurant, {
+      foreignKey: 'restaurantId'
     })
   };
   return Image;
