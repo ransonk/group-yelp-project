@@ -14,10 +14,21 @@ const validateUser = [
     check("lastName")
         .exists({ checkFalsy: true })
         .withMessage("Please provide a lastName"),
-    check("email")
+    check('email')
         .exists({ checkFalsy: true })
+        .withMessage('Please provide a value for Email Address')
+        .isLength({ max: 255 })
+        .withMessage('Email Address must not be more than 255 characters long')
         .isEmail()
-        .withMessage("Please provide a valid email"),
+        .withMessage('Email Address is not a valid email')
+        .custom((value) => {
+            return db.User.findOne({ where: { email: value } })
+                .then((user) => {
+                    if (user) {
+                        return Promise.reject('The provided Email Address is already in use by another account');
+                    }
+                });
+        }),
     check("businessOwner")
         .exists({ checkFalsy: true })
         .withMessage("Please confirm if you are a business owner"),
