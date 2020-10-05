@@ -4,7 +4,7 @@ const { check, validationResult } = require('express-validator');
 const { asyncHandler, handleValidationErrors } = require('../utils');
 const { getUserToken, requireAuth } = require('../auth');
 const db = require('../db/models')
-
+const bcrypt = require("bcryptjs")
 
 const validateUser = [
 
@@ -44,12 +44,12 @@ const validateUser = [
 routes.post(
     '/', validateUser, handleValidationErrors,
     asyncHandler(async (req, res, next) => {
-        const usersData = req.body
+
         const { firstName, lastName, email, password, profileUrl, businessOwner } = req.body;
 
         const hashedPassword = await bcrypt.hash(password, 10)
         let user;
-        if (!req.body.profileUrl) {
+        if (!profileUrl) {
             user = await db.User.create({ firstName, lastName, email, businessOwner, hashedPassword })
 
         } else {
@@ -63,10 +63,6 @@ routes.post(
             token,
         })
     }))
-
-
-routes.get()
-
 
 
 

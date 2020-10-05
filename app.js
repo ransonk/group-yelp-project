@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const port = 8080;
 const environment = require('./config/index');
 const apiUser = require('./apiRoutes/user');
 // const loginRouter = require('./routes/log-in')
