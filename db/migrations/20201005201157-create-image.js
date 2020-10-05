@@ -9,16 +9,26 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       imageCategory: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(50),
+        allowNull: false,
+        unique: true,
       },
       restaurantId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true
       },
       imageUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
