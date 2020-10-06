@@ -1,0 +1,39 @@
+GET http://localhost:8080/api/restaurants
+
+###
+
+GET http://localhost:8080/api/restaurants/3
+
+###
+GET http://localhost:8080/api/restaurants/3/reviews
+
+###
+POST http://localhost:8080/api/restaurants
+content-type: application/json
+
+{
+    "name": "Five Girls Burgers",
+    "phone": "5551234",
+    "city": "Jersey City",
+    "state": "New Jersey",
+    "address": "3672 Road Ave",
+    "foodCategory": "Burgers",
+    "dineIn": true,
+    "takeOut": true,
+    "delivery": false,
+    "userId": 21
+}
+
+###
+
+POST http://localhost:8080/api/user
+content-type: "application/json"
+
+{
+    "firstName": "Bob",
+    "lastName": "Bobertson",
+    "email": "bobby@noneofyourbusiness.com",
+    "password": "1234",
+    "profileUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/stayuber/128.jpg",
+    "businessOwner": true
+}
