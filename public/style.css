@@ -11,7 +11,7 @@
 }
 
 .container{
-    display: flex;
+    /* display: flex; */
     background-image: url('./images/Experts-weigh-in-on-what-makes-people-become-hangry.jpg');
     background-size: cover;
     width: 100%;
@@ -33,15 +33,28 @@
     cursor: pointer;
 }
 
+.logoSearchChunk{
+    display: flex;
+    flex-direction: column;
+}
+
 .nav__logo{
-    position: relative;
-    top: 50%;
-    right: 50%;
+    align-self: center;
+    margin-bottom: 10px;
     background-image: url('./images/logo.jpg');
-    background-size: cover;
+    background-size: contain;
     width: 10rem;
     height: 10rem;
+    opacity: 90%;
+    border-radius: 100px;
 }
+
+.nav__search{
+    text-align: center;
+    margin-top: 1rem;
+
+}
+
 
 .sign-up-form #firstName{
     width: 105px;
@@ -78,3 +91,40 @@
     width: 220px;
     margin: 5px;
 }
+
+#username.form-control{
+    border-radius: 5px;
+    line-height: 3rem;
+    width: 25rem;
+}
+
+.form-group button{
+    border-radius: 5px;
+    line-height: 3rem;
+    width: 4rem;
+    background-color: rgb(230, 76, 56);
+}
+
+.form-group button:hover{
+    background-color: rgb(252, 119, 102);
+    transition-duration: 0.3s;
+
+}
+
+.options {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0.3rem;
+    /* background-color: black;
+    opacity: 50%; */
+}
+
+.options a{
+    text-decoration: none;
+    color: white;
+    padding: 0.3rem;
+    margin-left: 0.3rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
