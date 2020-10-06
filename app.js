@@ -11,11 +11,13 @@ const path = require('path');
 // const restaurant = require('./routes/restaurant')
 // const writeReview = require('./routes/write-a-review')
 // const users = require('./routes/users')
+const indexRouter = require('./routes/index')
 
 app.use(morgan('dev'));
 app.set('view engine', 'pug')
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
+app.use('/', indexRouter)
 app.use('/api/user', apiUser);
 // app.use('/login', loginRouter);
 // app.use('/signup', signupRouter);
@@ -42,10 +44,7 @@ app.use(require('./apiRoutes/restaurants'));
 
 //home page
 //just to make the main page works... will be changing later on.....
-app.get("/", (req, res) => {
-    // res.json({ message: "this is the root of the api" })
-    res.render('home')
-})
+
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {
