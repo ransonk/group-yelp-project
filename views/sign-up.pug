@@ -19,4 +19,9 @@ block content
         div(class="form-group")
         label(for="confirmPassword")
         input(id="confirmPassword" type="password" name="confirmPassword" placeholder="confirm password")
+        div(class="form-group")
+        label(for="businessOwner") Business Owner?
+        select(name="businessOwner" required)
+          option(value=true) Yes
+          option(value=false) No
       button(type="submit")  sign up

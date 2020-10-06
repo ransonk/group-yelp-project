@@ -69,3 +69,12 @@
     margin: 5px;
 
 }
+
+.log-in-form #email {
+    width: 220px;
+    margin: 5px;
+}
+.log-in-form #password {
+    width: 220px;
+    margin: 5px;
+}

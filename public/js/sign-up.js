@@ -1,7 +1,7 @@
-const handleErrors = require("./utils")
-
+// const handleErrors = require("./utils.js")
+import { handleErrors } from "./utils.js"
 const signUpForm = document.querySelector(".sign-up-form")
-signUpForm.addEventListener("submit", (event) => {
+signUpForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     console.log("hi")
 
@@ -11,10 +11,11 @@ signUpForm.addEventListener("submit", (event) => {
     const email = formData.get("email");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword")
-    const body = { firstName, lastName, email, password, confirmPassword }
-
+    const businessOwer = formData.get("businessOwner")
+    const body = { firstName, lastName, email, password, confirmPassword, businessOwer }
+    console.log(body)
     try {
-        const res = await fetch("/api/users", {
+        const res = await fetch("/api/user", {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -26,9 +27,10 @@ signUpForm.addEventListener("submit", (event) => {
         }
         const token = res.token;
         const id = res.user.id;
-        localStorage.setItem("HANGRY_ACCESS_TOKEN", token);
-        localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
-        window.location.herf = '/';
+        console.log(token, id)
+        // localStorage.setItem("HANGRY_ACCESS_TOKEN", token);
+        // localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
+        // window.location.herf = '/';
     } catch (err) {
         handleErrors(err)
     }
