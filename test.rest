@@ -33,7 +33,7 @@ content-type: "application/json"
     "firstName": "Bob",
     "lastName": "Bobertson",
     "email": "bobby@noneofyourbusiness.com",
-    "password": "1234",
+    "hashedPassword": "$2a$10$Vk4Nj2T7uvvqpz36TC5pueySQAASsjrWKVAJSG2qyOnA5hTtEW4SG"
     "profileUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/stayuber/128.jpg",
     "businessOwner": true
 }

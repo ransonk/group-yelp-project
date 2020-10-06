@@ -3,6 +3,7 @@ const db = require('../db/models');
 const { Restaurant, User, Review, Image, Like } = db;
 const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
+const { handleValidationErrors } = require('../utils')
 
 const { check, validationResult } = require('express-validator');
 
@@ -34,7 +35,19 @@ const validateRestaurants = [
         .withMessage("Please provide user ID")
 ]
 
-router.get('/api/restaurants', validateRestaurants, asyncHandler(async (req, res, next) => {
+const validateReviews = [
+    check('rating')
+        .exists({ checkFalsy: true})
+        .withMessage('Please provide a rating')
+        .isInt({ max: 5, min: 1})
+        .withMessage('Please provide a value between 1 and 5'),
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a description')
+        .isLength({ min: 30, max: 5000})
+        .withMessage('Please provide a description between 30 and 5000 characters')
+]
+router.get('/api/restaurants', asyncHandler(async (req, res, next) => {
     const restaurants = await Restaurant.findAll({
         include: [Review, Image]
     });
@@ -56,7 +69,7 @@ router.get('/api/restaurants/:id(\\d+)/reviews', asyncHandler(async (req, res, n
     res.json({ reviews });
 }))
 
-router.post('/api/restaurants/:id(\\d+)/reviews', csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/api/restaurants/:id(\\d+)/reviews', csrfProtection, validateReviews, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const restaurantId = parseInt(req.params.id);
     const { rating, description, userId } = req.body;
     const review = await Review.create({
@@ -68,7 +81,7 @@ router.post('/api/restaurants/:id(\\d+)/reviews', csrfProtection, asyncHandler(a
     res.json({ review });
 }))
 
-router.post('/api/restaurants', csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/api/restaurants', csrfProtection, validateRestaurants, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const {
         name,
         phone,
