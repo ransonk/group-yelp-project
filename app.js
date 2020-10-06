@@ -22,6 +22,7 @@ app.use('/api/user', apiUser);
 // app.use('/write-a-review', writeReview)
 // app.use('/users', users)
 
+app.use(require('./apiRoutes/restaurants'));
 
 
 //login/signup/
