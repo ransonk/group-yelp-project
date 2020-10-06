@@ -1,0 +1,27 @@
+extends layout.pug
+
+block content
+  div(class="sign-up-container")
+    div(class="errors-container")
+    h2 Sign Up For Hangry!
+    form(class="sign-up-form")
+      div(class="form-group")
+        label(for="firstName")
+        input(id="firstName" type="text" name="firstName" placeholder="first name")
+        label(for="lastName")
+        input(id="lastName" type="text" name="lastName" placeholder="last name")
+        div(class="form-group")
+        label(for="email")
+        input(id="email" type="email" name="email" placeholder="email address")
+        div(class="form-group")
+        label(for="password")
+        input(id="password" type="password" name="password" placeholder="password")
+        div(class="form-group")
+        label(for="confirmPassword")
+        input(id="confirmPassword" type="password" name="confirmPassword" placeholder="confirm password")
+        div(class="form-group")
+        label(for="businessOwner") Business Owner?
+        select(name="businessOwner" required)
+          option(value=true) Yes
+          option(value=false) No
+      button(type="submit")  sign up
