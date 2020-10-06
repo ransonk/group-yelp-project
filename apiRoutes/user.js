@@ -6,8 +6,7 @@ const { getUserToken, requireAuth } = require('../auth');
 const db = require('../db/models')
 const bcrypt = require("bcryptjs")
 
-const validateUser = [
-
+const validateSignUpUser = [
     check("firstName")
         .exists({ checkFalsy: true })
         .withMessage("Please provide a firstName"),
@@ -50,11 +49,34 @@ const validateUser = [
 ]
 
 
+const validateLogInUser = [
+    check('email')
+        .exists({ checkFalsy: true })
+        .withMessage("Please provide your email to Log In")
+        .isEmail()
+        .withMessage("Please provide the correct email format"),
+    check("password")
+        .exists({ checkFalsy: true })
+        .withMessage("Please provide your password to Log In")
+]
+
+
 
 //localhost:8080/api/user - signup
 routes.post(
-    '/', validateUser, handleValidationErrors,
+    '/', validateSignUpUser, handleValidationErrors,
     asyncHandler(async (req, res, next) => {
+
+        const validationErrors = validationResult(req);
+
+        if (!validationErrors.isEmpty()) {
+            const errors = validationErrors.array().map((error) => error.msg);
+            const err = new Error("Bad Request");
+            err.status = 400;
+            err.title == "Bad Request";
+            err.errors = errors;
+            return next(err);
+        }
 
         const { firstName, lastName, email, password, profileUrl, businessOwner } = req.body;
 
@@ -76,10 +98,52 @@ routes.post(
     }))
 
 
+//log in should have a form with email and password.
+routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => {
+    const validationErrors = validationResult(req);
+
+    if (!validationErrors.isEmpty()) {
+        const errors = validationErrors.array().map((error) => error.msg);
+        const err = new Error("Bad Request");
+        err.status = 400;
+        err.title == "Bad Request";
+        err.errors = errors;
+        return next(err);
+    }
+
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const user = await db.User.findOne({
+        where: { email: email }
+    });
+
+    const hashedPassword = await bcrypt.hash(password, 10)
+
+    if (!user || hashedPassword !== user.hashedPassword.toString()) {
+        const err = new Error("Login failed");
+        err.status = 401;
+        err.title = "Login failed";
+        err.errors = ["The provided credentials were invalid."];
+        return next(err);
+    }
+
+    const token = getUserToken(user);
+    res.json({
+        token,
+        user: { id: user.id }
+    })
+
+
+}))
+
+
+//grab certain user
+routes.
 
 
 
 
 
 
-module.exports = routes;
+    module.exports = routes;
