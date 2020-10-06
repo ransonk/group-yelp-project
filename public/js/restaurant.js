@@ -1,18 +1,12 @@
-const express = require('express');
-const router = express.Router();
+const fetchRestaurants = () => {
+    return async () => {
+        const res = await fetch('/api/restaurants');
+        const restaurants = res.json();
+    }
+}
 
+const fetchRestaurant = (restaurantId) => {
+    return async () => {
 
-router.get('/restaurant/:id(\\d+)', (req, res) => {
-
-})
-
-
-
-
-
-
-
-
-
-
-module.exports = router;
+    }
+}
