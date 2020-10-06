@@ -1,13 +1,24 @@
 extends layout.pug
 
 block content
-  div.container Hello
+  div.container
     div.nav__bar
       button(id='sign-up' class='nav__btn') Sign Up
       button(id='log-in' class='nav__btn') Log In
-    div.nav__logo
-    div.nav__search
-      form(class="search-form")
-      .form-group
-        label(for='username') Username
-        input#username.form-control(type='text' name='username' placeholder="Username")
+    div.logoSearchChunk
+      div.nav__logo
+      div.nav__search
+        form(class="search-form")
+        .form-group
+          label(for='search')
+          input#username.form-control(type='text' name='search' placeholder="Search")
+          button(class='btn--submit') Submit
+    div.options
+      select.dropdown-list
+        option(value='0') -- Food Category --
+        option(value='1') seafood
+        option(value='2') mexican
+        option(value='3') italian
+      a(href="/takeout") Takeout
+      a(href="/dine-in") Dine-In
+      a(href="/delivery") Delivery
