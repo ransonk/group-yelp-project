@@ -5,5 +5,9 @@ block content
     div.nav__bar
       button(id='sign-up' class='nav__btn') Sign Up
       button(id='log-in' class='nav__btn') Log In
-    div.nav__logo hi
+    div.nav__logo
     div.nav__search
+      form(class="search-form")
+      .form-group
+        label(for='username') Username
+        input#username.form-control(type='text' name='username' placeholder="Username")
