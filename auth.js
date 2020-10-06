@@ -36,14 +36,10 @@ const restoreUser = (req, res, next) => {
 const requireAuth = [bearerToken(), restoreUser];
 
 const getUserToken = (user) => {
-    // Don't store the user's hashed password
-    // in the token data.
     const userDataForToken = {
         id: user.id,
         email: user.email,
     };
-
-    // Create the token.
     const token = jwt.sign(
         { data: userDataForToken },
         secret,

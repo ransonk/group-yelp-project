@@ -3,6 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const environment = require('./config/index');
 const apiUser = require('./apiRoutes/user');
+const ValidationError = require("sequelize")
 // const loginRouter = require('./routes/log-in')
 // const signupRouter = require('./routes/sign-up')
 // const searchRouter = require('./routes/search')
@@ -21,10 +22,6 @@ app.use('/api/user', apiUser);
 // app.use('/write-a-review', writeReview)
 // app.use('/users', users)
 
-//home page
-app.get('/', (req, res) => {
-    res.render('index', {})
-})
 
 //login/signup/
 //demo
@@ -36,15 +33,35 @@ app.get('/', (req, res) => {
 //comment
 
 
+
+
+
+//home page
+//just to make the main page works... will be changing later on.....
+app.get("/", (req, res) => {
+    res.json({ message: "this is the root of the api" })
+})
+
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {
     const err = new Error("The requested resource couldn't be found.");
+    err.errors = ["The requested resource couldn't be found."];
     err.status = 404;
     next(err);
 });
 
 
-// Generic error handler.
+// Process sequelize errors
+app.use((err, req, res, next) => {
+    if (err instanceof ValidationError) {
+        err.errors = err.errors.map((e) => e.message);
+        err.title = "Sequelize Error";
+    }
+    next(err);
+});
+
+
+// server error Generic Error Handler
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
     const isProduction = environment === "production";
@@ -55,6 +72,7 @@ app.use((err, req, res, next) => {
         stack: isProduction ? null : err.stack,
     });
 });
+
 
 
 // app.listen(port, () => console.log(`Listening to port: ${port}`))
