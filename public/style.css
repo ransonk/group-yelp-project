@@ -1,0 +1,9 @@
+/* * {
+    box-sizing: b
+} */
+
+.container{
+    background-color: blue;
+    width: 100%;
+    height: 20%;
+}
