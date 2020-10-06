@@ -42,3 +42,30 @@
     width: 10rem;
     height: 10rem;
 }
+
+.sign-up-form #firstName{
+    width: 105px;
+    margin:5px
+}
+
+.sign-up-form #lastName{
+    width: 105px;
+    margin-left: 5px
+
+
+}
+.sign-up-form #email{
+    width: 220px;
+    margin: 5px;
+
+}
+.sign-up-form #password{
+    width: 220px;
+    margin: 5px;
+
+}
+.sign-up-form #confirmPassword{
+    width: 220px;
+    margin: 5px;
+
+}
