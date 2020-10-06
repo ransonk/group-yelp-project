@@ -1,9 +1,9 @@
 const express = require('express');
-const db = require('../db/models');
+const db = require('../../db/models');
 const { Restaurant, User, Review, Image, Like } = db;
 const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
-const { handleValidationErrors } = require('../utils')
+const { handleValidationErrors } = require('../../utils')
 
 const { check, validationResult } = require('express-validator');
 
@@ -37,14 +37,14 @@ const validateRestaurants = [
 
 const validateReviews = [
     check('rating')
-        .exists({ checkFalsy: true})
+        .exists({ checkFalsy: true })
         .withMessage('Please provide a rating')
-        .isInt({ max: 5, min: 1})
+        .isInt({ max: 5, min: 1 })
         .withMessage('Please provide a value between 1 and 5'),
     check('description')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a description')
-        .isLength({ min: 30, max: 5000})
+        .isLength({ min: 30, max: 5000 })
         .withMessage('Please provide a description between 30 and 5000 characters')
 ]
 router.get('/api/restaurants', asyncHandler(async (req, res, next) => {

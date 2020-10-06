@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const environment = require('./config/index');
-const apiUser = require('./apiRoutes/user');
+const apiUser = require('./routes/api/user');
 const ValidationError = require("sequelize")
 const path = require('path');
 // const loginRouter = require('./routes/log-in')
@@ -26,7 +26,7 @@ app.use('/api/user', apiUser);
 // app.use('/write-a-review', writeReview)
 // app.use('/users', users)
 
-app.use(require('./apiRoutes/restaurants'));
+app.use(require('./routes/api/restaurants'));
 
 
 //login/signup/
