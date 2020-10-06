@@ -1,4 +1,11 @@
 extends layout.pug
 
 block content
-    
+    form(class="search")
+        input(type="text" name="search" placeholder="search..." class="searchbar")
+        button(type="submit") search
+
+    div(class="restaurants-container")
+
+
+    script(type="module" src="js/restaurant.js")
