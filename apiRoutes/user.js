@@ -138,12 +138,20 @@ routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => 
 }))
 
 
-//grab certain user
-routes.
+//show user profile for certain review
+routes.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+    const user = await db.User.findOne({
+        where: {
+            id: parseInt(req.params.id)
+        },
+        include: [Review, Like, Image, Restaurant]
+    })
+    res.json({ user })
+}))
 
 
 
 
 
 
-    module.exports = routes;
+module.exports = routes;
