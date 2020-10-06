@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     Review.belongsTo(models.User, { foreignKey: 'userId' })
     Review.belongsTo(models.Restaurant, { foreignKey: 'restaurantId' })
     Review.belongsTo(models.Review, { foreignKey: 'parentId' })
+    Review.hasMany(models.Like, { foreignKey: 'reviewId' })
   };
   return Review;
 };
