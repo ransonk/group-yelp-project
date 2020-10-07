@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const restaurantId = window.location.href.match(/\/(\d+)/)[1]
+    const restaurantId = window.location.href.match(/\/(\d+)$/)[1]
     try {
         const res = await fetch(`/api/restaurants/${restaurantId}`, {
             headers: {
