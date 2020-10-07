@@ -57,7 +57,15 @@ router.get('/api/restaurants', asyncHandler(async (req, res, next) => {
 router.get('/api/restaurants/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const restaurantId = parseInt(req.params.id);
     const restaurant = await Restaurant.findByPk(restaurantId,
-        { include: [Review, Image, User] });
+        {
+            include: [
+                {
+                    model: Review,
+                    include: [
+                        User
+                    ]
+                }, Image, User]
+        });
     res.json({ restaurant })
 }))
 

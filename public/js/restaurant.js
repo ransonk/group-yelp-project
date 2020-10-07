@@ -1,5 +1,7 @@
 // const restaurant = require("../../db/models/restaurant");
 
+const restaurant = require("../../db/models/restaurant");
+
 const fetchRestaurants = async (input) => {
     const res = await fetch('/api/restaurants');
     const { restaurants } = await res.json();
@@ -13,10 +15,9 @@ const fetchRestaurants = async (input) => {
     }
 }
 
-const fetchRestaurant = (restaurantId) => {
-    return async () => {
+const fetchRestaurant = async (restaurantId) => {
+    const res = await fetch(`/api/restaurants/${restaurantId}`);
 
-    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const results = await fetchRestaurants(input);
             console.log(results);
             const restaurantsHTML = results.map(
-                ({ name, address, city, state, phone, Reviews, Images, foodCategory}) => {
+                ({ name, address, city, state, phone, Reviews, Images, foodCategory }) => {
                     let review;
                     let rating;
                     if (Reviews.length) {
@@ -74,11 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     `
                 })
-                const resHTML = restaurantsHTML.join('');
-                restaurantsContainer.innerHTML += resHTML;
+            const resHTML = restaurantsHTML.join('');
+            restaurantsContainer.innerHTML += resHTML;
         }
         catch (err) {
-    
+
         }
     })
 })
