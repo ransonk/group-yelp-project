@@ -1,3 +1,4 @@
+import { handleErrors } from "./utils.js"
 const logInForm = document.querySelector("log-in-form");
 
 logInForm.addEventListener("submit", async (event) => {
@@ -9,23 +10,28 @@ logInForm.addEventListener("submit", async (event) => {
     const password = formData.get("password");
     const body = { email, password };
 
-    const res = await fetch("/api/user/token", {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers: {
-            "Content-Type": "application/json"
+    try {
+
+        const res = await fetch("/api/user/token", {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+
+        if (!res.ok) {
+            throw res;
         }
-    })
+        const userData = await res.json();
 
-    if (!res.ok) {
-        throw res;
+        const token = userData.token;
+        const id = userData.user.id;
+        const previousPage = userData.previousPage
+        localStorage.setItem("HANGRY_ACCESS_TOKEN", token);
+        localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
+        window.location.href = previousPage;
+    } catch (err) {
+        handleErrors(err)
     }
-    const userData = await res.json();
-
-    const token = userData.token;
-    const id = userData.user.id;
-    const previousPage = userData.previousPage
-    localStorage.setItem("HANGRY_ACCESS_TOKEN", token);
-    localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
-    window.location.href = previousPage;
 })
