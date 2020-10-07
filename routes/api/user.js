@@ -120,9 +120,11 @@ routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => 
     }
 
     const token = getUserToken(user);
-    res.json({
+    const previousPage = req.session.history[1].split("http://localhost:8080")[1]
+    res.status(201).json({
+        user: { id: user.id },
         token,
-        user: { id: user.id }
+        previousPage
     })
 
 
