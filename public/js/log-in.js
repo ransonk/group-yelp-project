@@ -1,5 +1,5 @@
 import { handleErrors } from "./utils.js"
-const logInForm = document.querySelector("log-in-form");
+const logInForm = document.querySelector(".log-in-form");
 
 logInForm.addEventListener("submit", async (event) => {
 
@@ -9,7 +9,7 @@ logInForm.addEventListener("submit", async (event) => {
     const email = formData.get("email");
     const password = formData.get("password");
     const body = { email, password };
-
+    console.log(body);
     try {
 
         const res = await fetch("/api/user/token", {
@@ -24,13 +24,14 @@ logInForm.addEventListener("submit", async (event) => {
             throw res;
         }
         const userData = await res.json();
+        console.log(userData)
 
         const token = userData.token;
         const id = userData.user.id;
         const previousPage = userData.previousPage
         localStorage.setItem("HANGRY_ACCESS_TOKEN", token);
         localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
-        window.location.href = previousPage;
+        window.location.href = '/';
     } catch (err) {
         handleErrors(err)
     }

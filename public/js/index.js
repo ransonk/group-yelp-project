@@ -2,6 +2,44 @@
 
 document.addEventListener('DOMContentLoaded', async (e) => {
 
+
+    const token = localStorage.getItem("HANGRY_ACCESS_TOKEN")
+    const id = localStorage.getItem("HANGRY_CURRENT_USER_ID")
+    console.log(id)
+    const body = { token, id }
+    const res = await fetch("/api/user/check", {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers:
+            { "Content-Type": "application/json" },
+    })
+
+    const loggedInStatus = await res.json();
+    console.log(loggedInStatus.result)
+
+    if (loggedInStatus.result) {
+        document.querySelector('#sign-up').classList.add('hidden')
+        document.querySelector('#log-in').classList.add('hidden')
+        document.querySelector('#profile').classList.remove('hidden')
+        document.querySelector('#log-out').classList.remove('hidden')
+
+    } else {
+        document.querySelector('#sign-up').classList.remove('hidden')
+        document.querySelector('#log-in').classList.remove('hidden')
+        document.querySelector('#profile').classList.add('hidden')
+        document.querySelector('#log-out').classList.add('hidden')
+    }
+
+
+    //logout event listener
+    document.querySelector('#log-out')
+        .addEventListener('click', () => {
+            localStorage.removeItem("HANGRY_ACCESS_TOKEN")
+            localStorage.removeItem("HANGRY_CURRENT_USER_ID")
+            window.location.href = '/';
+        })
+
+
     const recent = await fetch('/api/restaurants/recent')
     const result = await recent.json();
 
@@ -18,14 +56,17 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant1foodCategory = document.querySelector('.restaurant1__foodCategory')
     const restaurant1cityState = document.querySelector('.restaurant1__cityState')
     restaurant1Name.innerHTML = restaurant1.name;
+    restaurant1Name.href = `/restaurants/${restaurant1.id}`
     restaurant1rating.innerHTML = restaurant1.Reviews[0].rating;
     restaurant1foodCategory.innerHTML = restaurant1.foodCategory;
     restaurant1cityState.innerHTML = restaurant1.city + ' ' + restaurant1.state
+
     const restaurant2Name = document.querySelector('.restaurant2__name')
     const restaurant2rating = document.querySelector('.restaurant2__rating')
     const restaurant2foodCategory = document.querySelector('.restaurant2__foodCategory')
     const restaurant2cityState = document.querySelector('.restaurant2__cityState')
     restaurant2Name.innerHTML = restaurant2.name;
+    restaurant2Name.href = `/restaurants/${restaurant2.id}`
     restaurant2rating.innerHTML = restaurant2.Reviews[0].rating;
     restaurant2foodCategory.innerHTML = restaurant2.foodCategory;
     restaurant2cityState.innerHTML = restaurant2.city + ' ' + restaurant2.state
@@ -34,6 +75,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant3foodCategory = document.querySelector('.restaurant3__foodCategory')
     const restaurant3cityState = document.querySelector('.restaurant3__cityState')
     restaurant3Name.innerHTML = restaurant3.name;
+    restaurant3Name.href = `/restaurants/${restaurant3.id}`
     restaurant3rating.innerHTML = restaurant3.Reviews[0].rating;
     restaurant3foodCategory.innerHTML = restaurant3.foodCategory;
     restaurant3cityState.innerHTML = restaurant3.city + ' ' + restaurant3.state
@@ -43,6 +85,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant4foodCategory = document.querySelector('.restaurant4__foodCategory')
     const restaurant4cityState = document.querySelector('.restaurant4__cityState')
     restaurant4Name.innerHTML = restaurant4.name;
+    restaurant4Name.href = `/restaurants/${restaurant4.id}`
     restaurant4rating.innerHTML = restaurant4.Reviews[0].rating;
     restaurant4foodCategory.innerHTML = restaurant4.foodCategory;
     restaurant4cityState.innerHTML = restaurant4.city + ' ' + restaurant4.state

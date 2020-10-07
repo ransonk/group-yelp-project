@@ -50,4 +50,34 @@ const getUserToken = (user) => {
     return token;
 };
 
-module.exports = { getUserToken, requireAuth };
+
+const signedIn = (req, res) => {
+    const { token } = req.body;
+
+
+    return jwt.verify(token, secret, null, async (err, jwtPayload) => {
+        // TODO: Define asynchronous function for jwtPayload logic
+        if (err) {
+            return false;
+        }
+        const { id } = jwtPayload.data;
+        try {
+            const providedUser = await User.findByPk(req.body.id)
+            const tokenInformationUser = await User.findByPk(id);
+            if (providedUser.email === tokenInformationUser.email) {
+                return true
+            } else {
+                return false
+            }
+        } catch (e) {
+            return false;
+        }
+
+
+
+    });
+};
+
+
+
+module.exports = { getUserToken, requireAuth, signedIn };
