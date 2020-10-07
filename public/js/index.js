@@ -1,30 +1,18 @@
 //homepage fetch calls
 
-const express = require('express');
-const router = express.Router();
+document.addEventListener('DOMContentLoaded', async (e) => {
 
-router.get("/", (req, res) => {
-    res.send("test index root");
-});
+    const recent = await fetch('/api/restaurants/recent')
+    const result = await recent.json();
+    console.log(result);
 
+    const { restaurants } = result;
+    const [restaurant1, restaurant2, restaurant3] = restaurants;
+    console.log(restaurant1);
+    console.log(restaurant2);
+    console.log(restaurant3);
+    // const {Images, Reviews, city, state, foodCategory, name} = restaurant1;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = router;
+    // const firstRec = document.getElementsByClassName('restaurant1');
+    // firstRec.innerHTML = restaurant1.name
+})
