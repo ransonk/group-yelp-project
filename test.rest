@@ -3,10 +3,6 @@ GET http://localhost:8080/api/restaurants
 ###
 
 GET http://localhost:8080/api/restaurants/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImFrbWFsQHRlc3QuY29tIn0sImlhdCI6MTYwMjA4OTM0MSwiZXhwIjoxNjAyMDg5NjQxfQ.j-QFKBRrTRTz2Tj6vD-2L_FoX2-uab1beRffuYmFYW8
-
-
-
 
 
 ###
