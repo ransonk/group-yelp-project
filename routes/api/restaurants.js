@@ -121,7 +121,7 @@ router.post('/api/restaurants', csrfProtection, validateRestaurants, handleValid
 router.get('/api/restaurants/recent', asyncHandler(async (req, res, next) => {
     const restaurants = await Restaurant.findAll({
         include: [Review, Image],
-        limit: 3,
+        limit: 4,
         order: [
             ['id', 'DESC'] //possibly change to order by rating
         ]

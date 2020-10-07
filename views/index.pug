@@ -3,9 +3,8 @@ extends layout.pug
 block content
   div.container
     div.nav__bar
-      button(id='sign-up' class='nav__btn') Sign Up
-      a(href="/sign-up") signup
-      button(id='log-in' class='nav__btn') Log In
+      button(id='sign-up' class='nav__btn' onclick="window.location.href='/sign-up'") Sign Up
+      button(id='log-in' class='nav__btn' onclick="window.location.href='/log-in'") Log In
     div.logoSearchChunk
       div.nav__logo
       div.nav__search
@@ -25,8 +24,28 @@ block content
       a(href="/delivery") Delivery
   div.recentRestaurants
     div.restaurant1
-      p #{restaurant1.name}
+      div.restaurant1__image
+      div.restaurant1__name
+      div.restaurant1__rating
+      div.restaurant1__foodCategory
+      div.restaurant1__cityState
     div.restaurant2
+      div.restaurant2__image
+      div.restaurant2__name
+      div.restaurant2__rating
+      div.restaurant2__foodCategory
+      div.restaurant2__cityState
     div.restaurant3
+      div.restaurant3__image
+      div.restaurant3__name
+      div.restaurant3__rating
+      div.restaurant3__foodCategory
+      div.restaurant3__cityState
+    div.restaurant4
+      div.restaurant4__image
+      div.restaurant4__name
+      div.restaurant4__rating
+      div.restaurant4__foodCategory
+      div.restaurant4__cityState
 
   script(src="js/index.js" type='module')

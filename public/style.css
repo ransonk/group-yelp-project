@@ -2,6 +2,22 @@
     box-sizing: border-box;
 }
 
+/* index.pug css */
+.recentRestaurants{
+    display: flex;
+    justify-content: center;
+}
+
+.restaurant1,
+.restaurant2,
+.restaurant3,
+.restaurant4{
+    border: 5px solid black;
+    margin: 5px;
+    padding: 5px;
+
+}
+
 .nav__bar{
     /* background-color: blue; */
     width: 100%;
