@@ -25,7 +25,9 @@ router.get("/log-in", (req, res) => {
     res.render("log-in")
 })
 
-
+router.get("/restaurants/:id(\\d+)", (req, res) => {
+    res.render("restaurant");
+})
 
 
 
