@@ -1,9 +1,17 @@
 // const restaurant = require("../../db/models/restaurant");
 
-const restaurant = require("../../db/models/restaurant");
+// const restaurant = require("../../db/models/restaurant");
+// import { getUserToken, requireAuth } from './auth.js';
+
 
 const fetchRestaurants = async (input) => {
-    const res = await fetch('/api/restaurants');
+    const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
+    const id = localStorage.getItem("HANGRY_CURRENT_USER_ID");
+    const res = await fetch('/api/restaurants', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
     const { restaurants } = await res.json();
     if (!input) {
         return restaurants;
@@ -16,8 +24,12 @@ const fetchRestaurants = async (input) => {
 }
 
 const fetchRestaurant = async (restaurantId) => {
-    const res = await fetch(`/api/restaurants/${restaurantId}`);
 
+    const res = await fetch(`/api/restaurants/${restaurantId}`, {
+        headers: {
+            "WWW-Authenticate": `Bearer ${localStorage.getItem("HANGRY_ACCESS_TOKEN")}`
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {

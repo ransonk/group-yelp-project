@@ -43,7 +43,7 @@ const getUserToken = (user) => {
     const token = jwt.sign(
         { data: userDataForToken },
         secret,
-        { expiresIn: 300 }
+        { expiresIn: 300000000000000000 }
         // { expiresIn: parseInt(expiresIn, 10) } // 604,800 seconds = 1 week
     );
 

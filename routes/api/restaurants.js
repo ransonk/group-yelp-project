@@ -3,7 +3,8 @@ const db = require('../../db/models');
 const { Restaurant, User, Review, Image, Like } = db;
 const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
-const { handleValidationErrors } = require('../../utils')
+const { handleValidationErrors } = require('../../utils');
+const { requireAuth } = require('../../auth');
 
 const { check, validationResult } = require('express-validator');
 
@@ -61,9 +62,7 @@ router.get('/api/restaurants/:id(\\d+)', asyncHandler(async (req, res, next) => 
             include: [
                 {
                     model: Review,
-                    include: [
-                        User
-                    ]
+                    include: [User]
                 }, Image, User]
         });
     res.json({ restaurant })
