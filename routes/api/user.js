@@ -2,9 +2,12 @@ const express = require('express');
 const routes = express.Router();
 const { check, validationResult } = require('express-validator');
 const { asyncHandler, handleValidationErrors } = require('../../utils');
-const { getUserToken, requireAuth } = require('../../auth');
+const { getUserToken, requireAuth, signedIn } = require('../../auth');
 const db = require('../../db/models')
 const bcrypt = require("bcryptjs")
+
+const bearerToken = require('express-bearer-token');
+
 
 const validateSignUpUser = [
     check("firstName")
@@ -89,6 +92,8 @@ routes.post(
     }))
 
 
+
+
 //log in should have a form with email and password.
 routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => {
     const validationErrors = validationResult(req);
@@ -143,7 +148,13 @@ routes.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 }))
 
 
+//back end for checking if the user is logged in when the website is loaded.
+routes.post("/check", asyncHandler(async (req, res) => {
+    const result = await signedIn(req, res)
+    // console.log(result)
+    res.json({ result })
 
+}))
 
 
 

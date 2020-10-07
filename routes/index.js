@@ -9,7 +9,16 @@ const app = express();
 
 router.get("/", (req, res) => {
 
-    res.render('index', {})
+    // const token = localStorage.getItem("HANGRY_ACCESS_TOKEN")
+    // const id = localStorage.getItem("HANGRY_CURRENT_USER_ID")
+    // const body = { token, id }
+    // const res = await fetch("/api/user/check", {
+    //     method: "POST",
+    //     headers:
+    //         { "Content-Type": "application.json" },
+    //     body: JSON.stringify({ body })
+    // })
+    res.render('index', {}) // poas in the result from fetch in this {}
 })
 
 
