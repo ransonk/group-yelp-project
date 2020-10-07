@@ -33,6 +33,7 @@ logInForm.addEventListener("submit", async (event) => {
         localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
         window.location.href = '/';
     } catch (err) {
-        handleErrors(err)
+        console.log(err);
+        // handleErrors(err)
     }
 })

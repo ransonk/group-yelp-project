@@ -65,7 +65,10 @@ router.get('/api/restaurants/:id(\\d+)', asyncHandler(async (req, res, next) => 
                     include: [User]
                 }, Image, User]
         });
-    res.json({ restaurant })
+    const averageRating = restaurant.Reviews.reduce((accum, ele) => {
+        return accum + ele.rating;
+    }, 0);
+    res.json({ restaurant, averageRating })
 }))
 
 router.get('/api/restaurants/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
@@ -73,12 +76,14 @@ router.get('/api/restaurants/:id(\\d+)/reviews', asyncHandler(async (req, res, n
     const reviews = await Review.findAll({
         where: { restaurantId }, include: [Restaurant, User, Like]
     });
+    
     res.json({ reviews });
 }))
 
 router.post('/api/restaurants/:id(\\d+)/reviews', csrfProtection, validateReviews, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const restaurantId = parseInt(req.params.id);
     const { rating, description, userId } = req.body;
+    rating /= Reviews.length;
     const review = await Review.create({
         rating,
         description,
@@ -128,5 +133,21 @@ router.get('/api/restaurants/recent', asyncHandler(async (req, res, next) => {
     });
     res.json({ restaurants });
 }));
+
+router.delete('/api/restaurants/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => {
+    const userId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
+    const id = parseInt(req.params.id);
+    const restaurant = await Restaurant.findByPk(id);
+    if (restaurant.userId !== userId) {
+        const err = new Error("Unauthorized Action");
+        err.status = 401;
+        err.title = "Unauthorized";
+        err.errors = ["Only business owner is authorized to delete this business."];
+        return next(err);
+    } else {
+        await restaurant.destroy();
+        res.json({msg: "Restaurant Deleted"});
+    }
+}))
 
 module.exports = router;
