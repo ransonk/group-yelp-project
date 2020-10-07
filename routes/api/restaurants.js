@@ -118,5 +118,16 @@ router.post('/api/restaurants', csrfProtection, validateRestaurants, handleValid
     res.json({ restaurant, csrfToken: req.csrfToken() })
 }))
 
+//grab restaurants for index page *recommended restaurants
+router.get('/api/restaurants/recent', asyncHandler(async (req, res, next) => {
+    const restaurants = await Restaurant.findAll({
+        include: [Review, Image],
+        limit: 3,
+        order: [
+            ['id', 'DESC'] //possibly change to order by rating
+        ]
+    });
+    res.json({ restaurants });
+}));
 
 module.exports = router;
