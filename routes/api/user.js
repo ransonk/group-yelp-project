@@ -114,9 +114,9 @@ routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => 
         where: { email: email }
     });
     console.log('user', user.email);
-    const hashedPassword = await bcrypt.hash(password, 10)
-    console.log(hashedPassword)
-    if (!user || hashedPassword !== user.hashedPassword.toString()) {
+    const passwordsMatch = await bcrypt.compareSync(password, user.hashedPassword.toString())
+    console.log(passwordsMatch)
+    if (!user || !passwordsMatch) {
         const err = new Error("Login failed");
         err.status = 401;
         err.title = "Login failed";
@@ -126,6 +126,7 @@ routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => 
     console.log('hi')
     const token = getUserToken(user);
     const previousPage = req.session.history[1].split("http://localhost:8080")[1]
+    console.log(previousPage)
     res.status(201).json({
         user: { id: user.id },
         token,
