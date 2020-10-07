@@ -56,41 +56,6 @@
 }
 
 
-.sign-up-form #firstName{
-    width: 105px;
-    margin:5px
-}
-
-.sign-up-form #lastName{
-    width: 105px;
-    margin-left: 5px
-
-
-}
-.sign-up-form #email{
-    width: 220px;
-    margin: 5px;
-
-}
-.sign-up-form #password{
-    width: 220px;
-    margin: 5px;
-
-}
-.sign-up-form #confirmPassword{
-    width: 220px;
-    margin: 5px;
-
-}
-
-.log-in-form #email {
-    width: 220px;
-    margin: 5px;
-}
-.log-in-form #password {
-    width: 220px;
-    margin: 5px;
-}
 
 #username.form-control{
     border-radius: 5px;
@@ -128,3 +93,62 @@
     font-size: 1.2rem;
 }
 
+.sign-up-main-container{
+    display: flex;
+    height: 400px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-up-side-picture-container{
+    margin: 10px;
+    background-image: url("./images/LOGINpIC2.png");
+    background-size: cover;
+    height: 20em;
+    width: 17em;
+}
+
+.sign-up-container{
+margin: 10px;
+}
+
+.sign-up-button {
+justify-content: center;
+}
+
+.sign-up-form #firstName{
+    width: 105px;
+    margin:5px
+}
+
+.sign-up-form #lastName{
+    width: 105px;
+    margin-left: 5px
+
+
+}
+.sign-up-form #email{
+    width: 220px;
+    margin: 5px;
+
+}
+.sign-up-form #password{
+    width: 220px;
+    margin: 5px;
+
+}
+.sign-up-form #confirmPassword{
+    width: 220px;
+    margin: 5px;
+
+}
+
+.log-in-form #email {
+    width: 220px;
+    margin: 5px;
+}
+.log-in-form #password {
+    width: 220px;
+    margin: 5px;
+}

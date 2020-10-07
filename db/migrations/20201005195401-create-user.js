@@ -31,7 +31,7 @@ module.exports = {
       },
       businessOwner: {
         allowNull: false,
-        type: Sequelize.BOOLEAN
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

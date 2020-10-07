@@ -3,8 +3,10 @@ const app = express();
 const morgan = require('morgan');
 const environment = require('./config/index');
 const apiUser = require('./routes/api/user');
-const ValidationError = require("sequelize")
+const { ValidationError } = require("sequelize")
 const path = require('path');
+const session = require("express-session")
+const sessionSecret = require("./config/index").sessionSecret.secret
 // const loginRouter = require('./routes/log-in')
 // const signupRouter = require('./routes/sign-up')
 // const searchRouter = require('./routes/search')
@@ -15,6 +17,23 @@ const indexRouter = require('./routes/index')
 
 app.use(morgan('dev'));
 app.set('view engine', 'pug')
+app.use(session({
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: false,
+}));
+app.use((req, res, next) => {
+    let { history } = req.session;
+    if (!history) {
+        history = [];
+        req.session.history = history;
+    }
+    const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+    if (!url.endsWith("js") && !url.endsWith("css") && !url.endsWith("jpg") && !url.endsWith("png") && !url.includes("api/")) {
+        history.unshift(url);
+    }
+    next();
+});
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use('/', indexRouter)
@@ -60,6 +79,7 @@ app.use((err, req, res, next) => {
     if (err instanceof ValidationError) {
         err.errors = err.errors.map((e) => e.message);
         err.title = "Sequelize Error";
+        // console.log(err)
     }
     next(err);
 });
