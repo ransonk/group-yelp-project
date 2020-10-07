@@ -11,9 +11,8 @@ signUpForm.addEventListener("submit", async (event) => {
     const email = formData.get("email");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword")
-    const businessOwer = formData.get("businessOwner")
-    const body = { firstName, lastName, email, password, confirmPassword, businessOwer }
-    console.log(body)
+    const businessOwner = formData.get("businessOwner")
+    const body = { firstName, lastName, email, password, confirmPassword, businessOwner }
     try {
         const res = await fetch("/api/user", {
             method: "POST",
@@ -25,12 +24,16 @@ signUpForm.addEventListener("submit", async (event) => {
         if (!res.ok) {
             throw res;
         }
-        const token = res.token;
-        const id = res.user.id;
-        console.log(token, id)
-        // localStorage.setItem("HANGRY_ACCESS_TOKEN", token);
-        // localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
-        // window.location.herf = '/';
+
+        const userData = await res.json();
+
+        const token = userData.token;
+        const id = userData.user.id;
+        const previousPage = userData.previousPage
+        localStorage.setItem("HANGRY_ACCESS_TOKEN", token);
+        localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
+        window.location.href = previousPage;
+
     } catch (err) {
         handleErrors(err)
     }

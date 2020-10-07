@@ -28,11 +28,9 @@ const validateSignUpUser = [
                     }
                 });
         }),
-    check("businessOwner")
-        .exists({ checkFalsy: true })
-        .withMessage("Please confirm if you are a business owner"),
     check("password")
         .exists({ checkFalsy: true })
+        .withMessage('Please provide a value for Password')
         .isLength({ max: 20 })
         .withMessage("Please provide a valid password with max 20 characters"),
     check('confirmPassword')
@@ -66,7 +64,6 @@ const validateLogInUser = [
 routes.post(
     '/', validateSignUpUser, handleValidationErrors,
     asyncHandler(async (req, res, next) => {
-
         const validationErrors = validationResult(req);
 
         if (!validationErrors.isEmpty()) {
@@ -78,22 +75,16 @@ routes.post(
             return next(err);
         }
 
-        const { firstName, lastName, email, password, profileUrl, businessOwner } = req.body;
-
+        const { firstName, lastName, email, password, businessOwner } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10)
-        let user;
-        if (!profileUrl) {
-            user = await db.User.create({ firstName, lastName, email, businessOwner, hashedPassword })
-
-        } else {
-            user = await db.User.create({ firstName, lastName, email, profileUrl, businessOwner, hashedPassword })
-
-        }
+        let user = await db.User.create({ profileUrl: "set default here", lastName, firstName, email, hashedPassword, businessOwner })
 
         const token = getUserToken(user);
+        const previousPage = req.session.history[1].split("http://localhost:8080")[1]
         res.status(201).json({
             user: { id: user.id },
             token,
+            previousPage
         })
     }))
 

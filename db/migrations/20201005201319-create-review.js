@@ -10,7 +10,7 @@ module.exports = {
       },
       rating: {
         allowNull: false,
-        type: Sequelize.INTEGER(5)
+        type: Sequelize.INTEGER
       },
       description: {
         allowNull: false,

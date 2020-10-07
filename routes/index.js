@@ -15,11 +15,12 @@ router.get('/search', (req, res) => {
 })
 
 router.get("/sign-up", (req, res) => {
-
-
     res.render("sign-up")
 })
 
+router.get("/log-in", (req, res) => {
+    res.render("log-in")
+})
 
 
 
