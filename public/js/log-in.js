@@ -1,5 +1,5 @@
 import { handleErrors } from "./utils.js"
-const logInForm = document.querySelector("log-in-form");
+const logInForm = document.querySelector(".log-in-form");
 
 logInForm.addEventListener("submit", async (event) => {
 
@@ -32,6 +32,7 @@ logInForm.addEventListener("submit", async (event) => {
         localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
         window.location.href = previousPage;
     } catch (err) {
-        handleErrors(err)
+        console.log(err);
+        // handleErrors(err)
     }
 })
