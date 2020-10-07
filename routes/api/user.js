@@ -113,9 +113,9 @@ routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => 
     const user = await db.User.findOne({
         where: { email: email }
     });
-
+    console.log('user', user.email);
     const hashedPassword = await bcrypt.hash(password, 10)
-
+    console.log(hashedPassword)
     if (!user || hashedPassword !== user.hashedPassword.toString()) {
         const err = new Error("Login failed");
         err.status = 401;
@@ -123,7 +123,7 @@ routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => 
         err.errors = ["The provided credentials were invalid."];
         return next(err);
     }
-
+    console.log('hi')
     const token = getUserToken(user);
     const previousPage = req.session.history[1].split("http://localhost:8080")[1]
     res.status(201).json({

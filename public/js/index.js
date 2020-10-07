@@ -14,8 +14,30 @@ document.addEventListener('DOMContentLoaded', async (e) => {
             { "Content-Type": "application/json" },
     })
 
+    const loggedInStatus = await res.json();
+    console.log(loggedInStatus.result)
+
+    if (loggedInStatus.result) {
+        document.querySelector('#sign-up').classList.add('hidden')
+        document.querySelector('#log-in').classList.add('hidden')
+        document.querySelector('#profile').classList.remove('hidden')
+        document.querySelector('#log-out').classList.remove('hidden')
+
+    } else {
+        document.querySelector('#sign-up').classList.remove('hidden')
+        document.querySelector('#log-in').classList.remove('hidden')
+        document.querySelector('#profile').classList.add('hidden')
+        document.querySelector('#log-out').classList.add('hidden')
+    }
 
 
+    //logout event listener
+    document.querySelector('#log-out')
+        .addEventListener('click', () => {
+            localStorage.removeItem("HANGRY_ACCESS_TOKEN")
+            localStorage.removeItem("HANGRY_CURRENT_USER_ID")
+            window.location.href = '/';
+        })
 
 
     const recent = await fetch('/api/restaurants/recent')

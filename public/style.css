@@ -26,6 +26,10 @@
     justify-content: flex-end;
 }
 
+.hidden{
+    display: none;
+}
+
 .container{
     /* display: flex; */
     background-image: url('./images/Experts-weigh-in-on-what-makes-people-become-hangry.jpg');
