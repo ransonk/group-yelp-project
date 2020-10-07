@@ -1,21 +1,37 @@
-const express = require('express');
-const router = express.Router();
+import { handleErrors } from "./utils.js"
+const logInForm = document.querySelector("log-in-form");
 
-router.get('/', (req, res) => {
-    //redirects to homepage as guest user is user clicks demo user button
-    //redirects to home page as signed in user(if successful)
+logInForm.addEventListener("submit", async (event) => {
 
+    event.preventDefault();
+
+    const formData = new FormData(logInForm);
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const body = { email, password };
+
+    try {
+
+        const res = await fetch("/api/user/token", {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+
+        if (!res.ok) {
+            throw res;
+        }
+        const userData = await res.json();
+
+        const token = userData.token;
+        const id = userData.user.id;
+        const previousPage = userData.previousPage
+        localStorage.setItem("HANGRY_ACCESS_TOKEN", token);
+        localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
+        window.location.href = previousPage;
+    } catch (err) {
+        handleErrors(err)
+    }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = router;
