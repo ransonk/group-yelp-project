@@ -6,6 +6,14 @@ block content
         button(type="submit") search
 
     div(class="restaurants-container")
+    h1(value=restaurants)
+    //- each restaurant in restaurants
+    //-     .restaurant__container
+    //-         div= restaurant.name
+    //-         div= restaurant.phone
+    //-         div= restaurant.address, restaurant.city, restaurant.state
+    //-         div= restaurant.dineIn, restaurant.takeOut, restaurant.delivery
+
 
 
     script(type="module" src="js/search.js")

@@ -7,7 +7,7 @@ const app = express();
 const csrfProtection = csrf({ cookie: true });
 // const { csrfProtection } = require('./api/restaurants');
 
-
+app.set('view engine', 'pug');
 
 
 router.get("/", (req, res) => {
@@ -29,7 +29,16 @@ router.get('/search', (req, res) => {
     res.render('search');
 })
 
+router.post('/search', (req, res) => {
+    const restaurants = req.body.result;
+    console.log(restaurants);
+    res.render('search', { restaurants: 'hello' });
+})
+
 router.get("/sign-up", (req, res) => {
+
+
+
     res.render("sign-up")
 })
 
@@ -42,7 +51,7 @@ router.get("/restaurants/:id(\\d+)", (req, res) => {
 })
 
 router.get('/restaurants/:id(\\d+)/reviews/new', csrfProtection, (req, res) => {
-    res.render('write-a-review', {csrfToken: req.csrfToken()});
+    res.render('write-a-review', { csrfToken: req.csrfToken() });
 })
 
 

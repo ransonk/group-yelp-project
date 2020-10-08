@@ -1,4 +1,4 @@
-GET http://localhost:8080/api/restaurants
+GET http://localhost:8080/api/search/5giSdfsIEKD
 
 ###
 
