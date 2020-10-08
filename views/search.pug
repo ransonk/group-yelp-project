@@ -1,9 +1,7 @@
 extends layout.pug
 
 block content
-    form(class="search")
-        input(type="text" name="search" placeholder="search..." class="searchbar")
-        button(type="submit") search
+    include includes/nav-search
 
     div(class="restaurants-container")
 
