@@ -58,7 +58,8 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         const res2 = await fetch("/search", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ result })
+            body: JSON.stringify({ result }),
+            // redirect: "follow"
         })
         window.location.href = '/search'
     })

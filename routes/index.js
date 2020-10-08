@@ -32,7 +32,7 @@ router.get('/search', (req, res) => {
 router.post('/search', (req, res) => {
     const restaurants = req.body.result;
     console.log(restaurants);
-    res.render('search', { restaurants });
+    res.render('search', { restaurants: 'hello' });
 })
 
 router.get("/sign-up", (req, res) => {
