@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1 Write a review
+
+  form.write-review__form
+    input(type='hidden' name='_csrf' value=csrfToken)
+    label(for='rating') Rating
+    select(name='rating' id='rating' required)
+      option(name='1' value=1) 1
+      option(name='2' value=2) 2
+      option(name='3' value=3) 3
+      option(name='4' value=4) 4
+      option(name='5' value=5) 5
+    label(for='description') Description
+    textarea(name='description' id='description' required)
+    button(type='submit' class='write-review__submit-button') Submit
+
+  script(type="module" src="/js/write-a-review.js")

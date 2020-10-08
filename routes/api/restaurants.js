@@ -48,14 +48,14 @@ const validateReviews = [
         .isLength({ min: 30, max: 5000 })
         .withMessage('Please provide a description between 30 and 5000 characters')
 ]
-router.get('/api/restaurants', asyncHandler(async (req, res, next) => {
+router.get('/', asyncHandler(async (req, res, next) => {
     const restaurants = await Restaurant.findAll({
         include: [Review, Image]
     });
     res.json({ restaurants });
 }));
 
-router.get('/api/restaurants/:id(\\d+)', asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const restaurantId = parseInt(req.params.id);
     const restaurant = await Restaurant.findByPk(restaurantId,
         {
@@ -71,7 +71,7 @@ router.get('/api/restaurants/:id(\\d+)', asyncHandler(async (req, res, next) => 
     res.json({ restaurant, averageRating })
 }))
 
-router.get('/api/restaurants/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
     const restaurantId = parseInt(req.params.id);
     const reviews = await Review.findAll({
         where: { restaurantId }, include: [Restaurant, User, Like]
@@ -79,21 +79,27 @@ router.get('/api/restaurants/:id(\\d+)/reviews', asyncHandler(async (req, res, n
     
     res.json({ reviews });
 }))
-
-router.post('/api/restaurants/:id(\\d+)/reviews', csrfProtection, validateReviews, handleValidationErrors, asyncHandler(async (req, res, next) => {
+// csrfProtection, 
+router.post('/:id(\\d+)/reviews', validateReviews, handleValidationErrors, asyncHandler(async (req, res, next) => {
+    console.log(req.body);
     const restaurantId = parseInt(req.params.id);
-    const { rating, description, userId } = req.body;
-    rating /= Reviews.length;
-    const review = await Review.create({
-        rating,
-        description,
-        userId,
-        restaurantId
-    })
-    res.json({ review });
+    const restaurant = await Restaurant.findByPk(restaurantId);
+    if (!restaurant) {
+        throw new Error('Restaurant not found.')
+    } else {
+        const { rating, description, userId } = req.body;
+        const review = await Review.create({
+            rating,
+            description,
+            userId,
+            restaurantId
+        })
+        res.json({ review });
+
+    }
 }))
 
-router.post('/api/restaurants', csrfProtection, validateRestaurants, handleValidationErrors, asyncHandler(async (req, res, next) => {
+router.post('/', csrfProtection, validateRestaurants, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const {
         name,
         phone,
@@ -123,7 +129,7 @@ router.post('/api/restaurants', csrfProtection, validateRestaurants, handleValid
 }))
 
 //grab restaurants for index page *recommended restaurants
-router.get('/api/restaurants/recent', asyncHandler(async (req, res, next) => {
+router.get('/recent', asyncHandler(async (req, res, next) => {
     const restaurants = await Restaurant.findAll({
         include: [Review, Image],
         limit: 4,
@@ -134,11 +140,12 @@ router.get('/api/restaurants/recent', asyncHandler(async (req, res, next) => {
     res.json({ restaurants });
 }));
 
-router.delete('/api/restaurants/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => {
-    const userId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
-    const id = parseInt(req.params.id);
-    const restaurant = await Restaurant.findByPk(id);
-    if (restaurant.userId !== userId) {
+router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => {
+    // const userId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
+    const { id, token } = req.body;
+    const restaurantId = parseInt(req.params.id);
+    const restaurant = await Restaurant.findByPk(restaurantId);
+    if (restaurant.userId.toString() !== id) {
         const err = new Error("Unauthorized Action");
         err.status = 401;
         err.title = "Unauthorized";
@@ -150,4 +157,5 @@ router.delete('/api/restaurants/:id(\\d+)', requireAuth, asyncHandler(async (req
     }
 }))
 
-module.exports = router;
+
+module.exports = router

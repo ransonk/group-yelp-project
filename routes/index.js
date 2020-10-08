@@ -1,8 +1,11 @@
 //renders
 const express = require('express');
+const csrf = require('csurf');
 const router = express.Router();
 const path = require('path');
 const app = express();
+const csrfProtection = csrf({ cookie: true });
+// const { csrfProtection } = require('./api/restaurants');
 
 
 
@@ -36,6 +39,10 @@ router.get("/log-in", (req, res) => {
 
 router.get("/restaurants/:id(\\d+)", (req, res) => {
     res.render("restaurant");
+})
+
+router.get('/restaurants/:id(\\d+)/reviews/new', csrfProtection, (req, res) => {
+    res.render('write-a-review', {csrfToken: req.csrfToken()});
 })
 
 
