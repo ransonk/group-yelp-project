@@ -76,7 +76,7 @@ router.get('/api/restaurants/:id(\\d+)/reviews', asyncHandler(async (req, res, n
     const reviews = await Review.findAll({
         where: { restaurantId }, include: [Restaurant, User, Like]
     });
-    
+
     res.json({ reviews });
 }))
 
@@ -134,6 +134,15 @@ router.get('/api/restaurants/recent', asyncHandler(async (req, res, next) => {
     res.json({ restaurants });
 }));
 
+//find restaurant by user id
+router.get("/api/restaurants/user/:id(\\d+)/restaurant", asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.id);
+    const restaurant = await Restaurant.findOne({
+        where: { userId: userId }
+    })
+    res.json({ restaurant });
+}))
+
 router.delete('/api/restaurants/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => {
     const userId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
     const id = parseInt(req.params.id);
@@ -146,7 +155,7 @@ router.delete('/api/restaurants/:id(\\d+)', requireAuth, asyncHandler(async (req
         return next(err);
     } else {
         await restaurant.destroy();
-        res.json({msg: "Restaurant Deleted"});
+        res.json({ msg: "Restaurant Deleted" });
     }
 }))
 

@@ -38,8 +38,9 @@ const requireAuth = [bearerToken(), restoreUser];
 const getUserToken = (user) => {
     const userDataForToken = {
         id: user.id,
-        email: user.email,
+        email: user.email
     };
+
     const token = jwt.sign(
         { data: userDataForToken },
         secret,
@@ -54,27 +55,27 @@ const getUserToken = (user) => {
 const signedIn = (req, res) => {
     const { token } = req.body;
 
-
     return jwt.verify(token, secret, null, async (err, jwtPayload) => {
         // TODO: Define asynchronous function for jwtPayload logic
         if (err) {
-            return false;
+            return "Bad User Token";
         }
         const { id } = jwtPayload.data;
         try {
             const providedUser = await User.findByPk(req.body.id)
             const tokenInformationUser = await User.findByPk(id);
             if (providedUser.email === tokenInformationUser.email) {
-                return true
+                if (providedUser.businessOwner) {
+                    return "Business Owner Token";
+                } else {
+                    return "Non-business Owner Token";
+                }
             } else {
-                return false
+                return "Bad User Token"
             }
         } catch (e) {
-            return false;
+            return "Bad User Token";
         }
-
-
-
     });
 };
 

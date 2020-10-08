@@ -91,9 +91,6 @@ routes.post(
         })
     }))
 
-
-
-
 //log in should have a form with email and password.
 routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => {
     const validationErrors = validationResult(req);
@@ -154,9 +151,7 @@ routes.post("/check", asyncHandler(async (req, res) => {
     const result = await signedIn(req, res)
     // console.log(result)
     res.json({ result })
-
 }))
-
 
 
 module.exports = routes;
