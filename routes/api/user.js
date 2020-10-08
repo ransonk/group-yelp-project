@@ -135,14 +135,21 @@ routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => 
 
 
 //show user profile for certain review
-routes.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+routes.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+    console.log('hi');
+    const userId = parseInt(req.params.id);
+    console.log(userId);
+    // const user = await db.User.findByPk(userId, {
+    //     include: [Review]
+    // })
     const user = await db.User.findOne({
         where: {
             id: parseInt(req.params.id)
         },
-        include: [Review, Like, Image, Restaurant]
+        // include: [Review]
     })
-    res.json({ user })
+    const reviews = await db.Review.findAll({ where: { userId }, order: [['createdAt', 'DESC']], include: [db.Restaurant] }, );
+    res.json({ user, reviews });
 }))
 
 

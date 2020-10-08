@@ -15,6 +15,15 @@ const reviewsContainer = document.querySelector('.reviews-container');
 const restaurantId = window.location.href.match(/\/(\d+)$/)[1]
 
 document.addEventListener('DOMContentLoaded', async () => {
+
+    const token = localStorage.getItem("HANGRY_ACCESS_TOKEN")
+    const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID")
+
+    const deleteReviewButton = document.createElement('button');
+    deleteReviewButton.setAttribute('class', 'restaurant__delete-review-button');
+    const editReviewButton = document.createElement('button');
+    editReviewButton.setAttribute('class', 'restaurant__edit-review-button');
+
     try {
         const res = await fetch(`/api/restaurants/${restaurantId}`, {
             headers: {
@@ -55,10 +64,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const reviewsArray = Reviews.map(({ User, description, rating }) => {
             const reviewDiv = document.createElement('div');
+            reviewDiv.setAttribute('class', 'reviews__review-div')
             return reviewDiv.innerHTML = `
             <div class="review__user">
+                <a href="/user/${User.id}">
                 <img src="${User.profileUrl}">
+                </a>
+                <a href="/user/${User.id}">
                 <h3>${User.firstName} ${User.lastName}</h3>
+                </a>
             </div>
             <div class="review__rating">
                 <p>${rating}</p>
@@ -76,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log(err)
     }
     writeReviewButton.addEventListener('click', (e) => {
-        window.location.href = '/write-a-review';
+        window.location.href = `/restaurants/${restaurantId}/reviews/new`;
     })
     deleteButton.addEventListener('click', async (e) => {
         const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");

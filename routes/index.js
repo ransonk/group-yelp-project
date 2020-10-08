@@ -50,10 +50,18 @@ router.get("/restaurants/:id(\\d+)", (req, res) => {
     res.render("restaurant");
 })
 
+
+router.get('/user/:id(\\d+)', (req, res) => {
+    res.render('profile-page');
+
 router.get('/restaurants/:id(\\d+)/reviews/new', csrfProtection, (req, res) => {
     res.render('write-a-review', { csrfToken: req.csrfToken() });
+
 })
 
+router.get('/restaurants/:id(\\d+)/reviews/new', (req, res) => {
+    res.render('write-a-review');
+})
 
 
 
