@@ -86,7 +86,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
-            }
+            },
+            body: JSON.stringify({id, token})
         })
         const resJSON = await res.json();
         console.log(resJSON);

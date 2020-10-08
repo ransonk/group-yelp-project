@@ -1,11 +1,15 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
+
 const environment = require('./config/index');
 const apiUser = require('./routes/api/user');
 const { ValidationError } = require("sequelize")
 const path = require('path');
 const session = require("express-session")
+const csrfProtection = csrf({ cookie: true });
 const sessionSecret = require("./config/index").sessionSecret.secret
 // const loginRouter = require('./routes/log-in')
 // const signupRouter = require('./routes/sign-up')
@@ -14,9 +18,11 @@ const sessionSecret = require("./config/index").sessionSecret.secret
 // const writeReview = require('./routes/write-a-review')
 // const users = require('./routes/users')
 const indexRouter = require('./routes/index')
+const restaurantRoutes = require('./routes/api/restaurants')
 
 app.use(morgan('dev'));
 app.set('view engine', 'pug')
+app.use(cookieParser())
 app.use(session({
     secret: sessionSecret,
     resave: false,
@@ -38,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use('/', indexRouter)
 app.use('/api/user', apiUser);
+app.use('/api/restaurants', restaurantRoutes);
 // app.use('/login', loginRouter);
 // app.use('/signup', signupRouter);
 // app.use('/search', searchRouter)
@@ -45,7 +52,6 @@ app.use('/api/user', apiUser);
 // app.use('/write-a-review', writeReview)
 // app.use('/users', users)
 
-app.use(require('./routes/api/restaurants'));
 
 
 //login/signup/
