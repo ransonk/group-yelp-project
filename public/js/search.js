@@ -82,12 +82,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 })
-
-
-
-
-
-
-
-
-module.exports = router;

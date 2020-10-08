@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     })
 
     const loggedInStatus = await res.json();
-    console.log(loggedInStatus.result);
+
 
     if (loggedInStatus.result === "Non-business Owner Token") {
         document.querySelector('#sign-up').classList.add('hidden')
@@ -45,16 +45,32 @@ document.addEventListener('DOMContentLoaded', async (e) => {
             window.location.href = '/';
         })
 
+
+
+    //search event listner
+    const searchForm = document.querySelector(".search-form");
+    searchForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(searchForm)
+        const search = formData.get("search")
+        const res = await fetch(`/api/search/${search}`)
+        const result = await res.json();
+        const res2 = await fetch("/search", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ result }),
+            // redirect: "follow"
+        })
+        window.location.href = '/search'
+    })
+
+
+
     const recent = await fetch('/api/restaurants/recent')
     const result = await recent.json();
 
     const { restaurants } = result;
     const [restaurant1, restaurant2, restaurant3, restaurant4] = restaurants;
-
-
-    // restaurants.map(({name,foodCategory,city,state,Reviews}) => {
-    //     return
-    // })
 
     const restaurant1Name = document.querySelector('.restaurant1__name')
     const restaurant1rating = document.querySelector('.restaurant1__rating')
@@ -117,4 +133,13 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         const restaurantId = restaurant.id;
         window.location.href = `/restaurants/${restaurantId}`;
     })
+
+
+
+
+
+
+
+
+
 })

@@ -19,6 +19,7 @@ const sessionSecret = require("./config/index").sessionSecret.secret
 // const users = require('./routes/users')
 const indexRouter = require('./routes/index')
 const restaurantRoutes = require('./routes/api/restaurants')
+const searchRouter = require("./routes/api/search")
 
 app.use(morgan('dev'));
 app.set('view engine', 'pug')
@@ -45,6 +46,7 @@ app.use(express.json());
 app.use('/', indexRouter)
 app.use('/api/user', apiUser);
 app.use('/api/restaurants', restaurantRoutes);
+app.use("/api/search", searchRouter)
 // app.use('/login', loginRouter);
 // app.use('/signup', signupRouter);
 // app.use('/search', searchRouter)
