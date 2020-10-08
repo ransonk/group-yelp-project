@@ -15,21 +15,27 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     })
 
     const loggedInStatus = await res.json();
-    console.log(loggedInStatus.result)
+    console.log(loggedInStatus.result);
 
-    if (loggedInStatus.result) {
+    if (loggedInStatus.result === "Non-business Owner Token") {
         document.querySelector('#sign-up').classList.add('hidden')
         document.querySelector('#log-in').classList.add('hidden')
         document.querySelector('#profile').classList.remove('hidden')
         document.querySelector('#log-out').classList.remove('hidden')
-
-    } else {
+        document.querySelector('#my-business').classList.add('hidden')
+    } else if (loggedInStatus.result === "Business Owner Token") {
+        document.querySelector('#sign-up').classList.add('hidden')
+        document.querySelector('#log-in').classList.add('hidden')
+        document.querySelector('#profile').classList.remove('hidden')
+        document.querySelector('#log-out').classList.remove('hidden')
+        document.querySelector('#my-business').classList.remove('hidden')
+    } else if (loggedInStatus.result === "Bad User Token") {
         document.querySelector('#sign-up').classList.remove('hidden')
         document.querySelector('#log-in').classList.remove('hidden')
         document.querySelector('#profile').classList.add('hidden')
         document.querySelector('#log-out').classList.add('hidden')
+        document.querySelector('#my-business').classList.add('hidden')
     }
-
 
     //logout event listener
     document.querySelector('#log-out')
@@ -38,7 +44,6 @@ document.addEventListener('DOMContentLoaded', async (e) => {
             localStorage.removeItem("HANGRY_CURRENT_USER_ID")
             window.location.href = '/';
         })
-
 
     const recent = await fetch('/api/restaurants/recent')
     const result = await recent.json();
@@ -57,7 +62,11 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant1cityState = document.querySelector('.restaurant1__cityState')
     restaurant1Name.innerHTML = restaurant1.name;
     restaurant1Name.href = `/restaurants/${restaurant1.id}`
-    restaurant1rating.innerHTML = restaurant1.Reviews[0].rating;
+    if (restaurant1.Reviews[0]) {
+        restaurant1rating.innerHTML = restaurant1.Reviews[0].rating;
+    } else {
+        restaurant1rating.innerHTML = "No reviews yet";
+    }
     restaurant1foodCategory.innerHTML = restaurant1.foodCategory;
     restaurant1cityState.innerHTML = restaurant1.city + ' ' + restaurant1.state
 
@@ -67,7 +76,11 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant2cityState = document.querySelector('.restaurant2__cityState')
     restaurant2Name.innerHTML = restaurant2.name;
     restaurant2Name.href = `/restaurants/${restaurant2.id}`
-    restaurant2rating.innerHTML = restaurant2.Reviews[0].rating;
+    if (restaurant2.Reviews[0]) {
+        restaurant2rating.innerHTML = restaurant2.Reviews[0].rating;
+    } else {
+        restaurant2rating.innerHTML = "No reviews yet";
+    }
     restaurant2foodCategory.innerHTML = restaurant2.foodCategory;
     restaurant2cityState.innerHTML = restaurant2.city + ' ' + restaurant2.state
     const restaurant3Name = document.querySelector('.restaurant3__name')
@@ -76,7 +89,11 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant3cityState = document.querySelector('.restaurant3__cityState')
     restaurant3Name.innerHTML = restaurant3.name;
     restaurant3Name.href = `/restaurants/${restaurant3.id}`
-    restaurant3rating.innerHTML = restaurant3.Reviews[0].rating;
+    if (restaurant3.Reviews[0]) {
+        restaurant3rating.innerHTML = restaurant3.Reviews[0].rating;
+    } else {
+        restaurant3rating.innerHTML = "No reviews yet";
+    }
     restaurant3foodCategory.innerHTML = restaurant3.foodCategory;
     restaurant3cityState.innerHTML = restaurant3.city + ' ' + restaurant3.state
     restaurant2cityState.innerHTML = restaurant2.city + ' ' + restaurant2.state
@@ -86,10 +103,18 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant4cityState = document.querySelector('.restaurant4__cityState')
     restaurant4Name.innerHTML = restaurant4.name;
     restaurant4Name.href = `/restaurants/${restaurant4.id}`
-    restaurant4rating.innerHTML = restaurant4.Reviews[0].rating;
+    if (restaurant4.Reviews[0]) {
+        restaurant4rating.innerHTML = restaurant4.Reviews[0].rating;
+    } else {
+        restaurant4rating.innerHTML = "No reviews yet";
+    }
     restaurant4foodCategory.innerHTML = restaurant4.foodCategory;
     restaurant4cityState.innerHTML = restaurant4.city + ' ' + restaurant4.state
 
-
-
+    document.querySelector('#my-business').addEventListener('click', async (e) => {
+        const res = await fetch(`/api/restaurants/user/${id}/restaurant`);
+        const { restaurant } = await res.json();
+        const restaurantId = restaurant.id;
+        window.location.href = `/restaurants/${restaurantId}`;
+    })
 })

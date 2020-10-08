@@ -76,7 +76,7 @@ router.get('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
     const reviews = await Review.findAll({
         where: { restaurantId }, include: [Restaurant, User, Like]
     });
-    
+
     res.json({ reviews });
 }))
 // csrfProtection, 
@@ -140,22 +140,34 @@ router.get('/recent', asyncHandler(async (req, res, next) => {
     res.json({ restaurants });
 }));
 
+
 router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => {
     // const userId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
     const { id, token } = req.body;
     const restaurantId = parseInt(req.params.id);
     const restaurant = await Restaurant.findByPk(restaurantId);
     if (restaurant.userId.toString() !== id) {
-        const err = new Error("Unauthorized Action");
+      const err = new Error("Unauthorized Action");
         err.status = 401;
         err.title = "Unauthorized";
         err.errors = ["Only business owner is authorized to delete this business."];
         return next(err);
     } else {
         await restaurant.destroy();
-        res.json({msg: "Restaurant Deleted"});
+        res.json({ msg: "Restaurant Deleted" });
     }
 }))
+
+//find restaurant by user id
+router.get("/user/:id(\\d+)/restaurant", asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.id);
+    const restaurant = await Restaurant.findOne({
+        where: { userId: userId }
+    })
+    res.json({ restaurant });
+}))
+
+
 
 
 module.exports = router

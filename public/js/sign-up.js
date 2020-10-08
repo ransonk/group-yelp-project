@@ -32,7 +32,7 @@ signUpForm.addEventListener("submit", async (event) => {
         const previousPage = userData.previousPage
         localStorage.setItem("HANGRY_ACCESS_TOKEN", token);
         localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
-        window.location.href = previousPage;
+        window.history.back();
 
     } catch (err) {
         handleErrors(err)
