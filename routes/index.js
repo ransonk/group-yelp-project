@@ -7,7 +7,7 @@ const app = express();
 const csrfProtection = csrf({ cookie: true });
 // const { csrfProtection } = require('./api/restaurants');
 
-
+app.set('view engine', 'pug');
 
 
 router.get("/", (req, res) => {
@@ -25,8 +25,13 @@ router.get("/", (req, res) => {
 })
 
 
+router.get('/search', (req, res) => {
+    res.render('search');
+})
+
 router.post('/search', (req, res) => {
     const restaurants = req.body.result;
+    console.log(restaurants);
     res.render('search', { restaurants });
 })
 

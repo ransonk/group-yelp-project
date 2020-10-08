@@ -60,8 +60,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ result })
         })
-
-
+        window.location.href = '/search'
     })
 
 
