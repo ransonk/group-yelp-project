@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify({rating, description, userId})
+                body: JSON.stringify({ rating, description, userId })
             })
             if (!res.ok) {
                 throw res;
@@ -33,8 +33,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
     })
-    
-
 
 
 })

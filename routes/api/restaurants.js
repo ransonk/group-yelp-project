@@ -67,9 +67,11 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
                     include: [User]
                 }, Image, User]
         });
-    const averageRating = restaurant.Reviews.reduce((accum, ele) => {
-        return accum + ele.rating;
+
+    const average = restaurant.Reviews.reduce((accum, ele) => {
+        return accum += ele.rating / restaurant.Reviews.length;
     }, 0);
+    let averageRating = Math.round(average);
     res.json({ restaurant, averageRating })
 }))
 
@@ -81,7 +83,7 @@ router.get('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
 
     res.json({ reviews });
 }))
-// csrfProtection, 
+// csrfProtection,
 router.post('/:id(\\d+)/reviews', validateReviews, handleValidationErrors, asyncHandler(async (req, res, next) => {
     console.log(req.body);
     const validationErrors = validationResult(req);
@@ -115,7 +117,7 @@ router.delete('/:id(\\d+)/reviews', requireAuth, asyncHandler(async (req, res, n
     const { reviewId, currentUserId, token } = req.body;
     const review = await Review.findByPk(reviewId);
     if (review.userId.toString() !== currentUserId) {
-      const err = new Error("Unauthorized Action");
+        const err = new Error("Unauthorized Action");
         err.status = 401;
         err.title = "Unauthorized";
         err.errors = ["Only writer of the review is authorized to delete this review."];
@@ -127,7 +129,7 @@ router.delete('/:id(\\d+)/reviews', requireAuth, asyncHandler(async (req, res, n
 }))
 
 router.put('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
-    
+
 }))
 
 // needs requireAuth middleware ?
@@ -179,7 +181,7 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => 
     const restaurantId = parseInt(req.params.id);
     const restaurant = await Restaurant.findByPk(restaurantId);
     if (restaurant.userId.toString() !== id) {
-      const err = new Error("Unauthorized Action");
+        const err = new Error("Unauthorized Action");
         err.status = 401;
         err.title = "Unauthorized";
         err.errors = ["Only business owner is authorized to delete this business."];
