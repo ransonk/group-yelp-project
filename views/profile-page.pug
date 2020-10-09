@@ -2,7 +2,7 @@ extends layout
 
 block content
   div.profile__nav-bar
-      div.profile__nav-logo
+      div(class="profile__nav-logo" onclick="window.location.href='/'")
       button(id='sign-up' class='nav__btn' onclick="window.location.href='/sign-up'") Sign Up
       button(id='log-in' class='nav__btn' onclick="window.location.href='/log-in'") Log In
       button(id='profile' class='nav__btn') Profile
