@@ -19,8 +19,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
     const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
 
-
-
+    const searchForm = document.querySelector(".search");
+    searchForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(searchForm)
+        const search = formData.get("search")
+        localStorage.setItem("searchValue", search)
+        window.location.href = `/search`
+    })
 
 
     try {

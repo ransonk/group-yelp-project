@@ -21,205 +21,29 @@ const fetchRestaurants = async (input) => {
     const restaurants = await res.json();
     return restaurants.results;
 
-    // if (localStorage.getItem("searchValue")) {
-    //     return restaurants.filter(restaurant => {
-    //         return restaurant.name.toLowerCase().includes(localStorage.getItem("searchValue").toLowerCase());
-    //     })
-    // } else if (localStorage.getItem("foodCategory")) {
-    //     console.log("works");
-    //     console.log(localStorage.getItem("foodCategory"))
-    //     restaurants.filter(restaurant => {
-    //         return restaurant.foodCategory === localStorage.getItem("foodCategory");
-    //     })
-    // } else {
-    //     return restaurants;
-    // }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const restaurantsContainer = document.querySelector('.restaurants-container');
+    const restaurantsContainer = document.querySelector('.search__restaurants-container');
     if (localStorage.getItem("searchValue")) {
         const localResult = await fetchRestaurants(localStorage.getItem("searchValue"))
-        console.log(localResult)
-        const restaurantsHTML = localResult.map(
-            ({ name, address, city, state, phone, Reviews, Images, foodCategory, id }) => {
-                let review;
-                let rating;
-                if (Reviews.length) {
-                    review = Reviews[0].description;
-                    rating = Reviews.reduce((accum, ele) => {
-                        return accum + ele.rating;
-                    }, 0);
-                    rating /= Reviews.length;
-                    console.log("Review and rating: ", review, rating)
-                } else {
-                    // set something for review
-                }
-                let imgUrl;
-                if (!Images.length) {
-                    imgUrl = '';
-                } else {
-                    imgUrl = Images[0].url;
-                }
-                // const restaurantDiv = document.createElement('div');
-                // restaurantDiv.setAttribute('class', 'restaurant-div');
-                // restaurantDiv.innerHTML = `
-                console.log(name, address, city, state, phone, Reviews, Images, foodCategory)
-                return `
-                <a href="/restaurants/${id}">
-                    <div class='res-div'>
-                        <input type="hidden" value="${id}" class="restaurant-id">
-                        <img src='${imgUrl}'>
-                        <div class='search__restaurant-name'>
-                        <h2>${name}</h2>
-                        </div>
-                        <div class='search__rating'>
-                        <p>${rating}</p>
-                        </div>
-                        <div class='search__review'>
-                        <p>${review}</p>
-                        </div>
-                        <div class='address'>
-                        <p>${phone}</p>
-                        <p>${address}</p>
-                        <p>${city}, ${state}</p>
-                        </div>
-                    </div>
-                </a>`
-            })
-        const resHTML = restaurantsHTML.join('');
-        restaurantsContainer.innerHTML += resHTML;
-        localStorage.removeItem("foodCategory");
-        localStorage.removeItem("searchValue");
-        localStorage.removeItem("services");
+        searchRender(localResult);
     }
 
     if (localStorage.getItem("foodCategory")) {
         const localResult = await fetchRestaurants(localStorage.getItem("foodCategory").value)
-        console.log(localResult);
-        const restaurantsHTML = localResult.map(
-            ({ name, address, city, state, phone, Reviews, Images, foodCategory, id }) => {
-                let review;
-                let rating;
-                if (Reviews.length) {
-                    review = Reviews[0].description;
-                    rating = Reviews.reduce((accum, ele) => {
-                        return accum + ele.rating;
-                    }, 0);
-                    rating /= Reviews.length;
-                    // console.log("Review and rating: ", review, rating)
-                } else {
-                    // set something for review
-                }
-                let imgUrl;
-                if (!Images.length) {
-                    imgUrl = '';
-                } else {
-                    imgUrl = Images[0].url;
-                }
-                // const restaurantDiv = document.createElement('div');
-                // restaurantDiv.setAttribute('class', 'restaurant-div');
-                // restaurantDiv.innerHTML = `
-                // console.log(name, address, city, state, phone, Reviews, Images, foodCategory)
-                return `
-                        <a href="/restaurants/${id}">
-                            <div class='res-div'>
-                                <input type="hidden" value="${id}" class="restaurant-id">
-                                <img src='${imgUrl}'>
-                                <div class='search__restaurant-name'>
-                                <h2>${name}</h2>
-                                </div>
-                                <div class='search__rating'>
-                                <p>${rating}</p>
-                                </div>
-                                <div class='search__review'>
-                                <p>${review}</p>
-                                </div>
-                                <div class='address'>
-                                <p>${phone}</p>
-                                <p>${address}</p>
-                                <p>${city}, ${state}</p>
-                                </div>
-                            </div>
-                        </a>`
-            })
-        const resHTML = restaurantsHTML.join('');
-        restaurantsContainer.innerHTML += resHTML;
-        localStorage.removeItem("foodCategory");
-        localStorage.removeItem("searchValue");
-        localStorage.removeItem("services");
+        searchRender(localResult);
     }
 
 
     if (localStorage.getItem("services")) {
         const localResult = await fetchRestaurants(localStorage.getItem("services"))
         console.log(localResult);
-        const restaurantsHTML = localResult.map(
-            ({
-                name,
-                address,
-                city,
-                state,
-                phone,
-                Reviews,
-                Images,
-                foodCategory,
-                id
-            }) => {
-                let review;
-                let rating;
-                if (Reviews.length) {
-                    review = Reviews[0].description;
-                    rating = Reviews.reduce((accum, ele) => {
-                        return accum + ele.rating;
-                    }, 0);
-                    rating /= Reviews.length;
-                    // console.log("Review and rating: ", review, rating)
-                } else {
-                    // set something for review
-                }
-                let imgUrl;
-                if (!Images.length) {
-                    imgUrl = '';
-                } else {
-                    imgUrl = Images[0].url;
-                }
-                // const restaurantDiv = document.createElement('div');
-                // restaurantDiv.setAttribute('class', 'restaurant-div');
-                // restaurantDiv.innerHTML = `
-                // console.log(name, address, city, state, phone, Reviews, Images, foodCategory)
-                return `
-                        <a href="/restaurants/${id}">
-                            <div class='res-div'>
-                                <input type="hidden" value="${id}" class="restaurant-id">
-                                <img src='${imgUrl}'>
-                                <div class='search__restaurant-name'>
-                                <h2>${name}</h2>
-                                </div>
-                                <div class='search__rating'>
-                                <p>${rating}</p>
-                                </div>
-                                <div class='search__review'>
-                                <p>${review}</p>
-                                </div>
-                                <div class='address'>
-                                <p>${phone}</p>
-                                <p>${address}</p>
-                                <p>${city}, ${state}</p>
-                                </div>
-                            </div>
-                        </a>`
-            })
-        const resHTML = restaurantsHTML.join('');
-        restaurantsContainer.innerHTML += resHTML;
-        localStorage.removeItem("foodCategory");
-        localStorage.removeItem("searchValue");
-        localStorage.removeItem("services");
+        searchRender(localResult);
     }
 
 
 
-    // const restaurantsContainer = document.querySelector('.restaurants-container');
     const search = document.querySelector('.search')
     search.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -229,61 +53,58 @@ document.addEventListener('DOMContentLoaded', async () => {
         localStorage.setItem("searchValue", input);
         try {
             const results = await fetchRestaurants(input);
-            // console.log(results);
-            const restaurantsHTML = results.map(
-                ({ name, address, city, state, phone, Reviews, Images, foodCategory, id }) => {
-                    let review;
-                    let rating;
-                    if (Reviews.length) {
-                        review = Reviews[0].description;
-                        rating = Reviews.reduce((accum, ele) => {
-                            return accum + ele.rating;
-                        }, 0);
-                        rating /= Reviews.length;
-                        // console.log("Review and rating: ", review, rating)
-                    } else {
-                        // set something for review
-                    }
-                    let imgUrl;
-                    if (!Images.length) {
-                        imgUrl = '';
-                    } else {
-                        imgUrl = Images[0].url;
-                    }
-                    // const restaurantDiv = document.createElement('div');
-                    // restaurantDiv.setAttribute('class', 'restaurant-div');
-                    // restaurantDiv.innerHTML = `
-                    // console.log(name, address, city, state, phone, Reviews, Images, foodCategory)
-                    return `
-                    <a href="/restaurants/${id}">
-                        <div class='res-div'>
-                            <input type="hidden" value="${id}" class="restaurant-id">
-                            <img src='${imgUrl}'>
-                            <div class='search__restaurant-name'>
-                            <h2>${name}</h2>
-                            </div>
-                            <div class='search__rating'>
-                            <p>${rating}</p>
-                            </div>
-                            <div class='search__review'>
-                            <p>${review}</p>
-                            </div>
-                            <div class='address'>
-                            <p>${phone}</p>
-                            <p>${address}</p>
-                            <p>${city}, ${state}</p>
-                            </div>
-                        </div>
-                    </a>`
-                })
-            const resHTML = restaurantsHTML.join('');
-            restaurantsContainer.innerHTML += resHTML;
-            localStorage.removeItem("foodCategory");
-            localStorage.removeItem("searchValue");
-            localStorage.removeItem("services");
+            searchRender(results);
         }
         catch (err) {
 
         }
     })
 })
+
+function searchRender(localResult) {
+    const restaurantsContainer = document.querySelector('.search__restaurants-container');
+    const restaurantsHTML = localResult.map(
+        ({ name, address, city, state, phone, Reviews, Images, foodCategory, id }) => {
+            let review;
+            let rating;
+            if (Reviews.length) {
+                review = Reviews[0].description;
+                rating = Reviews.reduce((accum, ele) => {
+                    return accum + ele.rating;
+                }, 0);
+                rating /= Reviews.length;
+            } 
+            let imgUrl;
+            if (!Images.length) {
+                imgUrl = '';
+            } else {
+                imgUrl = Images[0].url;
+            }
+            return `
+                        <a href="/restaurants/${id}">
+                            <div class='search__res-div'>
+                                <input type="hidden" value="${id}" class="search__restaurant-id">
+                                <img src='${imgUrl}'>
+                                <div class='search__restaurant-name'>
+                                <h2>${name}</h2>
+                                </div>
+                                <div class='search__rating'>
+                                <p>${rating}</p>
+                                </div>
+                                <div class='search__review'>
+                                <p>${review}</p>
+                                </div>
+                                <div class='search__address'>
+                                <p>${phone}</p>
+                                <p>${address}</p>
+                                <p>${city}, ${state}</p>
+                                </div>
+                            </div>
+                        </a>`
+        })
+    const resHTML = restaurantsHTML.join('');
+    restaurantsContainer.innerHTML += resHTML;
+    localStorage.removeItem("foodCategory");
+    localStorage.removeItem("searchValue");
+    localStorage.removeItem("services");
+}

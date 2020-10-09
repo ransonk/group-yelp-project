@@ -2,16 +2,10 @@ extends layout.pug
 
 block content
     include includes/nav-search
-
-    div(class="restaurants-container")
-    h1 restuarants here
-        if restaurants
-         each restaurant in restaurants
-             .restaurant__container
-                 div= restaurant.name
-                 div= restaurant.phone
-                 div= restaurant.address, restaurant.city, restaurant.state
-                 div= restaurant.dineIn, restaurant.takeOut, restaurant.delivery
+    div.search-main
+        h1 Restaurants
+        div(class="search__restaurants-container")
+        
 
 
 
