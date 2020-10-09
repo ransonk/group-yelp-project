@@ -7,9 +7,10 @@ const Op = sequelize.Op
 const { Restaurant, User, Review, Image, Like } = db;
 
 
-routes.get(`/:name`, asyncHandler(async (req, res) => {
+routes.get(`/name/:name`, asyncHandler(async (req, res) => {
   const searchingPhrase = req.params.name;
-  const restaurants = await db.Restaurant.findAll({
+  console.log(searchingPhrase)
+  const results = await db.Restaurant.findAll({
     where: {
       name: {
         [Op.iLike]: `%${searchingPhrase}%`
@@ -17,7 +18,20 @@ routes.get(`/:name`, asyncHandler(async (req, res) => {
     },
     include: [Review, Image]
   })
-  res.json({ restaurants })
+  // console.log("searchval", restaurants);
+  res.json({ results })
+}))
+
+routes.get(`/dropdown/:category`, asyncHandler(async (req, res) => {
+  const searchCategory = req.params.category;
+  const results = await db.Restaurant.findAll({
+    where: {
+      foodCategory: searchCategory
+    },
+    include: [Review, Image]
+  })
+  console.log("dropdown", results);
+  res.json({ results });
 }))
 
 // routes.post
