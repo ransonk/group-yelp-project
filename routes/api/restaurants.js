@@ -82,6 +82,16 @@ router.get('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
 // csrfProtection, 
 router.post('/:id(\\d+)/reviews', validateReviews, handleValidationErrors, asyncHandler(async (req, res, next) => {
     console.log(req.body);
+    const validationErrors = validationResult(req);
+
+    if (!validationErrors.isEmpty()) {
+        const errors = validationErrors.array().map((error) => error.msg);
+        const err = new Error("Bad Request");
+        err.status = 400;
+        err.title == "Bad Request";
+        err.errors = errors;
+        return next(err);
+    }
     const restaurantId = parseInt(req.params.id);
     const restaurant = await Restaurant.findByPk(restaurantId);
     if (!restaurant) {
@@ -99,7 +109,16 @@ router.post('/:id(\\d+)/reviews', validateReviews, handleValidationErrors, async
     }
 }))
 
-router.post('/', csrfProtection, validateRestaurants, handleValidationErrors, asyncHandler(async (req, res, next) => {
+router.delete('/:id(\\d+)/reviews', requireAuth, asyncHandler(async (req, res, next) => {
+    
+}))
+
+router.put('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
+
+}))
+
+
+router.post('/', validateRestaurants, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const {
         name,
         phone,
@@ -125,7 +144,7 @@ router.post('/', csrfProtection, validateRestaurants, handleValidationErrors, as
         delivery,
         userId
     })
-    res.json({ restaurant, csrfToken: req.csrfToken() })
+    res.json({ restaurant })
 }))
 
 //grab restaurants for index page *recommended restaurants

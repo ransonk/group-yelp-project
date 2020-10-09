@@ -77,10 +77,21 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant1foodCategory = document.querySelector('.restaurant1__foodCategory')
     const restaurant1cityState = document.querySelector('.restaurant1__cityState')
     restaurant1Name.innerHTML = restaurant1.name;
-    restaurant1Name.href = `/ restaurants / ${restaurant1.id} `
-    if (restaurant1.Reviews[0]) {
-        restaurant1rating.innerHTML = restaurant1.Reviews[0].rating;
-    } else {
+
+    restaurant1Name.href = `/restaurants/${restaurant1.id}`
+    if (restaurant1.Reviews[0].rating === 1) {
+        restaurant1rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
+    } else if (restaurant1.Reviews[0].rating === 2) {
+        restaurant1rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span>`
+    } else if (restaurant1.Reviews[0].rating === 3) {
+        restaurant1rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span>`
+    } else if (restaurant1.Reviews[0].rating === 4) {
+        restaurant1rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span>`
+    } else if (restaurant1.Reviews[0].rating === 5) {
+        restaurant1rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
+    }
+    else {
+
         restaurant1rating.innerHTML = "No reviews yet";
     }
     restaurant1foodCategory.innerHTML = restaurant1.foodCategory;
@@ -91,10 +102,21 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant2foodCategory = document.querySelector('.restaurant2__foodCategory')
     const restaurant2cityState = document.querySelector('.restaurant2__cityState')
     restaurant2Name.innerHTML = restaurant2.name;
-    restaurant2Name.href = `/ restaurants / ${restaurant2.id} `
-    if (restaurant2.Reviews[0]) {
-        restaurant2rating.innerHTML = restaurant2.Reviews[0].rating;
-    } else {
+
+    restaurant2Name.href = `/restaurants/${restaurant2.id}`
+    if (restaurant2.Reviews[0].rating === 1) {
+        restaurant2rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
+    } else if (restaurant2.Reviews[0].rating === 2) {
+        restaurant2rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span>`
+    } else if (restaurant2.Reviews[0].rating === 3) {
+        restaurant2rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span>`
+    } else if (restaurant2.Reviews[0].rating === 4) {
+        restaurant2rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span>`
+    } else if (restaurant2.Reviews[0].rating === 5) {
+        restaurant2rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
+    }
+    else {
+
         restaurant2rating.innerHTML = "No reviews yet";
     }
     restaurant2foodCategory.innerHTML = restaurant2.foodCategory;
@@ -104,10 +126,22 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant3foodCategory = document.querySelector('.restaurant3__foodCategory')
     const restaurant3cityState = document.querySelector('.restaurant3__cityState')
     restaurant3Name.innerHTML = restaurant3.name;
-    restaurant3Name.href = `/ restaurants / ${restaurant3.id} `
-    if (restaurant3.Reviews[0]) {
-        restaurant3rating.innerHTML = restaurant3.Reviews[0].rating;
-    } else {
+
+    restaurant3Name.href = `/restaurants/${restaurant3.id}`
+    // console.log('rating', restaurant3.Reviews[0].rating)
+    if (restaurant3.Reviews[0].rating === 1) {
+        restaurant3rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
+    } else if (restaurant3.Reviews[0].rating === 2) {
+        restaurant3rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span>`
+    } else if (restaurant3.Reviews[0].rating === 3) {
+        restaurant3rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span>`
+    } else if (restaurant3.Reviews[0].rating === 4) {
+        restaurant3rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span>`
+    } else if (restaurant3.Reviews[0].rating === 5) {
+        restaurant3rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
+    }
+    else {
+
         restaurant3rating.innerHTML = "No reviews yet";
     }
     restaurant3foodCategory.innerHTML = restaurant3.foodCategory;
@@ -118,10 +152,22 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant4foodCategory = document.querySelector('.restaurant4__foodCategory')
     const restaurant4cityState = document.querySelector('.restaurant4__cityState')
     restaurant4Name.innerHTML = restaurant4.name;
-    restaurant4Name.href = `/ restaurants / ${restaurant4.id} `
-    if (restaurant4.Reviews[0]) {
-        restaurant4rating.innerHTML = restaurant4.Reviews[0].rating;
-    } else {
+
+    restaurant4Name.href = `/restaurants/${restaurant4.id}`
+    if (restaurant4.Reviews[0].rating === 1) {
+        restaurant4rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
+        // restaurant3rating.innerHTML = restaurant3.Reviews[0].rating;
+    } else if (restaurant4.Reviews[0].rating === 2) {
+        restaurant4rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span>`
+    } else if (restaurant4.Reviews[0].rating === 3) {
+        restaurant4rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span>`
+    } else if (restaurant4.Reviews[0].rating === 4) {
+        restaurant4rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span>`
+    } else if (restaurant4.Reviews[0].rating === 5) {
+        restaurant4rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
+    }
+    else {
+
         restaurant4rating.innerHTML = "No reviews yet";
     }
     restaurant4foodCategory.innerHTML = restaurant4.foodCategory;
