@@ -73,13 +73,6 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         const search = formData.get("search")
         localStorage.setItem("searchValue", search)
         window.location.href = `/search`
-        // console.log(result)
-        // const res2 = await fetch("/search", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({ result }),
-        //     // redirect: "follow"
-        // })
     })
 
 
