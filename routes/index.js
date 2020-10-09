@@ -119,4 +119,12 @@ router.get('/restaurants/:id(\\d+)/reviews/new', (req, res) => {
 })
 
 
+router.get("/my-business", (req, res) => {
+    res.render("my-business")
+})
+
+
+
+
+
 module.exports = router;

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
     const token = localStorage.getItem("HANGRY_ACCESS_TOKEN")
     const id = localStorage.getItem("HANGRY_CURRENT_USER_ID")
-    console.log(id)
+
     const body = { token, id }
     const res = await fetch("/api/user/check", {
         method: "POST",
@@ -18,10 +18,17 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
     document.querySelector('#my-business').addEventListener('click', async (e) => {
         const res = await fetch(`/api/restaurants/user/${id}/restaurant`);
+
         const { restaurant } = await res.json();
-        // console.log(restaurant.id)
-        const restaurantId = restaurant.id;
-        window.location.href = `/restaurants/${restaurantId}`;
+        if (!restaurant) {
+
+            window.location.href = "/my-business"
+            // console.log('need to create business page')
+        } else {
+
+            const restaurantId = restaurant.id;
+            window.location.href = `/restaurants/${restaurantId}`;
+        }
     })
 
     if (loggedInStatus.result === "Non-business Owner Token") {
@@ -52,6 +59,10 @@ document.addEventListener('DOMContentLoaded', async (e) => {
             window.location.href = '/';
         })
 
+    document.getElementById('profile').addEventListener('click', async () => {
+        // window.location.href = `/`
+        window.location.href = `/user/${id}`
+    })
 
 
     //search event listner
