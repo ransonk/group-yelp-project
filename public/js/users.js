@@ -14,12 +14,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const loggedInStatus = await res2.json();
 
+    // document.querySelector('#my-business').addEventListener('click', async (e) => {
+    //     const res = await fetch(`/api/restaurants/user/${id}/restaurant`);
+    //     const { restaurant } = await res.json();
+    //     // console.log(restaurant.id)
+    //     const restaurantId = restaurant.id;
+    //     window.location.href = `/restaurants/${restaurantId}`;
+    // })
+
     document.querySelector('#my-business').addEventListener('click', async (e) => {
         const res = await fetch(`/api/restaurants/user/${id}/restaurant`);
+
         const { restaurant } = await res.json();
-        // console.log(restaurant.id)
-        const restaurantId = restaurant.id;
-        window.location.href = `/restaurants/${restaurantId}`;
+        if (!restaurant) {
+
+            window.location.href = "/my-business"
+            // console.log('need to create business page')
+        } else {
+
+            const restaurantId = restaurant.id;
+            window.location.href = `/restaurants/${restaurantId}`;
+        }
     })
 
     if (loggedInStatus.result === "Non-business Owner Token") {

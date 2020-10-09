@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         if (!restaurant) {
 
             window.location.href = "/my-business"
-            console.log('need to create business page')
+            // console.log('need to create business page')
         } else {
 
             const restaurantId = restaurant.id;
