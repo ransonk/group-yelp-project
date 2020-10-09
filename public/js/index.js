@@ -83,6 +83,27 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     })
 
 
+    const dropDown = document.querySelector(".dropdown-list");
+    dropDown.addEventListener("input", async (e) => {
+        const value = e.target.value;
+        if (localStorage.getItem("searchValue")) {
+            localStorage.removeItem("searchValue");
+        }
+        localStorage.setItem("foodCategory", value);
+        window.location.href = `/search`;
+    })
+
+    const servicesSearchBtns = document.querySelectorAll('.services-search');
+    servicesSearchBtns.forEach((searchButton) => {
+        searchButton.addEventListener('click', (e) => {
+            // e.preventDefault();
+            let value = e.target.value;
+            localStorage.setItem('services', value)
+            window.location.href = '/search';
+        })
+
+    })
+
 
     const recent = await fetch('/api/restaurants/recent')
     const result = await recent.json();
