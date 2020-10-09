@@ -108,6 +108,31 @@
     border-radius: 100px;
 }
 
+/* login page css */
+
+.form-image{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 5rem;
+}
+
+.log-in-container{
+    position: relative;
+    top: 8rem;
+    width: 20rem;
+    height: 20rem;
+}
+
+.log-in__image{
+    background-image: url('./images/woman-cooking-pizza-home-illustration-retro-comic-pop-art-style_88813-234.png');
+    background-size: contain;
+    width: 16.5rem;
+    height: 20rem;
+
+}
+
 /* profile page css */
 
 .profile__nav-bar{
@@ -123,8 +148,6 @@
     left: 50%;
     top: 0.5px;
     align-self: center;
-    /* z-index: 2; */
-    /* left: 50%; */
     background-image: url('./images/logo.jpg');
     background-size: cover;
     width: 5rem;
@@ -135,8 +158,6 @@
 
 .profile__nav-logo:hover{
     cursor: pointer;
-    /* border: 1px solid gold; */
-    /* box-shadow: 3px 3px 3px #e78267; */
 }
 
 .nav__search{
@@ -291,8 +312,4 @@ justify-content: center;
 .log-in-form #password {
     width: 220px;
     margin: 5px;
-}
-
-.goldStar {
-    color: gold !important;
 }
