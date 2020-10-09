@@ -16,6 +16,13 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
     const loggedInStatus = await res.json();
 
+    document.querySelector('#my-business').addEventListener('click', async (e) => {
+        const res = await fetch(`/api/restaurants/user/${id}/restaurant`);
+        const { restaurant } = await res.json();
+        // console.log(restaurant.id)
+        const restaurantId = restaurant.id;
+        window.location.href = `/restaurants/${restaurantId}`;
+    })
 
     if (loggedInStatus.result === "Non-business Owner Token") {
         document.querySelector('#sign-up').classList.add('hidden')
@@ -73,17 +80,17 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     // const [restaurant1, restaurant2, restaurant3, restaurant4] = restaurants;
 
     // iterating through recent restaurant array
-    restaurants.forEach((restaurant,i) => {
+    restaurants.forEach((restaurant, i) => {
         // interpolationg index to make a valid queryselector class
         const restaurantName = document.querySelector(`.restaurant${i + 1}__name`)
         const restaurantRating = document.querySelector(`.restaurant${i + 1}__rating`)
         const restaurantFoodCategory = document.querySelector(`.restaurant${i + 1}__foodCategory`)
         const restaurantCityState = document.querySelector(`.restaurant${i + 1}__cityState`)
-        
+
         // calculating average rating
         const averageRating = restaurant.Reviews.reduce((total, review) => {
             total += review.rating;
-            return Math.floor(total / restaurant.Reviews.length); 
+            return Math.floor(total / restaurant.Reviews.length);
         }, 0)
         // checking if the restaurant has reviews if it is not returning with 'No reviews yet' text
         if (averageRating === 0) {
@@ -206,11 +213,4 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     // }
     // restaurant4foodCategory.innerHTML = restaurant4.foodCategory;
     // restaurant4cityState.innerHTML = restaurant4.city + ' ' + restaurant4.state
-
-    document.querySelector('#my-business').addEventListener('click', async (e) => {
-        const res = await fetch(`/ api / restaurants / user / ${id} /restaurant`);
-        const { restaurant } = await res.json();
-        const restaurantId = restaurant.id;
-        window.location.href = `/restaurants/${restaurantId}`;
-    })
 })
