@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER,
     },
+    // what is the parent id? it is null
     parentId: {
       type: DataTypes.INTEGER
     }

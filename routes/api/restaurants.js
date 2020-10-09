@@ -130,7 +130,7 @@ router.put('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
     
 }))
 
-
+// needs requireAuth middleware ?
 router.post('/', validateRestaurants, handleValidationErrors, asyncHandler(async (req, res, next) => {
     const {
         name,
