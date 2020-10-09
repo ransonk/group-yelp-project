@@ -34,6 +34,20 @@ routes.get(`/dropdown/:category`, asyncHandler(async (req, res) => {
   res.json({ results });
 }))
 
+routes.get(`/services/:type`, asyncHandler(async (req, res) => {
+  const serviceType = req.params.type;
+  const results = await db.Restaurant.findAll({
+    where: {
+      [serviceType]: true
+    },
+    include: [Review, Image]
+  })
+  console.log("dropdown", results);
+  res.json({
+    results
+  });
+}))
+
 // routes.post
 
 

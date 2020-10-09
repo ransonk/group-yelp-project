@@ -82,13 +82,16 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         window.location.href = `/search`;
     })
 
+    const servicesSearchBtns = document.querySelectorAll('.services-search');
+    servicesSearchBtns.forEach((searchButton) => {
+        searchButton.addEventListener('click', (e) => {
+            // e.preventDefault();
+            let value = e.target.value;
+            localStorage.setItem('services', value)
+            window.location.href = '/search';
+        })
 
-    // const foodCats = Array.from(dropDown);
-    // foodCats.forEach(foodCat => {
-    //     foodCat.addEventListener('change', (e) => {
-    //         console.log('yo');
-    //     })
-    // })
+    })
 
 
     const recent = await fetch('/api/restaurants/recent')
