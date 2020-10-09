@@ -53,15 +53,15 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         event.preventDefault();
         const formData = new FormData(searchForm)
         const search = formData.get("search")
-        const res = await fetch(`/api/search/${search}`)
-        const result = await res.json();
-        const res2 = await fetch("/search", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ result }),
-            // redirect: "follow"
-        })
-        window.location.href = '/search'
+        localStorage.setItem("searchValue", search)
+        window.location.href = `/search`
+        // console.log(result)
+        // const res2 = await fetch("/search", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify({ result }),
+        //     // redirect: "follow"
+        // })
     })
 
 
@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant1foodCategory = document.querySelector('.restaurant1__foodCategory')
     const restaurant1cityState = document.querySelector('.restaurant1__cityState')
     restaurant1Name.innerHTML = restaurant1.name;
+
     restaurant1Name.href = `/restaurants/${restaurant1.id}`
     if (restaurant1.Reviews[0].rating === 1) {
         restaurant1rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
@@ -90,6 +91,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         restaurant1rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
     }
     else {
+
         restaurant1rating.innerHTML = "No reviews yet";
     }
     restaurant1foodCategory.innerHTML = restaurant1.foodCategory;
@@ -100,6 +102,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant2foodCategory = document.querySelector('.restaurant2__foodCategory')
     const restaurant2cityState = document.querySelector('.restaurant2__cityState')
     restaurant2Name.innerHTML = restaurant2.name;
+
     restaurant2Name.href = `/restaurants/${restaurant2.id}`
     if (restaurant2.Reviews[0].rating === 1) {
         restaurant2rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
@@ -113,6 +116,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         restaurant2rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
     }
     else {
+
         restaurant2rating.innerHTML = "No reviews yet";
     }
     restaurant2foodCategory.innerHTML = restaurant2.foodCategory;
@@ -122,6 +126,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant3foodCategory = document.querySelector('.restaurant3__foodCategory')
     const restaurant3cityState = document.querySelector('.restaurant3__cityState')
     restaurant3Name.innerHTML = restaurant3.name;
+
     restaurant3Name.href = `/restaurants/${restaurant3.id}`
     // console.log('rating', restaurant3.Reviews[0].rating)
     if (restaurant3.Reviews[0].rating === 1) {
@@ -136,6 +141,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         restaurant3rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
     }
     else {
+
         restaurant3rating.innerHTML = "No reviews yet";
     }
     restaurant3foodCategory.innerHTML = restaurant3.foodCategory;
@@ -146,6 +152,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const restaurant4foodCategory = document.querySelector('.restaurant4__foodCategory')
     const restaurant4cityState = document.querySelector('.restaurant4__cityState')
     restaurant4Name.innerHTML = restaurant4.name;
+
     restaurant4Name.href = `/restaurants/${restaurant4.id}`
     if (restaurant4.Reviews[0].rating === 1) {
         restaurant4rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
@@ -160,13 +167,14 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         restaurant4rating.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
     }
     else {
+
         restaurant4rating.innerHTML = "No reviews yet";
     }
     restaurant4foodCategory.innerHTML = restaurant4.foodCategory;
     restaurant4cityState.innerHTML = restaurant4.city + ' ' + restaurant4.state
 
     document.querySelector('#my-business').addEventListener('click', async (e) => {
-        const res = await fetch(`/api/restaurants/user/${id}/restaurant`);
+        const res = await fetch(`/ api / restaurants / user / ${id} /restaurant`);
         const { restaurant } = await res.json();
         const restaurantId = restaurant.id;
         window.location.href = `/restaurants/${restaurantId}`;

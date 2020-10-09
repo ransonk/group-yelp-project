@@ -3,11 +3,13 @@ const express = require('express');
 const csrf = require('csurf');
 const router = express.Router();
 const path = require('path');
-const app = express();
+const { locals } = require('../app');
+// const app = express();
 const csrfProtection = csrf({ cookie: true });
+const fetch = require("node-fetch")
 // const { csrfProtection } = require('./api/restaurants');
 
-app.set('view engine', 'pug');
+// app.set('view engine', 'pug');
 
 
 router.get("/", (req, res) => {
@@ -25,15 +27,63 @@ router.get("/", (req, res) => {
 })
 
 
-router.get('/search', (req, res) => {
+// router.get(`/search/:result`, async (req, res) => {
+//     const result = await fetch(`http://localhost:8080/api/search/${req.params.result}`)
+//     // const restaurants = window.localStorage.getItem("result");
+//     // const restaurantName = restaurants[0].name
+//     // console.log(restaurantName);
+//     const resultJson = await result.json()
+//     const restaurants = resultJson.restaurants
+//     res.render('search', { restaurants });
+// })
+
+router.get('/search', async (req, res) => {
     res.render('search');
 })
 
-router.post('/search', (req, res) => {
-    const restaurants = req.body.result;
-    console.log(restaurants);
-    res.render('search', { restaurants: 'hello' });
-})
+
+
+// router.post(`/search`, (req, res) => {
+
+//     const restaurants = req.body.result.restaurants;
+//     const restaurantName = restaurants[0].name
+//     console.log(restaurantName);
+//     // const name = eachRestaurant[0].name
+
+//     // console.log(name);
+//     res.render('search', { restaurantName });
+// })
+
+
+
+// const db = require('../../db/models')
+// router.post(`/search/:name`, async (req, res) => {
+
+//     const searchingPhrase = req.params.name;
+//     const restaurants = await db.Restaurant.findAll({
+//         where: {
+//             name: {
+//                 [Op.iLike]: `%${searchingPhrase}%`
+//             }
+//         },
+//         include: [Review, Image]
+//     })
+//     res.render('search', { restaurants });
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get("/sign-up", (req, res) => {
 
