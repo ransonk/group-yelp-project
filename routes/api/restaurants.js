@@ -165,11 +165,17 @@ router.post('/', validateRestaurants, handleValidationErrors, asyncHandler(async
 //grab restaurants for index page *recommended restaurants
 router.get('/recent', asyncHandler(async (req, res, next) => {
     const restaurants = await Restaurant.findAll({
-        include: [Review, Image],
-        limit: 4,
-        order: [
-            ['id', 'DESC'] //possibly change to order by rating
-        ]
+        // include: [Review, Image],
+        // limit: 4,
+        // order: [
+        //     ['id', 'DESC'] //possibly change to order by rating
+        // ]
+        include: {
+            model: Review,
+            order: [
+                ['rating', 'DESC']
+            ]
+        }
     });
     res.json({ restaurants });
 }));
