@@ -16,24 +16,17 @@ const restaurantId = window.location.href.match(/\/(\d+)$/)[1]
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-    const token = localStorage.getItem("HANGRY_ACCESS_TOKEN")
-    const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID")
-
-    const deleteReviewButton = document.createElement('button');
-    deleteReviewButton.setAttribute('class', 'restaurant__delete-review-button');
-    const editReviewButton = document.createElement('button');
-    editReviewButton.setAttribute('class', 'restaurant__edit-review-button');
+    const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
+    const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
 
     try {
         const res = await fetch(`/api/restaurants/${restaurantId}`, {
             headers: {
-                "WWW-Authenticate": `Bearer ${localStorage.getItem("HANGRY_ACCESS_TOKEN")}`
-            }
+                Authenticate: `Bearer ${token}`
+            },
         });
         const { restaurant, averageRating } = await res.json();
 
-        console.log(restaurant, 'restaurant');
-        console.log(averageRating, 'rating');
 
 
         const {
@@ -62,10 +55,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         locationHoursContainer.innerHTML = `${address} ${city}, ${state}`;
 
-        const reviewsArray = Reviews.map(({ User, description, rating }) => {
+        const reviewsArray = Reviews.map(({ id, User, description, rating, userId }) => {
+
             const reviewDiv = document.createElement('div');
             reviewDiv.setAttribute('class', 'reviews__review-div')
-            return reviewDiv.innerHTML = `
+            if (userId.toString() === currentUserId) {
+                reviewDiv.innerHTML += `
+                    <button class="restaurant__review-delete-button" value=${id}>delete</button>
+                    <button class="restaurant__review-edit-button" value="${id}">edit</button>
+                `
+            }
+            return reviewDiv.innerHTML += `
             <div class="review__user">
                 <a href="/user/${User.id}">
                 <img src="${User.profileUrl}">
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
         const reviewsHTML = reviewsArray.join('');
         reviewsContainer.innerHTML += reviewsHTML;
-
+        
 
     } catch(err){
         console.log(err)
@@ -104,9 +104,57 @@ document.addEventListener('DOMContentLoaded', async () => {
             body: JSON.stringify({id, token})
         })
         const resJSON = await res.json();
-        console.log(resJSON);
         if (resJSON.msg === "Restaurant Deleted") {
             window.location.href = '/';
         } 
     })
+
+    const deleteReviewButton = document.querySelector('.restaurant__review-delete-button');
+    const editReviewButton = document.querySelector('.restaurant__review-edit-button');
+    
+    deleteReviewButton.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const reviewId = e.target.value;
+        try {
+            const res = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    reviewId, restaurantId, currentUserId
+                })
+            });
+            const resJSON = await res.json();
+            if (resJSON.msg === "Review Deleted") {
+                window.location.href = `/restaurants/${restaurantId}`;
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    })
+    
+    editReviewButton.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const reviewId = e.target.value;
+        
+        // try {
+        //     const res = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             Authorization: `Bearer ${token}`
+        //         },
+        //         body: JSON.stringify({
+        //             reviewId
+        //         })
+        //     });
+        //     const resJSON = await res.json();
+        // } catch (err) {
+        //     console.log(err);
+        // }
+    });
+    
 })

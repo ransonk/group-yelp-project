@@ -57,6 +57,8 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const restaurantId = parseInt(req.params.id);
+    const { currentUserId } = req.body;
+    console.log(currentUserId)
     const restaurant = await Restaurant.findByPk(restaurantId,
         {
             include: [
@@ -110,11 +112,22 @@ router.post('/:id(\\d+)/reviews', validateReviews, handleValidationErrors, async
 }))
 
 router.delete('/:id(\\d+)/reviews', requireAuth, asyncHandler(async (req, res, next) => {
-    
+    const { reviewId, currentUserId, token } = req.body;
+    const review = await Review.findByPk(reviewId);
+    if (review.userId.toString() !== currentUserId) {
+      const err = new Error("Unauthorized Action");
+        err.status = 401;
+        err.title = "Unauthorized";
+        err.errors = ["Only writer of the review is authorized to delete this review."];
+        return next(err);
+    } else {
+        await review.destroy();
+        res.json({ msg: "Review Deleted" });
+    }
 }))
 
 router.put('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
-
+    
 }))
 
 
