@@ -70,6 +70,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     const reviewsArray = reviews.map(({ rating, description, createdAt, Restaurant }) => {
         const reviewDiv = document.createElement('div');
         reviewDiv.setAttribute('class', 'profile__review-div');
+        if (rating === 0) {
+            rating = "No reviews yet";
+        } else if (rating === 1) {
+            rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
+        } else if (rating === 2) {
+            rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span>`
+        } else if (rating === 3) {
+            rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span>`
+        } else if (rating === 4) {
+            rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span>`
+        } else if (rating === 5) {
+            rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
+        }
+
         return reviewDiv.innerHTML = `
 
             <div class="profile__review-restaurant">
