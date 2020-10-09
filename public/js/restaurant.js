@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
     const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
 
+
+
+
+
     try {
         const res = await fetch(`/api/restaurants/${restaurantId}`, {
             headers: {
@@ -84,9 +88,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
         const reviewsHTML = reviewsArray.join('');
         reviewsContainer.innerHTML += reviewsHTML;
-        
 
-    } catch(err){
+
+    } catch (err) {
         console.log(err)
     }
     writeReviewButton.addEventListener('click', (e) => {
@@ -101,17 +105,34 @@ document.addEventListener('DOMContentLoaded', async () => {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
             },
-            body: JSON.stringify({id, token})
+            body: JSON.stringify({ id, token })
         })
         const resJSON = await res.json();
         if (resJSON.msg === "Restaurant Deleted") {
             window.location.href = '/';
-        } 
+        }
     })
 
     const deleteReviewButton = document.querySelector('.restaurant__review-delete-button');
     const editReviewButton = document.querySelector('.restaurant__review-edit-button');
-    
+
+
+    try {
+        const res = await fetch(`/api/restaurants/user/${currentUserId}`)
+        const result = await res.json()
+        console.log(result)
+    } catch (err) {
+        console.log(err)
+    }
+
+
+
+
+
+
+
+
+
     deleteReviewButton.addEventListener('click', async (e) => {
         e.preventDefault()
         const reviewId = e.target.value;
@@ -135,11 +156,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(err);
         }
     })
-    
+
     editReviewButton.addEventListener('click', async (e) => {
         e.preventDefault()
         const reviewId = e.target.value;
-        
+
         // try {
         //     const res = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
         //         method: 'POST',
@@ -156,5 +177,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         //     console.log(err);
         // }
     });
-    
+
 })
