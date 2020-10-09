@@ -17,8 +17,61 @@ const fetchRestaurants = async (input) => {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const restaurantsContainer = document.querySelector('.restaurants-container');
+    if (localStorage.getItem("searchValue")) {
+        const localResult = await fetchRestaurants(localStorage.getItem("searchValue"))
+        const restaurantsHTML = localResult.map(
+            ({ name, address, city, state, phone, Reviews, Images, foodCategory, id }) => {
+                let review;
+                let rating;
+                if (Reviews.length) {
+                    review = Reviews[0].description;
+                    rating = Reviews.reduce((accum, ele) => {
+                        return accum + ele.rating;
+                    }, 0);
+                    rating /= Reviews.length;
+                    console.log("Review and rating: ", review, rating)
+                } else {
+                    // set something for review
+                }
+                let imgUrl;
+                if (!Images.length) {
+                    imgUrl = '';
+                } else {
+                    imgUrl = Images[0].url;
+                }
+                // const restaurantDiv = document.createElement('div');
+                // restaurantDiv.setAttribute('class', 'restaurant-div');
+                // restaurantDiv.innerHTML = `
+                console.log(name, address, city, state, phone, Reviews, Images, foodCategory)
+                return `
+                <a href="/restaurants/${id}">
+                    <div class='res-div'>
+                        <input type="hidden" value="${id}" class="restaurant-id">
+                        <img src='${imgUrl}'>
+                        <div class='search__restaurant-name'>
+                        <h2>${name}</h2>
+                        </div>
+                        <div class='search__rating'>
+                        <p>${rating}</p>
+                        </div>
+                        <div class='search__review'>
+                        <p>${review}</p>
+                        </div>
+                        <div class='address'>
+                        <p>${phone}</p>
+                        <p>${address}</p>
+                        <p>${city}, ${state}</p>
+                        </div>
+                    </div>
+                </a>`
+            })
+        const resHTML = restaurantsHTML.join('');
+        restaurantsContainer.innerHTML += resHTML;
+
+    }
+    // const restaurantsContainer = document.querySelector('.restaurants-container');
     const search = document.querySelector('.search')
     search.addEventListener('submit', async (e) => {
         e.preventDefault();
