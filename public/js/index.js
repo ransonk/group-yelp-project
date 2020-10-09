@@ -52,6 +52,10 @@ document.addEventListener('DOMContentLoaded', async (e) => {
             window.location.href = '/';
         })
 
+    document.getElementById('profile').addEventListener('click', async () => {
+        // window.location.href = `/`
+        window.location.href = `/user/${id}`
+    })
 
 
     //search event listner

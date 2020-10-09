@@ -1,11 +1,18 @@
 extends layout
 
 block content
-  include includes/nav-search
+  div.profile__nav-bar
+      div.profile__nav-logo hi
+      button(id='sign-up' class='nav__btn' onclick="window.location.href='/sign-up'") Sign Up
+      button(id='log-in' class='nav__btn' onclick="window.location.href='/log-in'") Log In
+      button(id='profile' class='nav__btn') Profile
+      button(id='log-out' class='nav__btn' onclick="window.location.href='/log-in'") Log Out
+      button(id='my-business' class='nav__btn') My Business
   div.profile__main
     div.profile__user-container
-      div.profile__user-name Username
-      div.profile__user-pic pic here
+      div.profile__user-name
+      div.profile__user-pic
+      div.profile__user-location
 
     div.profile__reviews-container
   script(type="module" src="/js/users.js")

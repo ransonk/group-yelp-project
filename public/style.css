@@ -108,11 +108,26 @@
     border-radius: 100px;
 }
 
+.profile__nav-bar{
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #F43939;
+}
+
+.profile__nav-logo{
+    margin-left: auto;
+    background-image: url('./images/logo.jpg');
+    background-size: 3rem;
+}
+
 .nav__search{
     text-align: center;
     margin-top: 1rem;
 
 }
+
 
 
 
