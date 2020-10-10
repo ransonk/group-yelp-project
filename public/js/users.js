@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const token = localStorage.getItem("HANGRY_ACCESS_TOKEN")
     const id = localStorage.getItem("HANGRY_CURRENT_USER_ID")
-    console.log(id)
     const body = { token, id }
     const res2 = await fetch("/api/user/check", {
         method: "POST",
@@ -55,7 +54,34 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('#profile').classList.add('hidden')
         document.querySelector('#log-out').classList.add('hidden')
         document.querySelector('#my-business').classList.add('hidden')
+        document.querySelector(".profile__picture-edit").classList.add('hidden')
     }
+
+
+    //click "edit profile" button
+    document.querySelector(".profile__picture-edit").addEventListener("click",(event) => {
+        event.preventDefault();
+        
+        document.querySelector("#profile-picture-edit").classList.remove("hidden")
+        document.querySelector("#profile-picture-edit-button").classList.remove("hidden")
+        document.querySelector("#profile-picture-edit-cancel").classList.remove("hidden")
+        document.querySelector(".profile__picture-edit").classList.add("hidden")
+
+console.log("hi")
+})
+//click "edit" button
+document.querySelector("#profile-picture-edit-button").addEventListener("click" ,(event) => {
+    event.preventDefault();
+     const form = document.querySelector("#profile-picture-edit-form");
+     const formData = new FormData(form);
+     const url = formData.get("profileUrl");
+    console.log(url)
+    //create fetch call here
+})
+
+
+
+
 
     //logout event listener
     document.querySelector('#log-out')
@@ -78,7 +104,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // console.log(userId)
     const res = await fetch(`/api/user/${userId}`);
     const { user: { firstName, lastName, profileUrl }, reviews } = await res.json();
-    console.log(reviews);
 
     usernameDiv.innerHTML = firstName + ' ' + lastName;
     userPictureDiv.innerHTML = `<img src="${profileUrl}">`

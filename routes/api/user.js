@@ -168,7 +168,7 @@ routes.post("/check", asyncHandler(async (req, res) => {
 
 
 //routes for editing images
-routes.patch("image/:url", asyncHandler(async (req,res)=> {
+routes.patch("/image", asyncHandler(async (req,res)=> {
     const providedUrl = req.params.url;
     console.log(providedUrl)
 }))
