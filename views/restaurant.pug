@@ -24,7 +24,12 @@ block content
         div.services-container
             h3.services-title Services
         div.location-and-hours-container
+            h3 Location and Hours
+            .map-container
+                div#map
+                div.address-container
         div.recommendations-container
         div.reviews-container
-
+            h3 Reviews
+    script(src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js')
     script(type="module" src="/js/restaurant.js")

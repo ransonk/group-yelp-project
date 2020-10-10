@@ -3,6 +3,9 @@ const writeReviewButton = document.querySelector('.write-review-button');
 const imageBar = document.querySelector('.image-bar');
 const restaurantName = document.querySelector('.restaurant-name');
 // const restaurantRating = document.querySelector('.restaurant-rating');
+
+//setting mapbox accesstoken, maybe we move this into env variables
+mapboxgl.accessToken = "pk.eyJ1IjoiYW52YXJvdiIsImEiOiJja2Z1azhjNmwwc2RiMnJzMzFydmFiNXQ3In0.gsJAK7Sz7Xn8KLKn9PaPmw"
 const starsBar = document.querySelector('.stars-bar');
 const reviewCount = document.querySelector('.review-number');
 const foodCategories = document.querySelector('.food-categories');
@@ -13,6 +16,17 @@ const locationHoursContainer = document.querySelector('.location-and-hours-conta
 const reviewsContainer = document.querySelector('.reviews-container');
 
 const restaurantId = window.location.href.match(/\/(\d+)$/)[1]
+
+// instantiating map objecct
+const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+    center: [-74.5, 40], // starting position [lng, lat]
+    zoom: 13 // starting zoom
+    });
+const baseUrl = `${mapboxgl.baseApiUrl + '/geocoding/v5/mapbox.places/'}`;
+
+// adding marker to map
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -79,11 +93,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.location.href = `/user/${id}`
     })
 
-
-
-
-
-
     try {
         const res = await fetch(`/api/restaurants/${restaurantId}`, {
             headers: {
@@ -93,25 +102,54 @@ document.addEventListener('DOMContentLoaded', async () => {
         const { restaurant, averageRating } = await res.json();
 
 
-
         const {
             name, phone, city, state, address, foodCategory,
             dineIn, takeOut, delivery, userId, Reviews, Images
         } = restaurant;
+
+        // anchor element for directions
+        let anchorEl;
+
+        // making query to forward geocoding api
+        const queryUrl = new URL(`${address + ' ' + city + ' ' + state}.json?limit=1&access_token=${mapboxgl.accessToken}`, baseUrl).href;
+        fetch(queryUrl, {
+            headers: {
+                accept: 'application/json'
+            }
+        }).then(body => body.json())
+        .then(data => {
+            const coords = data.features[0].center;
+            anchorEl = document.createElement('a');
+            anchorEl.innerText = "Get Directions"
+            // const getDirectionButton = document.createElement('span');
+            // getDirectionButton.innerText = 'Get Direction';
+            // getDirectionButton.appendChild(anchorEl)
+            anchorEl.setAttribute('href', `https://www.google.com/maps/search/?q=${coords[1]},${coords[0]}`);
+            anchorEl.setAttribute('target', '_blank');
+            mapContainer.appendChild(anchorEl);
+            //adding marker to map
+            map.setCenter(coords);
+            new mapboxgl.Marker({ color: '#f43939'}).setLngLat(coords).addTo(map)
+        })
       // checking if the restaurant has reviews if it is not returning with 'No reviews yet' text
             if (averageRating === 0) {
                 starsBar.innerHTML = "No reviews yet";
-            } else if (averageRating === 1) {
-                starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
-            } else if (averageRating === 2) {
-                starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span>`
-            } else if (averageRating === 3) {
-                starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span>`
-            } else if (averageRating === 4) {
-                starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span>`
-            } else if (averageRating === 5) {
-                starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
+            } else {
+                starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(averageRating)}</span>`
             }
+            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(averageRating)}</span>`
+            // }
+            // else if (averageRating === 1) {
+            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
+            // } else if (averageRating === 2) {
+            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span>`
+            // } else if (averageRating === 3) {
+            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span>`
+            // } else if (averageRating === 4) {
+            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span>`
+            // } else if (averageRating === 5) {
+            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
+            // }
         restaurantName.innerHTML = `<h2>${name}</h2>`;
         // starsBar.innerHTML = `Average rating: ${averageRating}`;
         reviewCount.innerHTML = `<p>${Reviews.length} reviews</p>`;
@@ -131,36 +169,61 @@ document.addEventListener('DOMContentLoaded', async () => {
             delivery.innerHTML = "Delivery";
             servicesContainer.appendChild(delivery)
         }
-        locationHoursContainer.innerHTML = `${address} ${city}, ${state}`;
-
+        const locationAddressNode = document.createElement('p');
+        const locationCityNode = document.createElement('p');
+        const locationStateNode = document.createElement('p');
+        
+        locationAddressNode.innerHTML = `<p>${address} ${city} ${state}</p>`
+        //s
+        
+        // locationStateNode.innerText =  `${state}`;
+        // locationHoursContainer.appendChild(locationNode)
+        const mapContainer = document.querySelector('.address-container');
+        mapContainer.appendChild(locationAddressNode);
+        // mapContainer.appendChild(locationCityNode);
+        // mapContainer.appendChild(locationStateNode)
+        
+        
+        
         const reviewsArray = Reviews.map(({ id, User, description, rating, userId }) => {
-
-            const reviewDiv = document.createElement('div');
-            reviewDiv.setAttribute('class', 'reviews__review-div')
-            if (userId.toString() === currentUserId) {
-                reviewDiv.innerHTML += `
-                    <button class="restaurant__review-delete-button" value=${id}>delete</button>
-                    <button class="restaurant__review-edit-button" value="${id}">edit</button>
-                `
-            }
-            return reviewDiv.innerHTML += `
-            <div class="review__user">
-                <a href="/user/${User.id}">
-                <img src="${User.profileUrl}">
-                </a>
-                <a href="/user/${User.id}">
-                <h3>${User.firstName} ${User.lastName}</h3>
-                </a>
-            </div>
-            <div class="review__rating">
-                <p>${rating}</p>
-            </div>
-            <div class="review__description">
-                <p>${description}</p>
-            </div>
-            `
+            
+            // const reviewBox = document.createElement('div');
+            // const reviewDiv = document.createElement('div');
+            // reviewDiv.setAttribute('class', 'reviews__review-div')
+            // if (userId.toString() === currentUserId) {
+            //     reviewDiv.innerHTML += `
+            //         <button class="restaurant__review-delete-button" value=${id}>delete</button>
+            //         <button class="restaurant__review-edit-button" value="${id}">edit</button>
+            //     `
+            // }
+            // return reviewDiv.innerHTML += `
+            const reviewModifyButtons = userId.toString() === currentUserId ? 
+                `<button class="restaurant__review-delete-button" value=${id}>delete</button>
+                <button class="restaurant__review-edit-button" value="${id}">edit</button>`   
+         : ''; 
+            return (
+            `<div class="reviews__review-div">
+                ${reviewModifyButtons}
+                <div class="review__user">
+                    <a href="/user/${User.id}">
+                    <img class="review__user--image" src="${User.profileUrl}"/>
+                    </a>
+                    <a class="review__user--name" href="/user/${User.id}">
+                    <h3>${User.firstName} ${User.lastName}</h3>
+                    </a>
+                </div>
+                <div class="review__description--container">
+                    <div class="review__rating">
+                        <p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(averageRating)}</span>`}</p>
+                    </div>
+                    <div class="review__description">
+                        <p>${description}</p>
+                    </div>
+                </div>
+            </div>`)
         })
         const reviewsHTML = reviewsArray.join('');
+        // console.log(reviewsArray)
         reviewsContainer.innerHTML += reviewsHTML;
 
 

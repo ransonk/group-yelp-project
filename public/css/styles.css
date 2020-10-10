@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: Poppins,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 /* index.pug css */
@@ -26,7 +27,7 @@
     margin: 2rem 2rem;
     padding: 1rem;
     width: 30rem;
-    height: 20rem;
+    height: 25rem;
 }
 
 .restaurant1__name,
@@ -51,7 +52,7 @@
 .restaurant4__image {
     width: 100%;
     height: 60%;
-    background-image: url('./images/jay-wennington-N_Y88TWmGwA-unsplash.jpg');
+    background-image: url('../images/jay-wennington-N_Y88TWmGwA-unsplash.jpg');
     background-size: cover;
     margin-bottom: 1rem;
 }
@@ -70,7 +71,7 @@
 
 .container{
     /* display: flex; */
-    background-image: url('./images/Experts-weigh-in-on-what-makes-people-become-hangry.jpg');
+    background-image: url('../images/Experts-weigh-in-on-what-makes-people-become-hangry.jpg');
     background-size: cover;
     width: 100%;
     height: 30rem;
@@ -100,7 +101,7 @@
 .nav__logo{
     align-self: center;
     margin-bottom: 10px;
-    background-image: url('./images/logo.jpg');
+    background-image: url('../images/logo.jpg');
     background-size: contain;
     width: 10rem;
     height: 10rem;
@@ -125,7 +126,7 @@
     align-self: center;
     /* z-index: 2; */
     /* left: 50%; */
-    background-image: url('./images/logo.jpg');
+    background-image: url('../images/logo.jpg');
     background-size: cover;
     width: 5rem;
     height: 5rem;
@@ -149,7 +150,7 @@
     display: flex;
     justify-content: center;
     height: 50rem;
-    background-image: url('./images/fast-food-delicious-pop-art-style_24908-61820.jpg');
+    background-image: url('../images/fast-food-delicious-pop-art-style_24908-61820.jpg');
 }
 
 
@@ -243,7 +244,7 @@
 
 .sign-up-side-picture-container{
     margin: 10px;
-    background-image: url("./images/LOGINpIC2.png");
+    background-image: url("../images/LOGINpIC2.png");
     background-size: cover;
     height: 20em;
     width: 17em;
@@ -306,18 +307,19 @@ justify-content: center;
 }
 
 .restaurant-content {
-    font-family: Poppins,Helvetica Neue,Helvetica,Arial,sans-serif;
     display: flex;
     flex-direction: column;
-    margin-left: 25%;
+    margin-left: 20%;
 }
 
 .restaurant-name {
     font-size: 20px;
+    
 }
 
 .restaurant-name > h2 {
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .restaurant-rating {
@@ -340,6 +342,7 @@ justify-content: center;
     padding-bottom: 15px;
     display: flex;
     margin-bottom: 10px;
+    width: 80%;
 }
 
 .write-review-button {
@@ -366,3 +369,117 @@ justify-content: center;
     font-weight: 400;
 }
 
+.services-container > h3 {
+    width: auto;
+}
+
+.services-container {
+    border-bottom: 1px solid #eeeeef;
+    padding-bottom: 15px;
+    width: 80%;
+}
+.services-container > p {
+    display: inline-block;
+    margin: 7px;
+
+}
+.services-container > p::before {
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f00c";
+    color: green;
+    margin-right: 3px;
+}
+
+.services-title {
+    margin: 5px 0;
+}
+
+.services-container :nth-child(2) {
+    margin-left: 0px;
+}
+
+#map {
+    height: 350px;
+    width: 350px;
+    /* flex-grow: 2; */
+}
+
+.map-container {
+    /* height: 500px; */
+    width: 350px;
+    border: 1px solid #eeeeef;
+    padding: 0;
+}
+
+.map-container p {
+    margin: 0;
+}
+
+.address-container {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 350px;
+    padding: 0;
+}
+
+.address-container p {
+    padding: 5px;
+    flex-basis: 200px;
+}
+
+.address-container  a {
+    padding: 3px;
+    height: 25px;
+    width: 100px;
+    align-self: center;
+    margin: 10px;
+    border: 1px solid #bbbac0;
+    border-radius: 3px;
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.reviews__review-div {
+    display: flex;
+    margin: 10px 0;
+    border-bottom: 1px solid #bbbac0;
+    width: 80%;
+}
+
+.reviews-container > h3 {
+    font-weight: 900;
+}
+
+.review__user {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.review__user--image {
+    width: 80px;
+}
+
+.review__user--name  {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    line-height: 15px;
+    font-size: 14px;
+}
+
+.reviews__review-div  h3 {
+    margin: 0;
+}
+
+.review__description--container {
+    display: flex;
+    flex-direction: column;
+}
+
+.review__rating > p {
+    margin: 0;
+}
