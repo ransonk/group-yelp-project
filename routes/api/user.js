@@ -81,7 +81,9 @@ routes.post(
         const { firstName, lastName, email, password, businessOwner } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10)
         // let user = await db.User.create({ profileUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", lastName, firstName, email, hashedPassword, businessOwner })
-        let user = await db.User.create({ profileUrl: "set up default url", lastName, firstName, email, hashedPassword, businessOwner })
+        // let user = await db.User.create({ profileUrl: "set up default url", lastName, firstName, email, hashedPassword, businessOwner })
+        let user = await db.User.create({ profileUrl: "/images/empty-profile.png", lastName, firstName, email, hashedPassword, businessOwner })
+
 
         const token = getUserToken(user);
         const previousPage = req.session.history[1].split("http://localhost:8080")[1]
@@ -111,9 +113,9 @@ routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => 
     const user = await db.User.findOne({
         where: { email: email }
     });
-    console.log('user', user.email);
+    // console.log('user', user.email);
     const passwordsMatch = await bcrypt.compareSync(password, user.hashedPassword.toString())
-    console.log(passwordsMatch)
+    // console.log(passwordsMatch)
     if (!user || !passwordsMatch) {
         const err = new Error("Login failed");
         err.status = 401;
@@ -121,7 +123,7 @@ routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => 
         err.errors = ["The provided credentials were invalid."];
         return next(err);
     }
-    console.log('hi')
+    // console.log('hi')
     const token = getUserToken(user);
     const previousPage = req.session.history[1].split("http://localhost:8080")[1]
     console.log(previousPage)
@@ -139,7 +141,7 @@ routes.post('/token', validateLogInUser, asyncHandler(async (req, res, next) => 
 routes.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     console.log('hi');
     const userId = parseInt(req.params.id);
-    console.log(userId);
+    // console.log(userId);
     // const user = await db.User.findByPk(userId, {
     //     include: [Review]
     // })
@@ -159,6 +161,16 @@ routes.post("/check", asyncHandler(async (req, res) => {
     const result = await signedIn(req, res)
     // console.log(result)
     res.json({ result })
+}))
+
+
+
+
+
+//routes for editing images
+routes.patch("image/:url", asyncHandler(async (req,res)=> {
+    const providedUrl = req.params.url;
+    console.log(providedUrl)
 }))
 
 
