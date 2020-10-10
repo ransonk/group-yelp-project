@@ -16,8 +16,25 @@ const restaurantId = window.location.href.match(/\/(\d+)$/)[1]
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-    const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
-    const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
+//adding verifying if this user is this restaurant's owner and show the delete button. default is hidden.....//
+deleteButton.classList.add("hidden")
+
+const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
+const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
+
+    const checkingOwnership = await fetch(`/api/restaurants/user/${currentUserId}/restaurant`)
+    const checkingOwnershipJson = await checkingOwnership.json();
+    const currentUsersRestaurantId = checkingOwnershipJson.restaurant.id
+    if (currentUsersRestaurantId == restaurantId) {
+        deleteButton.classList.remove("hidden")
+    }
+
+
+
+
+
+
+
 
     const searchForm = document.querySelector(".search");
     searchForm.addEventListener("submit", async (event) => {
