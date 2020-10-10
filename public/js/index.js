@@ -37,12 +37,16 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         document.querySelector('#profile').classList.remove('hidden')
         document.querySelector('#log-out').classList.remove('hidden')
         document.querySelector('#my-business').classList.add('hidden')
+        document.querySelector('#demo-user').classList.add('hidden')
+
     } else if (loggedInStatus.result === "Business Owner Token") {
         document.querySelector('#sign-up').classList.add('hidden')
         document.querySelector('#log-in').classList.add('hidden')
         document.querySelector('#profile').classList.remove('hidden')
         document.querySelector('#log-out').classList.remove('hidden')
         document.querySelector('#my-business').classList.remove('hidden')
+        document.querySelector('#demo-user').classList.add('hidden')
+
     } else if (loggedInStatus.result === "Bad User Token") {
         document.querySelector('#sign-up').classList.remove('hidden')
         document.querySelector('#log-in').classList.remove('hidden')

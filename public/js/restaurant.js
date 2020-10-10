@@ -13,11 +13,34 @@ const locationHoursContainer = document.querySelector('.location-and-hours-conta
 const reviewsContainer = document.querySelector('.reviews-container');
 
 const restaurantId = window.location.href.match(/\/(\d+)$/)[1]
-
+import { handleErrors } from "./utils.js"
 document.addEventListener('DOMContentLoaded', async () => {
 
-    const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
-    const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
+//adding verifying if this user is this restaurant's owner and show the delete button. default is hidden.....//
+deleteButton.classList.add("hidden")
+
+const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
+const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
+try {
+
+    const checkingOwnership = await fetch(`/api/restaurants/user/${currentUserId}/restaurant`)
+    const checkingOwnershipJson = await checkingOwnership.json();
+    const currentUsersRestaurantId = checkingOwnershipJson.restaurant.id
+    if (currentUsersRestaurantId == restaurantId) {
+        deleteButton.classList.remove("hidden")
+    } 
+}catch(err) {
+    // handleErrors(err)
+    deleteButton.classList.add("hidden")
+
+}
+
+
+
+
+
+
+
 
     const searchForm = document.querySelector(".search");
     searchForm.addEventListener("submit", async (event) => {
@@ -159,7 +182,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
         catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     })
 
