@@ -174,8 +174,9 @@ router.get('/recent', asyncHandler(async (req, res, next) => {
             model: Review,
             order: [
                 ['rating', 'DESC']
-            ]
-        }
+            ],
+        },
+        limit: 4
     });
     res.json({ restaurants });
 }));
