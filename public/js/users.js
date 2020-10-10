@@ -1,3 +1,4 @@
+import { handleErrors } from "./utils.js"
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -57,7 +58,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector(".profile__picture-edit").classList.add('hidden')
     }
 
-
+    const currentUserPageUserId = window.location.href.match(/\/(\d+)$/)[1]
+if (currentUserPageUserId != id) {
+    document.querySelector(".profile__picture-edit").classList.add("hidden")
+}
     //click "edit profile" button
     document.querySelector(".profile__picture-edit").addEventListener("click",(event) => {
         event.preventDefault();
@@ -67,22 +71,43 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector("#profile-picture-edit-cancel").classList.remove("hidden")
         document.querySelector(".profile__picture-edit").classList.add("hidden")
 
-console.log("hi")
 })
 //click "edit" button
-document.querySelector("#profile-picture-edit-button").addEventListener("click" ,(event) => {
+document.querySelector("#profile-picture-edit-button").addEventListener("click" ,async(event) => {
     event.preventDefault();
      const form = document.querySelector("#profile-picture-edit-form");
      const formData = new FormData(form);
      const url = formData.get("profileUrl");
-    console.log(url)
+    const body = {id, url}
+    try {
+    const res = await fetch("/api/user/image/edit", {
+    method:"PATCH",
+    body: JSON.stringify(body),
+    headers: {
+        "Content-Type": "application/json"
+    }
+    })
+    if (!res.ok) {
+        throw res
+    }
+
+window.location.href=`/user/${id}`
+
+    }catch(err) {
+        console.log("error from users.js line 83")
+        handleErrors(err)
+    }
+    
     //create fetch call here
 })
-
-
-
-
-
+//click "cancel" button
+document.querySelector("#profile-picture-edit-cancel").addEventListener("click", (event) => {
+    event.preventDefault();
+        document.querySelector("#profile-picture-edit").classList.add("hidden")
+        document.querySelector("#profile-picture-edit-button").classList.add("hidden")
+        document.querySelector("#profile-picture-edit-cancel").classList.add("hidden")
+        document.querySelector(".profile__picture-edit").classList.remove("hidden")
+})
     //logout event listener
     document.querySelector('#log-out')
         .addEventListener('click', () => {

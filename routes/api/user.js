@@ -168,9 +168,15 @@ routes.post("/check", asyncHandler(async (req, res) => {
 
 
 //routes for editing images
-routes.patch("/image", asyncHandler(async (req,res)=> {
-    const providedUrl = req.params.url;
-    console.log(providedUrl)
+routes.patch("/image/edit", asyncHandler(async (req,res)=> {
+   const id = req.body.id;
+   const profileUrl = req.body.url;
+   const user = await db.User.findByPk(id)
+   await user.update({
+       profileUrl:profileUrl
+   })
+//    console.log(id, profileUrl)
+   res.json({user})
 }))
 
 
