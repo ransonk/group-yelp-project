@@ -80,7 +80,8 @@ routes.post(
 
         const { firstName, lastName, email, password, businessOwner } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10)
-        let user = await db.User.create({ profileUrl: "set default here", lastName, firstName, email, hashedPassword, businessOwner })
+        // let user = await db.User.create({ profileUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", lastName, firstName, email, hashedPassword, businessOwner })
+        let user = await db.User.create({ profileUrl: "set up default url", lastName, firstName, email, hashedPassword, businessOwner })
 
         const token = getUserToken(user);
         const previousPage = req.session.history[1].split("http://localhost:8080")[1]
