@@ -1,7 +1,14 @@
 extends layout
 
 block content
-    include includes/nav-search
+    //- include includes/nav-search
+    div.profile__nav-bar
+      div(class="profile__nav-logo" onclick="window.location.href='/'")
+      button(id='sign-up' class='nav__btn' onclick="window.location.href='/sign-up'") Sign Up
+      button(id='log-in' class='nav__btn' onclick="window.location.href='/log-in'") Log In
+      button(id='profile' class='nav__btn') Profile
+      button(id='log-out' class='nav__btn' onclick="window.location.href='/log-in'") Log Out
+      button(id='my-business' class='nav__btn') My Business
     div.image-bar
     div.restaurant-content
         div.info-container
@@ -15,6 +22,7 @@ block content
             button(class="write-review-button") Write a Review
             button(class="restaurant__delete-button") Delete Restaurant
         div.services-container
+            h3.services-title Services
         div.location-and-hours-container
         div.recommendations-container
         div.reviews-container

@@ -296,3 +296,73 @@ justify-content: center;
 .goldStar {
     color: gold !important;
 }
+
+/* restaurant view page */
+
+.image-bar {
+    width: 100%;
+    height: 300px;
+    background-color: grey;
+}
+
+.restaurant-content {
+    font-family: Poppins,Helvetica Neue,Helvetica,Arial,sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin-left: 25%;
+}
+
+.restaurant-name {
+    font-size: 20px;
+}
+
+.restaurant-name > h2 {
+    margin-bottom: 5px;
+}
+
+.restaurant-rating {
+    display: flex;
+    align-items: center;
+}
+
+.review-number {
+    color: grey;
+    margin-left: 5px;
+}
+
+.food-categories {
+    color: grey;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    border-bottom: 1px solid #eeeeef;
+    padding-bottom: 15px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.write-review-button {
+    cursor: pointer;
+    border-radius: 4px;
+    height: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background: #f43939;
+    border: 1px solid #f43939;
+    color: white;
+    font-weight: 400;
+    margin-right: 8px;
+}
+.restaurant__delete-button {
+    cursor: pointer;
+    border-radius: 4px;
+    height: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background: #f43939;
+    border: 1px solid #f43939;
+    color: white;
+    font-weight: 400;
+}
+
