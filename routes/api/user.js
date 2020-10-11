@@ -67,6 +67,7 @@ const validateLogInUser = [
 routes.post(
     '/', validateSignUpUser, handleValidationErrors,
     asyncHandler(async (req, res, next) => {
+        console.log('look at me')
         const validationErrors = validationResult(req);
 
         if (!validationErrors.isEmpty()) {
@@ -151,7 +152,7 @@ routes.get('/:id(\\d+)', asyncHandler(async (req, res) => {
         },
         // include: [Review]
     })
-    const reviews = await db.Review.findAll({ where: { userId }, order: [['createdAt', 'DESC']], include: [db.Restaurant] }, );
+    const reviews = await db.Review.findAll({ where: { userId }, order: [['createdAt', 'DESC']], include: [db.Restaurant] },);
     res.json({ user, reviews });
 }))
 
@@ -168,15 +169,15 @@ routes.post("/check", asyncHandler(async (req, res) => {
 
 
 //routes for editing images
-routes.patch("/image/edit", asyncHandler(async (req,res)=> {
-   const id = req.body.id;
-   const profileUrl = req.body.url;
-   const user = await db.User.findByPk(id)
-   await user.update({
-       profileUrl:profileUrl
-   })
-//    console.log(id, profileUrl)
-   res.json({user})
+routes.patch("/image/edit", asyncHandler(async (req, res) => {
+    const id = req.body.id;
+    const profileUrl = req.body.url;
+    const user = await db.User.findByPk(id)
+    await user.update({
+        profileUrl: profileUrl
+    })
+    //    console.log(id, profileUrl)
+    res.json({ user })
 }))
 
 
