@@ -1,0 +1,154 @@
+.demo__container {
+    display:relative;
+
+}
+
+.demo__picture {
+
+    width: 435px;
+    height: 500px;
+    background-image: url("./images/empty-person.png");
+    background-size: cover;
+}
+
+.demo__bubble {
+    width: 400px;
+    height: 300px;
+    background-image: url("./images/WELCOMdEMO.png");
+    background-size: cover;
+    position: absolute;
+    top: 5px;
+    left: 300px;
+}
+
+
+.demo__bubble2{
+    width: 400px;
+    height: 300px;
+    background-image: url("./images/enjoyFeatures.png");
+    background-size: cover;
+    position: absolute;
+    top: 5px;
+    left: 300px;
+}
+
+
+.next_button1 {
+    position: absolute;
+    top: 200px;
+    left: 480px;
+    border-radius: 5px;
+    background-color: #5494c6;
+    padding: 0.3rem;
+    color: white;
+    align-self: center;
+    margin: 5px;
+    opacity: .2;
+
+}
+
+.next_button2 {
+    position: absolute;
+    top: 220px;
+    left: 480px;
+    border-radius: 5px;
+    background-color: #5494c6;
+    padding: 0.3rem;
+    color: white;
+    align-self: center;
+    margin: 5px;
+    opacity: .2;
+
+}
+
+.next_button2:hover{
+    cursor: pointer;
+    background-color: #556FC6;
+    transition-duration: 0.3s;
+}
+.next_button1:hover{
+    cursor: pointer;
+    background-color: #556FC6;
+    transition-duration: 0.3s;
+}
+
+.developedBy{
+    position: absolute;
+    left: 500px;
+    top: 280px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 15rem;
+    padding: 1rem;
+    box-shadow: 5px 5px #5494c6;
+    animation: pulse 2s infinite;
+    animation-direction: alternate;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+.developedBy .alfredo {
+    font-weight: 500;
+}
+
+@keyframes pulse {
+     0% {
+       background-color: #F0EAD6;
+     }
+     100% {
+       background-color: #F98865;
+     }
+}
+
+.hangry{
+    padding-bottom: 1rem;
+    font-weight:bold;
+}
+
+
+/* .developedBy > p {
+    border: 1px solid black;
+    margin: 3px;
+} */
+
+.hidden{
+    display: none;
+}
+
+
+
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+}
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.fade-out {
+	opacity: 1;
+	animation-name: fadeOutOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+    animation-duration: 2s;
+
+}
+@keyframes fadeOutOpacity {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}

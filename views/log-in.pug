@@ -1,15 +1,18 @@
 extends layout.pug
 
 block content
-  div(class="log-in-container")
-    div(class="errors-container")
-    h2 Log in your Hangry Account
-    form(class="log-in-form")
-      div(class="form-group")
-        label(for="email")
-        input(id="email" type="email" name="email" placeholder="email address")
+  include includes/nav-bar
+  div.form-image
+    div(class="log-in-container")
+      div(class="errors-container")
+      h2 Welcome Back!
+      form(class="log-in-form")
         div(class="form-group")
-        label(for="password")
-        input(id="password" type="password" name="password" placeholder="password")
-      button(type="submit")  Log In
+          label(for="email")
+          input(id="email" type="email" name="email" placeholder="email address")
+          div(class="form-group")
+          label(for="password")
+          input(id="password" type="password" name="password" placeholder="password")
+        button(type="submit")  Log In
+    div.log-in__image
   script(type="module" src="js/log-in.js")

@@ -17,6 +17,7 @@ const reviewsContainer = document.querySelector('.reviews-container');
 
 const restaurantId = window.location.href.match(/\/(\d+)$/)[1]
 
+
 // instantiating map objecct
 const map = new mapboxgl.Map({
     container: 'map',
@@ -26,210 +27,213 @@ const map = new mapboxgl.Map({
     });
 const baseUrl = `${mapboxgl.baseApiUrl + '/geocoding/v5/mapbox.places/'}`;
 
-// adding marker to map
 
 document.addEventListener('DOMContentLoaded', async () => {
-
+    
     // const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
     const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
     const token = localStorage.getItem("HANGRY_ACCESS_TOKEN")
     const id = localStorage.getItem("HANGRY_CURRENT_USER_ID")
-
-    const body = { token, id }
-    const res = await fetch("/api/user/check", {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers:
-            { "Content-Type": "application/json" },
-    })
-
-    const loggedInStatus = await res.json();
-
-    document.querySelector('#my-business').addEventListener('click', async (e) => {
-        const res = await fetch(`/api/restaurants/user/${id}/restaurant`);
-
-        const { restaurant } = await res.json();
-        if (!restaurant) {
-
-            window.location.href = "/my-business"
-            // console.log('need to create business page')
-        } else {
-
-            const restaurantId = restaurant.id;
-            window.location.href = `/restaurants/${restaurantId}`;
+    
+    import { handleErrors } from "./utils.js"
+    document.addEventListener('DOMContentLoaded', async () => {
+        
+        //adding verifying if this user is this restaurant's owner and show the delete button. default is hidden.....//
+        deleteButton.classList.add("hidden")
+        
+        const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
+        const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
+        try {
+            
+            const checkingOwnership = await fetch(`/api/restaurants/user/${currentUserId}/restaurant`)
+            const checkingOwnershipJson = await checkingOwnership.json();
+            const currentUsersRestaurantId = checkingOwnershipJson.restaurant.id
+            if (currentUsersRestaurantId == restaurantId) {
+                deleteButton.classList.remove("hidden")
+            } 
+        }catch(err) {
+            // handleErrors(err)
+            deleteButton.classList.add("hidden")
+            
         }
-    })
-
-    if (loggedInStatus.result === "Non-business Owner Token") {
-        document.querySelector('#sign-up').classList.add('hidden')
-        document.querySelector('#log-in').classList.add('hidden')
-        document.querySelector('#profile').classList.remove('hidden')
-        document.querySelector('#log-out').classList.remove('hidden')
-        document.querySelector('#my-business').classList.add('hidden')
-    } else if (loggedInStatus.result === "Business Owner Token") {
-        document.querySelector('#sign-up').classList.add('hidden')
-        document.querySelector('#log-in').classList.add('hidden')
-        document.querySelector('#profile').classList.remove('hidden')
-        document.querySelector('#log-out').classList.remove('hidden')
-        document.querySelector('#my-business').classList.remove('hidden')
-    } else if (loggedInStatus.result === "Bad User Token") {
-        document.querySelector('#sign-up').classList.remove('hidden')
-        document.querySelector('#log-in').classList.remove('hidden')
-        document.querySelector('#profile').classList.add('hidden')
-        document.querySelector('#log-out').classList.add('hidden')
-        document.querySelector('#my-business').classList.add('hidden')
-    }
-
-    //logout event listener
-    document.querySelector('#log-out')
+        
+        
+        
+        const body = { token, id }
+        const res = await fetch("/api/user/check", {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers:
+            { "Content-Type": "application/json" },
+        })
+        
+        const loggedInStatus = await res.json();
+        
+        document.querySelector('#my-business').addEventListener('click', async (e) => {
+            const res = await fetch(`/api/restaurants/user/${id}/restaurant`);
+            
+            const { restaurant } = await res.json();
+            if (!restaurant) {
+                
+                window.location.href = "/my-business"
+                // console.log('need to create business page')
+            } else {
+                
+                const restaurantId = restaurant.id;
+                window.location.href = `/restaurants/${restaurantId}`;
+            }
+        })
+        
+        if (loggedInStatus.result === "Non-business Owner Token") {
+            document.querySelector('#sign-up').classList.add('hidden')
+            document.querySelector('#log-in').classList.add('hidden')
+            document.querySelector('#profile').classList.remove('hidden')
+            document.querySelector('#log-out').classList.remove('hidden')
+            document.querySelector('#my-business').classList.add('hidden')
+        } else if (loggedInStatus.result === "Business Owner Token") {
+            document.querySelector('#sign-up').classList.add('hidden')
+            document.querySelector('#log-in').classList.add('hidden')
+            document.querySelector('#profile').classList.remove('hidden')
+            document.querySelector('#log-out').classList.remove('hidden')
+            document.querySelector('#my-business').classList.remove('hidden')
+        } else if (loggedInStatus.result === "Bad User Token") {
+            document.querySelector('#sign-up').classList.remove('hidden')
+            document.querySelector('#log-in').classList.remove('hidden')
+            document.querySelector('#profile').classList.add('hidden')
+            document.querySelector('#log-out').classList.add('hidden')
+            document.querySelector('#my-business').classList.add('hidden')
+        }
+        
+        //logout event listener
+        document.querySelector('#log-out')
         .addEventListener('click', () => {
             localStorage.removeItem("HANGRY_ACCESS_TOKEN")
             localStorage.removeItem("HANGRY_CURRENT_USER_ID")
             window.location.href = '/';
         })
-
-    document.getElementById('profile').addEventListener('click', async () => {
-        // window.location.href = `/`
-        window.location.href = `/user/${id}`
-    })
-
-    try {
-        const res = await fetch(`/api/restaurants/${restaurantId}`, {
-            headers: {
-                Authenticate: `Bearer ${token}`
-            },
-        });
-        const { restaurant, averageRating } = await res.json();
-
-
-        const {
-            name, phone, city, state, address, foodCategory,
-            dineIn, takeOut, delivery, userId, Reviews, Images
-        } = restaurant;
-
-        // anchor element for directions
-        let anchorEl;
-
-        // making query to forward geocoding api
-        const queryUrl = new URL(`${address + ' ' + city + ' ' + state}.json?limit=1&access_token=${mapboxgl.accessToken}`, baseUrl).href;
-        fetch(queryUrl, {
-            headers: {
-                accept: 'application/json'
-            }
-        }).then(body => body.json())
-        .then(data => {
-            const coords = data.features[0].center;
-            anchorEl = document.createElement('a');
-            anchorEl.innerText = "Get Directions"
-            // const getDirectionButton = document.createElement('span');
-            // getDirectionButton.innerText = 'Get Direction';
-            // getDirectionButton.appendChild(anchorEl)
-            anchorEl.setAttribute('href', `https://www.google.com/maps/search/?q=${coords[1]},${coords[0]}`);
-            anchorEl.setAttribute('target', '_blank');
-            mapContainer.appendChild(anchorEl);
-            //adding marker to map
-            map.setCenter(coords);
-            new mapboxgl.Marker({ color: '#f43939'}).setLngLat(coords).addTo(map)
+        
+        document.getElementById('profile').addEventListener('click', async () => {
+            // window.location.href = `/`
+            window.location.href = `/user/${id}`
         })
-      // checking if the restaurant has reviews if it is not returning with 'No reviews yet' text
-            if (averageRating === 0) {
-                starsBar.innerHTML = "No reviews yet";
-            } else {
-                starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(averageRating)}</span>`
+        
+        
+        
+        const searchForm = document.querySelector(".search");
+        searchForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const formData = new FormData(searchForm)
+            const search = formData.get("search")
+            localStorage.setItem("searchValue", search)
+            window.location.href = `/search`
+        })
+        
+        
+        try {
+                const res = await fetch(`/api/restaurants/${restaurantId}`, {
+                    headers: {
+                        Authenticate: `Bearer ${token}`
+                    },
+                });
+                const { restaurant, averageRating } = await res.json();
+                
+                
+                const {
+                    name, phone, city, state, address, foodCategory,
+                    dineIn, takeOut, delivery, userId, Reviews, Images
+                } = restaurant;
+                
+                // anchor element for directions
+                let anchorEl;
+                
+                // making query to forward geocoding api
+                const queryUrl = new URL(`${address + ' ' + city + ' ' + state}.json?limit=1&access_token=${mapboxgl.accessToken}`, baseUrl).href;
+                fetch(queryUrl, {
+                    headers: {
+                        accept: 'application/json'
+                    }
+                }).then(body => body.json())
+                .then(data => {
+                    const coords = data.features[0].center;
+                    anchorEl = document.createElement('a');
+                    anchorEl.innerText = "Get Directions"
+                    anchorEl.setAttribute('href', `https://www.google.com/maps/search/?q=${coords[1]},${coords[0]}`);
+                    anchorEl.setAttribute('target', '_blank');
+                    mapContainer.appendChild(anchorEl);
+                    map.setCenter(coords);
+                    // adding marker to map
+                    new mapboxgl.Marker({ color: '#f43939'}).setLngLat(coords).addTo(map)
+            });
+            // checking if the restaurant has reviews if it is not returning with 'No reviews yet' text
+                if (averageRating === 0) {
+                    starsBar.innerHTML = "No reviews yet";
+                } else {
+                    starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(averageRating)}</span>`
+                }
+            restaurantName.innerHTML = `<h2>${name}</h2>`;
+            // starsBar.innerHTML = `Average rating: ${averageRating}`;
+            reviewCount.innerHTML = `<p>${Reviews.length} reviews</p>`;
+            foodCategories.innerHTML = `${foodCategory}`
+            if (dineIn) {
+                const dineIn = document.createElement('p');
+                dineIn.innerHTML = "Sit-down Dining";
+                servicesContainer.appendChild(dineIn)
             }
-            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(averageRating)}</span>`
-            // }
-            // else if (averageRating === 1) {
-            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
-            // } else if (averageRating === 2) {
-            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span>`
-            // } else if (averageRating === 3) {
-            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span>`
-            // } else if (averageRating === 4) {
-            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span>`
-            // } else if (averageRating === 5) {
-            //     starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
-            // }
-        restaurantName.innerHTML = `<h2>${name}</h2>`;
-        // starsBar.innerHTML = `Average rating: ${averageRating}`;
-        reviewCount.innerHTML = `<p>${Reviews.length} reviews</p>`;
-        foodCategories.innerHTML = `${foodCategory}`
-        if (dineIn) {
-            const dineIn = document.createElement('p');
-            dineIn.innerHTML = "Sit-down Dining";
-            servicesContainer.appendChild(dineIn)
-        }
-        if (takeOut) {
-            const takeOut = document.createElement('p');
-            takeOut.innerHTML = "Take out";
-            servicesContainer.appendChild(takeOut)
-        }
-        if (delivery) {
-            const delivery = document.createElement('p');
-            delivery.innerHTML = "Delivery";
-            servicesContainer.appendChild(delivery)
-        }
-        const locationAddressNode = document.createElement('p');
-        const locationCityNode = document.createElement('p');
-        const locationStateNode = document.createElement('p');
-        
-        locationAddressNode.innerHTML = `<p>${address} ${city} ${state}</p>`
-        //s
-        
-        // locationStateNode.innerText =  `${state}`;
-        // locationHoursContainer.appendChild(locationNode)
-        const mapContainer = document.querySelector('.address-container');
-        mapContainer.appendChild(locationAddressNode);
-        // mapContainer.appendChild(locationCityNode);
-        // mapContainer.appendChild(locationStateNode)
-        
-        
-        
-        const reviewsArray = Reviews.map(({ id, User, description, rating, userId }) => {
+            if (takeOut) {
+                const takeOut = document.createElement('p');
+                takeOut.innerHTML = "Take out";
+                servicesContainer.appendChild(takeOut)
+            }
+            if (delivery) {
+                const delivery = document.createElement('p');
+                delivery.innerHTML = "Delivery";
+                servicesContainer.appendChild(delivery)
+            }
+            const locationAddressNode = document.createElement('p');
+
             
-            // const reviewBox = document.createElement('div');
-            // const reviewDiv = document.createElement('div');
-            // reviewDiv.setAttribute('class', 'reviews__review-div')
-            // if (userId.toString() === currentUserId) {
-            //     reviewDiv.innerHTML += `
-            //         <button class="restaurant__review-delete-button" value=${id}>delete</button>
-            //         <button class="restaurant__review-edit-button" value="${id}">edit</button>
-            //     `
-            // }
-            // return reviewDiv.innerHTML += `
-            const reviewModifyButtons = userId.toString() === currentUserId ? 
-                `<button class="restaurant__review-delete-button" value=${id}>delete</button>
-                <button class="restaurant__review-edit-button" value="${id}">edit</button>`   
-         : ''; 
-            return (
-            `<div class="reviews__review-div">
-                ${reviewModifyButtons}
-                <div class="review__user">
-                    <a href="/user/${User.id}">
-                    <img class="review__user--image" src="${User.profileUrl}"/>
-                    </a>
-                    <a class="review__user--name" href="/user/${User.id}">
-                    <h3>${User.firstName} ${User.lastName}</h3>
-                    </a>
-                </div>
-                <div class="review__description--container">
-                    <div class="review__rating">
-                        <p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(averageRating)}</span>`}</p>
+            locationAddressNode.innerHTML = `<p>${address} ${city} ${state}</p>`
+
+            const mapContainer = document.querySelector('.address-container');
+            mapContainer.appendChild(locationAddressNode);
+
+            
+            
+            
+            const reviewsArray = Reviews.map(({ id, User, description, rating, userId }) => {
+                
+                const reviewModifyButtons = userId.toString() === currentUserId ? 
+                    `<button class="restaurant__review-delete-button" value=${id}>delete</button>
+                    <button class="restaurant__review-edit-button" value="${id}">edit</button>`   
+            : ''; 
+                return (
+                `<div class="reviews__review-div">
+                    ${reviewModifyButtons}
+                    <div class="review__user">
+                        <a href="/user/${User.id}">
+                        <img class="review__user--image" src="${User.profileUrl}"/>
+                        </a>
+                        <a class="review__user--name" href="/user/${User.id}">
+                        <h3>${User.firstName} ${User.lastName}</h3>
+                        </a>
                     </div>
-                    <div class="review__description">
-                        <p>${description}</p>
+                    <div class="review__description--container">
+                        <div class="review__rating">
+                            <p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(averageRating)}</span>`}</p>
+                        </div>
+                        <div class="review__description">
+                            <p>${description}</p>
+                        </div>
                     </div>
-                </div>
-            </div>`)
-        })
-        const reviewsHTML = reviewsArray.join('');
-        // console.log(reviewsArray)
-        reviewsContainer.innerHTML += reviewsHTML;
+                </div>`)
+            })
+            const reviewsHTML = reviewsArray.join('');
+            reviewsContainer.innerHTML += reviewsHTML;
 
 
-    } catch (err) {
-        console.log(err)
-    }
+        } catch (err) {
+            console.log(err)
+        }
     writeReviewButton.addEventListener('click', (e) => {
         window.location.href = `/restaurants/${restaurantId}/reviews/new`;
     })
@@ -262,14 +266,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log(err)
     }
 
-
-
-
-
-
-
-
-
     deleteReviewButton.addEventListener('click', async (e) => {
         e.preventDefault()
         const reviewId = e.target.value;
@@ -290,7 +286,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
         catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     })
 
