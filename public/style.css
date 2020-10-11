@@ -219,9 +219,11 @@
     scrollbar-width: none;
 }
 
-/* .profile__user-pic {
-  image is not a background image but interpolated in users.js
-} */
+.profile__user-pic img{
+  max-width: 220px;
+  max-height: 246px;
+
+}
 
 
  .profile__user-container{

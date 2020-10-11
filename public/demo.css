@@ -4,7 +4,7 @@
 }
 
 .demo__picture {
-    
+
     width: 435px;
     height: 500px;
     background-image: url("./images/empty-person.png");
@@ -44,12 +44,17 @@
     position: absolute;
     top: 230px;
     left: 480px;
-    
+
+}
+
+.next_button1,
+.next_button2:hover{
+    cursor: pointer;
 }
 
 .developedBy{
     display: flex;
-    
+
 }
 .developedBy > p {
     border: 1px solid black;
