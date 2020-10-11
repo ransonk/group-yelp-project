@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
 
     //fetching restaurant name for .restaurant-name div
-    const restaurantName2 = document.querySelector('.restaurant-name');
+    const restaurantName2 = document.querySelector('.restaurant-name2');
     try {
         const res = await fetch(`/api/restaurants/${restaurantId}`, {
             headers: {
