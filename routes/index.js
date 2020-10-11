@@ -124,7 +124,9 @@ router.get("/my-business", (req, res) => {
 })
 
 
-
+router.get("/demo-user", (req, res) => {
+    res.render("demo")
+})
 
 
 module.exports = router;

@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (localStorage.getItem("foodCategory")) {
         const localResult = await fetchRestaurants(localStorage.getItem("foodCategory").value)
+        console.log("LCOALRESULT: ", localResult);
         searchRender(localResult);
     }
 
@@ -73,7 +74,7 @@ function searchRender(localResult) {
                     return accum + ele.rating;
                 }, 0);
                 rating /= Reviews.length;
-            } 
+            }
             let imgUrl;
             if (!Images.length) {
                 imgUrl = '';
@@ -81,26 +82,26 @@ function searchRender(localResult) {
                 imgUrl = Images[0].url;
             }
             return `
-                        <a href="/restaurants/${id}">
-                            <div class='search__res-div'>
-                                <input type="hidden" value="${id}" class="search__restaurant-id">
-                                <img src='${imgUrl}'>
-                                <div class='search__restaurant-name'>
-                                <h2>${name}</h2>
-                                </div>
-                                <div class='search__rating'>
-                                <p>${rating}</p>
-                                </div>
-                                <div class='search__review'>
-                                <p>${review}</p>
-                                </div>
-                                <div class='search__address'>
-                                <p>${phone}</p>
-                                <p>${address}</p>
-                                <p>${city}, ${state}</p>
-                                </div>
+                    <a href="/restaurants/${id}">
+                        <div class='search__res-div'>
+                            <input type="hidden" value="${id}" class="search__restaurant-id">
+                            <img src='${imgUrl}'>
+                            <div class='search__restaurant-name'>
+                            <h2>${name}</h2>
                             </div>
-                        </a>`
+                            <div class='search__rating'>
+                            <p>${rating}</p>
+                            </div>
+                            <div class='search__review'>
+                            <p>${review}</p>
+                            </div>
+                            <div class='search__address'>
+                            <p>${phone}</p>
+                            <p>${address}</p>
+                            <p>${city}, ${state}</p>
+                            </div>
+                        </div>
+                    </a>`
         })
     const resHTML = restaurantsHTML.join('');
     restaurantsContainer.innerHTML += resHTML;

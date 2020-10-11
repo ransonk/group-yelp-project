@@ -11,6 +11,12 @@ block content
   div.profile__main
     div.user-reviews-container
       div.profile__user-container
+        button.profile__picture-edit Edit Profile Picture
+        form(id="profile-picture-edit-form" for='profileUrl')
+          label(for="profile-picture-edit")
+          input(id="profile-picture-edit" type="text" placeholder="paste your picture url here" name="profileUrl" class="hidden")
+        button(type="submit" id="profile-picture-edit-button" class="hidden") Edit
+        button(id="profile-picture-edit-cancel" class="hidden") Cancel
         div.profile__user-pic
         div.profile__user-name
         div.profile__user-location
