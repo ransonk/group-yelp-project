@@ -2,17 +2,29 @@ extends layout.pug
 
 block content
     .search-page
-        include includes/nav-search
+        include includes/search-nav
     .search-main
         .search-sidenav
             .search-sidenav__container
                 .search-sidenav__title: h2 Filters
                 .search-sidenav__food-category
-                    .search-sidenav__header 
+                    .search-sidenav__header: h3 Food Categories
                     .search-sidenav__food-cat-list
+                        div.options
+                            select.dropdown-list
+                                option(value='' onclick="window.location.href='/'") -- Food Category --
+                                option(value='Chinese') Chinese
+                                option(value='Mexican') Mexican
+                                option(value='Fast Food') Fast Food
+                                option(value='Middle Eastern') Middle Eastern
+                                option(value='Bar') Bars
+                                option(value='Cafe') Cafes
                 .search-sidenav__services
-                    .search-sidenav__header 
+                    .search-sidenav__header: h3 Services
                     .search-sidenav__service-buttons
+                        button(class="services-search" value="takeOut") Takeout
+                        button(class="services-search" value="dineIn") Dine-In
+                        button(class="services-search" value="delivery") Delivery
         //- h1 Restaurants
         div
             //- h1.search__res-h1 Restaurants

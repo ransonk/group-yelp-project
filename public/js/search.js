@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function searchRender(localResult) {
     const restaurantsContainer = document.querySelector('.search__restaurants-container');
-    restaurantsContainer.innerHTML = '';
+    restaurantsContainer.innerHTML = `<h1 class="search-res-container__header">Restaurants</h2>`;
     const restaurantsHTML = localResult.map(
         ({ name, address, city, state, phone, Reviews, Images, foodCategory, takeOut, dineIn, delivery, id }) => {
             let review;
@@ -89,6 +89,22 @@ function searchRender(localResult) {
             } else {
                 imgUrl = Images[0].url;
             }
+
+            if (rating === 0) {
+                        rating = "No reviews yet";
+                    } else if (rating === 1) {
+                        rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
+                    } else if (rating === 2) {
+                        rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span>`
+                    } else if (rating === 3) {
+                        rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span>`
+                    } else if (rating === 4) {
+                        rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span>`
+                    } else if (rating === 5) {
+                        rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
+                    }
+
+
             return `
                         <input type="hidden" value="${id}" class="search__restaurant-id">
                         <a href="/restaurants/${id}">
@@ -157,7 +173,26 @@ async function buttonHandler() {
     }
 
     myBusinessButton.addEventListener('click', async () => {
+        const res = await fetch(`/api/resaurants/user/${id}/restaurant`);
+        const { restaurant } = await res.json();
 
+        if (!restaurant) {
+            window.location.href = '/my-business';
+        } else {
+            const { restaurantId } = restaurant;
+            window.location.href = `/restaurants/${restaurantId}`;
+        }
+    })
+    signOutButton.addEventListener('click', async () => {
+        localStorage.removeItem("HANGRY_ACCESS_TOKEN")
+        localStorage.removeItem("HANGRY_CURRENT_USER_ID")
+        window.location.href = '/';
+    })
+    logInButton.addEventListener('click', async () => {
+        window.location.href = '/log-in';
+    })
+    signUpButton.addEventListener('click', async () => {
+        window.location.href = '/sign-up';
     })
 
 
