@@ -156,13 +156,13 @@ html{
 
 .log-in-container{
     position: relative;
-    top: 8rem;
+    top: 7rem;
     width: 20rem;
     height: 20rem;
 }
 
 .log-in__image{
-    background-image: url('./images/woman-cooking-pizza-home-illustration-retro-comic-pop-art-style_88813-234.png');
+    background-image: url('../images/woman-cooking-pizza-home-illustration-retro-comic-pop-art-style_88813-234.png');
     background-size: contain;
     width: 16.5rem;
     height: 20rem;
@@ -438,7 +438,7 @@ justify-content: center;
 
 .write-review__form{
     position: absolute;
-    top: 20%;
+    top: 30%;
     left: 35%;
     border: 1.5px solid black;
     border-radius: 5px;
@@ -447,6 +447,14 @@ justify-content: center;
     padding: 1rem;
     box-shadow: 5px 10px #888888;
     padding-bottom: 20px;
+
+}
+
+.restaurant-name{
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    color: #2A73BB;
 }
 
 .write-review__form input,label{

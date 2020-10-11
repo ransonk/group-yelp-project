@@ -1,9 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-    const token = localStorage.getItem("HANGRY_ACCESS_TOKEN")
-    const id = localStorage.getItem("HANGRY_CURRENT_USER_ID")
-
+    const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
+    const id = localStorage.getItem("HANGRY_CURRENT_USER_ID");
     const body = { token, id }
     const res = await fetch("/api/user/check", {
         method: "POST",
@@ -96,6 +95,33 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
     })
+
+    //fetching restaurant name for .restaurant-name div
+    const restaurantName2 = document.querySelector('.restaurant-name');
+    try {
+        const res = await fetch(`/api/restaurants/${restaurantId}`, {
+            headers: {
+                Authenticate: `Bearer ${token}`
+            },
+        });
+        const { restaurant, averageRating } = await res.json();
+
+
+        const {
+            name, phone, city, state, address, foodCategory,
+            dineIn, takeOut, delivery, userId, Reviews, Images
+        } = restaurant;
+
+
+        // checking if the restaurant has reviews if it is not returning with 'No reviews yet' text
+
+        restaurantName2.innerHTML = `<h2>${name}</h2>`;
+
+
+
+    } catch (err) {
+        console.log(err)
+    }
 
 
 })
