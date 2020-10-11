@@ -380,7 +380,7 @@ justify-content: center;
 
 .image-bar {
     width: 100%;
-    height: 300px;
+    height: 400px;
     background-color: grey;
 }
 
@@ -535,6 +535,7 @@ justify-content: center;
 .review__user {
     display: flex;
     justify-content: flex-start;
+    flex-basis: 100px;
 }
 
 .review__user--image {
@@ -556,8 +557,41 @@ justify-content: center;
 .review__description--container {
     display: flex;
     flex-direction: column;
+    flex-basis: 100%;
 }
 
 .review__rating > p {
     margin: 0;
+}
+
+.review__buttons--container {
+    margin: 10px;
+    text-align: right;
+}
+
+.review__description {
+    word-break: break-word;
+}
+
+.profile__home-button {
+    display: none;
+}
+@media screen and (max-width: 800px) {
+    .profile__nav-logo {
+        /* content: url('/'); */
+        display: none;
+    }
+
+    .profile__home-button {
+        display: inline-block;
+        color: white;
+        text-decoration: none;
+        width: 100px;
+        font-size: 15px;
+        font-weight: bold;
+        align-self: center;
+        position: absolute;
+        left:10px;
+        /* height: 10px; */
+    }
 }

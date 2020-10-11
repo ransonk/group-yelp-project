@@ -1,9 +1,8 @@
+import { handleErrors } from "./utils.js"
 const deleteButton = document.querySelector('.restaurant__delete-button')
 const writeReviewButton = document.querySelector('.write-review-button');
 const imageBar = document.querySelector('.image-bar');
 const restaurantName = document.querySelector('.restaurant-name');
-// const restaurantRating = document.querySelector('.restaurant-rating');
-
 //setting mapbox accesstoken, maybe we move this into env variables
 mapboxgl.accessToken = "pk.eyJ1IjoiYW52YXJvdiIsImEiOiJja2Z1azhjNmwwc2RiMnJzMzFydmFiNXQ3In0.gsJAK7Sz7Xn8KLKn9PaPmw"
 const starsBar = document.querySelector('.stars-bar');
@@ -14,11 +13,10 @@ const buttonContainer = document.querySelector('.button-container');
 const servicesContainer = document.querySelector('.services-container');
 const locationHoursContainer = document.querySelector('.location-and-hours-container');
 const reviewsContainer = document.querySelector('.reviews-container');
-
 const restaurantId = window.location.href.match(/\/(\d+)$/)[1]
 
-
 // instantiating map objecct
+
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
@@ -29,36 +27,23 @@ const baseUrl = `${mapboxgl.baseApiUrl + '/geocoding/v5/mapbox.places/'}`;
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-    
-    // const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
     const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
+    const id = localStorage.getItem("HANGRY_CURRENT_USER_ID");
     const token = localStorage.getItem("HANGRY_ACCESS_TOKEN")
-    const id = localStorage.getItem("HANGRY_CURRENT_USER_ID")
-    
-    import { handleErrors } from "./utils.js"
-    document.addEventListener('DOMContentLoaded', async () => {
-        
         //adding verifying if this user is this restaurant's owner and show the delete button. default is hidden.....//
-        deleteButton.classList.add("hidden")
-        
-        const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
-        const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
+        deleteButton.classList.add("hidden")        
+        // const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
         try {
-            
             const checkingOwnership = await fetch(`/api/restaurants/user/${currentUserId}/restaurant`)
             const checkingOwnershipJson = await checkingOwnership.json();
             const currentUsersRestaurantId = checkingOwnershipJson.restaurant.id
             if (currentUsersRestaurantId == restaurantId) {
                 deleteButton.classList.remove("hidden")
             } 
-        }catch(err) {
+        } catch(err) {
             // handleErrors(err)
             deleteButton.classList.add("hidden")
-            
         }
-        
-        
-        
         const body = { token, id }
         const res = await fetch("/api/user/check", {
             method: "POST",
@@ -119,14 +104,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         
         
-        const searchForm = document.querySelector(".search");
-        searchForm.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            const formData = new FormData(searchForm)
-            const search = formData.get("search")
-            localStorage.setItem("searchValue", search)
-            window.location.href = `/search`
-        })
+        // const searchForm = document.querySelector(".search");
+        // searchForm.addEventListener("submit", async (event) => {
+        //     event.preventDefault();
+        //     const formData = new FormData(searchForm)
+        //     const search = formData.get("search")
+        //     localStorage.setItem("searchValue", search)
+        //     window.location.href = `/search`
+        // })
         
         
         try {
@@ -148,6 +133,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 
                 // making query to forward geocoding api
                 const queryUrl = new URL(`${address + ' ' + city + ' ' + state}.json?limit=1&access_token=${mapboxgl.accessToken}`, baseUrl).href;
+                console.log(queryUrl)
                 fetch(queryUrl, {
                     headers: {
                         accept: 'application/json'
@@ -198,35 +184,42 @@ document.addEventListener('DOMContentLoaded', async () => {
             mapContainer.appendChild(locationAddressNode);
 
             
-            
-            
-            const reviewsArray = Reviews.map(({ id, User, description, rating, userId }) => {
-                
-                const reviewModifyButtons = userId.toString() === currentUserId ? 
-                    `<button class="restaurant__review-delete-button" value=${id}>delete</button>
-                    <button class="restaurant__review-edit-button" value="${id}">edit</button>`   
-            : ''; 
-                return (
-                `<div class="reviews__review-div">
-                    ${reviewModifyButtons}
-                    <div class="review__user">
-                        <a href="/user/${User.id}">
-                        <img class="review__user--image" src="${User.profileUrl}"/>
-                        </a>
-                        <a class="review__user--name" href="/user/${User.id}">
-                        <h3>${User.firstName} ${User.lastName}</h3>
-                        </a>
-                    </div>
-                    <div class="review__description--container">
-                        <div class="review__rating">
-                            <p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(averageRating)}</span>`}</p>
+            let reviewsArray;
+            if (Reviews.length !== 0){
+                reviewsArray = Reviews.map(({ id, User, description, rating, userId, createdAt }) => {    
+                    const reviewModifyButtons = userId.toString() === currentUserId ? 
+                        `
+                        <div class='review__buttons--container'>
+                            <button class="restaurant__review-delete-button" value=${id}>delete</button>
+                            <button class="restaurant__review-edit-button" value="${id}">edit</button>
+                        </div>    
+                        `   
+                : ''; 
+                    return (
+                    `<div class="reviews__review-div">
+                        <div class="review__user">
+                            <a href="/user/${User.id}">
+                            <img class="review__user--image" src="${User.profileUrl}"/>
+                            </a>
+                            <a class="review__user--name" href="/user/${User.id}">
+                            <h3>${User.firstName} ${User.lastName}</h3>
+                            </a>
                         </div>
-                        <div class="review__description">
-                            <p>${description}</p>
+                        <div class="review__description--container">
+                            <div class="review__rating">
+                                <p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(averageRating)}</span>`}</p>
+                                <em style="font-size: 14px"> Posted: ${new Date(createdAt).toLocaleString()}</em>
+                            </div>
+                            <div class="review__description">
+                                <p>${description}</p>
+                                ${reviewModifyButtons}
+                            </div>
                         </div>
-                    </div>
-                </div>`)
-            })
+                    </div>`)
+                });
+            } else {
+                reviewsArray = ['<p>No reviews yet</p>']
+            }
             const reviewsHTML = reviewsArray.join('');
             reviewsContainer.innerHTML += reviewsHTML;
 
@@ -254,61 +247,64 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     })
 
-    const deleteReviewButton = document.querySelector('.restaurant__review-delete-button');
-    const editReviewButton = document.querySelector('.restaurant__review-edit-button');
+    const deleteReviewButtons = document.querySelectorAll('.restaurant__review-delete-button');
+    const editReviewButtons = document.querySelectorAll('.restaurant__review-edit-button');
 
 
-    try {
-        const res = await fetch(`/api/restaurants/user/${currentUserId}`)
-        const result = await res.json()
-        console.log(result)
-    } catch (err) {
-        console.log(err)
-    }
+    // try {
+    //     const res = await fetch(`/api/restaurants/user/${currentUserId}`)
+    //     const result = await res.json()
+    //     console.log(result)
+    // } catch (err) {
+    //     console.log(err)
+    // }
 
-    deleteReviewButton.addEventListener('click', async (e) => {
-        e.preventDefault()
-        const reviewId = e.target.value;
-        try {
-            const res = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    reviewId, restaurantId, currentUserId
-                })
-            });
-            const resJSON = await res.json();
-            if (resJSON.msg === "Review Deleted") {
-                window.location.href = `/restaurants/${restaurantId}`;
+    deleteReviewButtons.length !== 0 && deleteReviewButtons.forEach(deleteReviewButton => {
+        deleteReviewButton.addEventListener('click', async (e) => {
+            e.preventDefault()
+            const reviewId = e.target.value;
+            try {
+                const res = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        reviewId, restaurantId, currentUserId
+                    })
+                });
+                const resJSON = await res.json();
+                if (resJSON.msg === "Review Deleted") {
+                    window.location.href = `/restaurants/${restaurantId}`;
+                }
             }
-        }
-        catch (err) {
-            // console.log(err);
-        }
-    })
+            catch (err) {
+                // console.log(err);
+            }
+        })
+    }); 
 
-    editReviewButton.addEventListener('click', async (e) => {
-        e.preventDefault()
-        const reviewId = e.target.value;
-
-        // try {
-        //     const res = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             Authorization: `Bearer ${token}`
-        //         },
-        //         body: JSON.stringify({
-        //             reviewId
-        //         })
-        //     });
-        //     const resJSON = await res.json();
-        // } catch (err) {
-        //     console.log(err);
-        // }
-    });
-
-})
+    editReviewButtons.length !== 0 && editReviewButtons.forEach(editReviewButton => {
+        editReviewButton.addEventListener('click', async (e) => {
+            e.preventDefault()
+            const reviewId = e.target.value;
+    
+            // try {
+            //     const res = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //             Authorization: `Bearer ${token}`
+            //         },
+            //         body: JSON.stringify({
+            //             reviewId
+            //         })
+            //     });
+            //     const resJSON = await res.json();
+            // } catch (err) {
+            //     console.log(err);
+            // }
+        });
+    }) 
+});
