@@ -4,6 +4,7 @@
     font-family: tahoma;
     color: black;
 }
+
 .search-main div {
     font-family: tahoma;
     font-size: 14px;
@@ -16,25 +17,31 @@
 }
 
 .search__restaurants-container {
+    position: relative;
+    left: 200px;
     box-sizing: border-box;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width: 75%;
-    min-width: 700px;
-    border: 1px solid black;
+    /* min-width: 700px; */
+    /* border: 1px solid black; */
     height: 100%;
     padding: 20px;
+    margin-top: 20px;
 
 }
 
 .search__res-div {
     display: grid;
+    grid-gap: 0px 10px;
+    margin: 15px 0;
     grid-template-columns: 1fr .2fr 2.5fr .5 5fr;
     grid-template-rows: 1.25fr .7fr .5fr 3fr;
     width: 100%;
-    height: 300px;
+    height: 280px;
     position: relative;
-    border: solid .5px gray;
-    border-radius: 3px;
+    /* border: solid .5px #EDEDED; */
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, .1);
+    border-radius: 10px;
     padding: 20px;
     overflow: hidden;
     grid-template-areas:
@@ -50,9 +57,10 @@
 }
 .search__res-img {
     grid-area: picture;
-    width: 175px;
-    height:175px;
-    border-radius: 3px;
+    width: 205px;
+    height: 205px;
+    border-radius: 6px;
+    align-self: center;
 }
 
 .search__restaurant-name {
@@ -85,11 +93,54 @@
     font-size: 12px;
 }
 
+.search-main {
+
+}
+.search-sidenav {
+    z-index: 1;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: block;
+    width: 200px;
+    height: 100%;
+    background-color: #FEE34D;
+    margin-right: 10px;
+}
+.search-sidenav__container {
+
+}
+.search-sidenav__title {
+
+}
+.search-sidenav__title h2 {
+
+}
+.search-sidenav__food-category {
+
+}
+.search-sidenav__header {
+
+}
+.search-sidenav__food-cat-list {
+
+}
+.search-sidenav__services {
+
+}
+.search-sidenav__header {
+
+}
+.search-sidenav__service-buttons {
+
+}
+
 .main-nav {
     display: block;
-    height: 100px;
+    height: 120px;
     width: 100%;
     border-bottom: 1px solid #EDEDED;
+    padding: 10px;
 }
 
 .main-nav__container {
@@ -110,19 +161,21 @@
 .main-nav__logo {
     width: 100px;
     height: 100px;
+    margin: 10px;
     border-radius: 50%;
 }
 
 .main-nav__search-container {
-    width: 300px;
+    width: 600px;
+    position: relative;
 }
 
 .main-nav__search {
-    width: 470px;
+    width: 600px;
     height: 40px;
 }
 .main-nav__search-bar {
-    width: 370px;
+    width: 500px;
     height: 40px;
     border: .3px solid rgba(238, 78, 42, 0.3);
     border-radius: 8px;
@@ -130,12 +183,12 @@
 
 .main-nav__search-bar:focus {
     outline: none;
-    border: .3px solid #ad3c1c;
-    box-shadow: 0 0 5px rgba(237, 122, 122, 0.3)
+    border: .3px solid rgb(230, 76, 56);
+    box-shadow: 0 0 5px rgba(230, 122, 113, 0.3)
 }
 
 .main-nav__search-button {
-    background-color: #DC603E;
+    background-color: rgb(230, 76, 56);
     color: white;
     border: none;
     border-radius: 0 8px 8px 0px;
@@ -146,7 +199,7 @@
 }
 
 .main-nav__search-button:hover {
-    background-color: #e08268;
+    background-color: rgb(252, 119, 102);
     border: none;
     position: relative;
     left: -70px;
@@ -165,7 +218,7 @@ a {
 .main-nav__button {
     text-decoration: none;
     color: black;
-    background-color: #DC603E;
+    background-color: rgb(230, 76, 56);
     color: white;
     width: 100px;
     height: 35px;
@@ -184,5 +237,25 @@ a {
 }
 
 .main-nav__button:hover {
-    background-color: #edb4a4;
+    background-color: rgb(252, 119, 102);
+}
+/* 
+.search-page > .main-nav {
+    position: relative;
+    left: 180px;
+} */
+
+@media (max-width: 900px) {
+    .search-sidenav {
+        display: none;
+    }
+    .search__restaurants-container {
+        left: 20px;
+    }
+}
+@media (min-width: 901px) {
+    .search-page > .main-nav {
+        position: relative;
+        left: 180px;
+}
 }

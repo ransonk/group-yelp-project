@@ -1,7 +1,8 @@
 extends layout.pug
 
 block content
-    include includes/nav-search
+    .search-page
+        include includes/nav-search
     .search-main
         .search-sidenav
             .search-sidenav__container
@@ -10,9 +11,9 @@ block content
                     .search-sidenav__header 
                     .search-sidenav__food-cat-list
                 .search-sidenav__services
-                    .search-sidenav__header
+                    .search-sidenav__header 
                     .search-sidenav__service-buttons
-        h1 Restaurants
+        //- h1 Restaurants
         div(class="search__restaurants-container")
         
 
