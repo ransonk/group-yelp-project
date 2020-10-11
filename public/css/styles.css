@@ -156,13 +156,13 @@ html{
 
 .log-in-container{
     position: relative;
-    top: 8rem;
+    top: 7rem;
     width: 20rem;
     height: 20rem;
 }
 
 .log-in__image{
-    background-image: url('./images/woman-cooking-pizza-home-illustration-retro-comic-pop-art-style_88813-234.png');
+    background-image: url('../images/woman-cooking-pizza-home-illustration-retro-comic-pop-art-style_88813-234.png');
     background-size: contain;
     width: 16.5rem;
     height: 20rem;
