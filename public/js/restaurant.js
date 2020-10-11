@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                         <div class="review__description--container" id="review-${id}">
                             <div class="review__rating" id="review-rating-${id}">
-                                <p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(averageRating)}</span>`}</p>
+                                <p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(rating)}</span>`}</p>
                                 <em style="font-size: 14px"> Posted: ${new Date(createdAt).toLocaleString()}</em>
                             </div>
                             <div class="review__description">
@@ -288,13 +288,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
     });
 
-    let reviewId;
 
+    let ratingElement, descriptionElement, reviewId;
     editReviewButtons.length !== 0 && editReviewButtons.forEach(editReviewButton => {
         editReviewButton.addEventListener('click', async (e) => {
             e.preventDefault()
             reviewId = e.target.value;
             const description = e.target;
+            descriptionElement = document.getElementById(`review-description-${reviewId}`);
+            ratingElement = document.getElementById(`review-rating-${reviewId}`);
             // console.log(description);
             // console.log(reviewId);
 
@@ -304,7 +306,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     })
 
-
     const submitEditReview = document.querySelector('.edit-review__form');
     submitEditReview.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -313,9 +314,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const newRating = formData.get('rating');
         const newDescription = formData.get('description');
         const userId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
-        const reviewId = document.getElementById(`review-${id}`);
-        const descriptionElement = document.getElementById(`review-description-${id}`);
-        const ratingElement = document.getElementById(`review-rating-${id}`);
+        // const reviewId = document.getElementById(`review-${id}`);
+        
 
         editReviewForm.classList.add('hidden');
 
@@ -329,14 +329,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 body: JSON.stringify({
                     rating: newRating,
                     description: newDescription,
-                    userId,
-                    restaurantId,
+                    // userId,
+                    // restaurantId,
                     reviewId
                 })
             });
             const { rating, description } = await res.json();
             console.log(rating, description);
-            ratingElement.innerHTML = `<p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(rating)}</span>`}</p>`;
+            ratingElement.innerHTML = `<p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(rating)}</span>`}</p>
+                                            <em style="font-size: 14px"> Posted: ${new Date().toLocaleString()}</em>`;
             descriptionElement.innerText = description;
         } catch (err) {
             console.log(err);
