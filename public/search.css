@@ -34,8 +34,8 @@
     display: grid;
     grid-gap: 0px 10px;
     margin: 15px 0;
-    grid-template-columns: 1fr .2fr 2.5fr .5 5fr;
-    grid-template-rows: 1.25fr .7fr .5fr 3fr;
+    grid-template-columns: 1fr .2fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 4fr;
     width: 100%;
     height: 280px;
     position: relative;
@@ -46,7 +46,8 @@
     padding: 20px;
     overflow: hidden;
     grid-template-areas:
-        "picture . title address address"
+        "picture . title title address"
+        "picture . title title ."
         "picture . rating rating rating"
         "picture . service service service"
         "picture . review review review";
@@ -70,6 +71,8 @@
 
 .search__restaurant-name {
     grid-area: title;
+    height: 10px;
+    width: 200px;
 }
 
 .search__restaurant-name:hover {
@@ -78,15 +81,18 @@
 
 .search__rating {
     grid-area: rating;
+    height: 10px;
 }
 
 .search__review {
     grid-area: review;
     overflow: hidden;
+    height: 100px;
 }
 
 .search__services {
     grid-area: service;
+    height: 10px;
 }
 
 .search__services p, .search__review p, .search__rating p {
@@ -96,6 +102,7 @@
 .search__address {
     grid-area: address;
     position: absolute;
+    width: 150px;
     top: 0px;
     right: 0px;
     text-align: right;
@@ -226,6 +233,7 @@
 
 .main-nav__search-button:hover {
     background-color: rgb(252, 119, 102);
+    transition-duration: .2s;
     border: none;
     position: relative;
     left: -70px;
@@ -264,6 +272,7 @@ a {
 
 .main-nav__button:hover {
     background-color: rgb(252, 119, 102);
+    transition-duration: .2s;
 }
 /* 
 @media (max-width: 900px) {

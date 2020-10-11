@@ -76,12 +76,14 @@ function searchRender(localResult) {
         ({ name, address, city, state, phone, Reviews, Images, foodCategory, takeOut, dineIn, delivery, id }) => {
             let review;
             let rating;
+            let starRating;
             if (Reviews.length) {
                 review = Reviews[0].description;
                 rating = Reviews.reduce((accum, ele) => {
                     return accum + ele.rating;
                 }, 0);
                 rating /= Reviews.length;
+                rating = Math.ceil(rating);
             } 
             let imgUrl;
             if (!Images.length) {
@@ -89,19 +91,23 @@ function searchRender(localResult) {
             } else {
                 imgUrl = Images[0].url;
             }
-
+            let services = '';
+            if (takeOut) services += "<i class='fas fa-check' style='color:green'></i> Take-out ";
+            if (dineIn) services += "<i class='fas fa-check' style='color:green'></i> Dine-in ";
+            if (delivery) services += "<i class='fas fa-check' style='color:green'></i> Delivery";
+            console.log(services);
             if (rating === 0) {
-                        rating = "No reviews yet";
+                        starRating = "No reviews yet";
                     } else if (rating === 1) {
-                        rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span>`
+                        starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span> ${rating}`
                     } else if (rating === 2) {
-                        rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span>`
+                        starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span> ${rating}`
                     } else if (rating === 3) {
-                        rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span>`
+                        starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span> ${rating}`
                     } else if (rating === 4) {
-                        rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span>`
+                        starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span> ${rating}`
                     } else if (rating === 5) {
-                        rating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span>`
+                        starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span> ${rating}`
                     }
 
 
@@ -114,13 +120,13 @@ function searchRender(localResult) {
                                     <h2>${name}</h2>
                                 </div>
                                 <div class='search__rating'>
-                                    <p>${rating}</p>
+                                    <p>${starRating}</p>
                                 </div>
                                 <div class='search__review'>
                                     <p>${review}</p>
                                 </div>
                                 <div class='search__services'>
-                                    services
+                                    <p>${services}</p>
                                 </div>
                                 <div class='search__address'>
                                     <p>${phone}</p>
