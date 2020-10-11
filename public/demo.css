@@ -47,10 +47,12 @@
 
 }
 
-.next_button1:hover,
 .next_button2:hover{
     cursor: pointer;
     background-color: #5494c6;
+}
+.next_button1:hover{
+    cursor: pointer;
 }
 
 .developedBy{
@@ -63,7 +65,7 @@
     border: 1px solid black;
     width: 15rem;
     padding: 1rem;
-    box-shadow: 5px 5px #5494c6; 
+    box-shadow: 5px 5px #5494c6;
 }
 
 .hangry{
@@ -80,6 +82,7 @@
 .hidden{
     display: none;
 }
+
 
 
 .fade-in {
@@ -114,3 +117,4 @@
 		opacity: 0;
 	}
 }
+
