@@ -11,12 +11,31 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const firstButton = document.querySelector(".next_button1")
     const secondButton = document.querySelector(".next_button2")
     secondButton.classList.add("hidden")
-    firstButton.addEventListener("click", (event) => {
+    // firstButton.addEventListener("click", (event) => {
+    //     firstButton.classList.add("hidden")
+    //     secondButton.classList.remove("hidden")
+    //     demoBubble.classList.remove("demo__bubble")
+    //     demoBubble.classList.add("demo__bubble2")
+    //     demoBubble.classList.add("fade-in")
+    // })
+
+     firstButton.addEventListener("click", (event) => {
+
+        demoBubble.classList.add("fade-out")
         firstButton.classList.add("hidden")
-        secondButton.classList.remove("hidden")
-        demoBubble.classList.remove("demo__bubble")
-        demoBubble.classList.add("demo__bubble2")
+    setTimeout(function() {
+    demoBubble.classList.add("hidden")
+    secondButton.classList.add("fade-in")
+    secondButton.classList.remove("hidden")
+    demoBubble.classList.add("fade-in")
+    demoBubble.classList.remove("hidden")
+    demoBubble.classList.add("demo__bubble2")
+    },2000)
+        // demoBubble.classList.add("demo__bubble2")
+ 
+
     })
+
     secondButton.addEventListener("click", (event) => {
         window.location.href = '/'
     })
