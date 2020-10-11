@@ -53,13 +53,28 @@
 }
 
 .developedBy{
+    position: absolute;
+    left: 500px;
+    top: 280px;
     display: flex;
-
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 15rem;
+    padding: 1rem;
+    box-shadow: 5px 5px #5494c6; 
 }
-.developedBy > p {
+
+.hangry{
+    padding-bottom: 1rem;
+    font-weight:bold;
+}
+
+
+/* .developedBy > p {
     border: 1px solid black;
     margin: 3px;
-}
+} */
 
 .hidden{
     display: none;
