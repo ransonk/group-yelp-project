@@ -47,8 +47,10 @@
 
 }
 
-.next_button1,
 .next_button2:hover{
+    cursor: pointer;
+}
+.next_button1:hover{
     cursor: pointer;
 }
 
@@ -62,7 +64,7 @@
     border: 1px solid black;
     width: 15rem;
     padding: 1rem;
-    box-shadow: 5px 5px #5494c6; 
+    box-shadow: 5px 5px #5494c6;
 }
 
 .hangry{
@@ -78,4 +80,21 @@
 
 .hidden{
     display: none;
+}
+
+.fade-in {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    /* animation-timing-function: ease-out; */
+    animation-duration: 1s;
+}
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
