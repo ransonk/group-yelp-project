@@ -1,39 +1,188 @@
-.search-main {
-
+.search-main h1,
+.search-main h2,
+.search-main h3 {
+    font-family: tahoma;
+    color: black;
 }
+.search-main div {
+    font-family: tahoma;
+    font-size: 14px;
+    font-weight: lighter;
+    color: #2a2a1e;
+}
+
 .search-main h1 {
-    position: relative;
     margin-left: 50px
 }
+
 .search__restaurants-container {
     box-sizing: border-box;
     margin: 0 auto;
     width: 75%;
+    min-width: 700px;
     border: 1px solid black;
     height: 100%;
     padding: 20px;
 
 }
+
 .search__res-div {
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr .75fr .75fr 2fr;
+    grid-template-columns: 1fr .2fr 2.5fr .5 5fr;
+    grid-template-rows: 1.25fr .7fr .5fr 3fr;
+    width: 100%;
+    height: 300px;
+    position: relative;
     border: solid .5px gray;
     border-radius: 3px;
     padding: 20px;
-    grid-template-areas: '';
+    overflow: hidden;
+    grid-template-areas:
+        "picture . title address address"
+        "picture . rating rating rating"
+        "picture . service service service"
+        "picture . review review review";
 }
 
 .search__restaurants-container a {
     color: black;
     text-decoration: none;
 }
-.search__restaurant-id {
-
+.search__res-img {
+    grid-area: picture;
+    width: 175px;
+    height:175px;
+    border-radius: 3px;
 }
+
 .search__restaurant-name {
-
+    grid-area: title;
 }
-.search__address {
 
+
+.search__rating {
+    grid-area: rating;
+}
+
+.search__review {
+    grid-area: review;
+}
+
+.search__services {
+    grid-area: service;
+}
+
+.search__address {
+    grid-area: address;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    text-align: right;
+    margin: 10px;
+}
+.search__address p {
+    color: gray;
+    font-size: 12px;
+}
+
+.main-nav {
+    display: block;
+    height: 100px;
+    width: 100%;
+    border-bottom: 1px solid #EDEDED;
+}
+
+.main-nav__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.main-nav__logo-container {
+    display: flex;
+    position: relative;
+    left: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-nav__logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.main-nav__search-container {
+    width: 300px;
+}
+
+.main-nav__search {
+    width: 470px;
+    height: 40px;
+}
+.main-nav__search-bar {
+    width: 370px;
+    height: 40px;
+    border: .3px solid rgba(238, 78, 42, 0.3);
+    border-radius: 8px;
+}
+
+.main-nav__search-bar:focus {
+    outline: none;
+    border: .3px solid #ad3c1c;
+    box-shadow: 0 0 5px rgba(237, 122, 122, 0.3)
+}
+
+.main-nav__search-button {
+    background-color: #DC603E;
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0px;
+    position: relative;
+    left: -70px;
+    height: 40px;
+    width: 100px;
+}
+
+.main-nav__search-button:hover {
+    background-color: #e08268;
+    border: none;
+    position: relative;
+    left: -70px;
+}
+
+.main-nav__buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.main-nav__button {
+    text-decoration: none;
+    color: black;
+    background-color: #DC603E;
+    color: white;
+    width: 100px;
+    height: 35px;
+    font-size: 13px;
+    font-family: verdana;
+    margin: 8px;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-nav__button.hidden {
+    display: none;
+}
+
+.main-nav__button:hover {
+    background-color: #edb4a4;
 }

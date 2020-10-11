@@ -2,7 +2,16 @@ extends layout.pug
 
 block content
     include includes/nav-search
-    div.search-main
+    .search-main
+        .search-sidenav
+            .search-sidenav__container
+                .search-sidenav__title: h2 Filters
+                .search-sidenav__food-category
+                    .search-sidenav__header 
+                    .search-sidenav__food-cat-list
+                .search-sidenav__services
+                    .search-sidenav__header
+                    .search-sidenav__service-buttons
         h1 Restaurants
         div(class="search__restaurants-container")
         
