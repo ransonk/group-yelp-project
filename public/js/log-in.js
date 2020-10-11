@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // window.location.href = '/';
             window.history.back();
         } catch (err) {
-            // console.log(err);
+            console.log(err);
             handleErrors(err)
         }
     })

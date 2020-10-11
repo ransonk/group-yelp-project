@@ -29,18 +29,18 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 }));
-// app.use((req, res, next) => {
-//     let { history } = req.session;
-//     if (!history) {
-//         history = [];
-//         req.session.history = history;
-//     }
-//     const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-//     if (!url.endsWith("js") && !url.endsWith("css") && !url.endsWith("jpg") && !url.endsWith("png") && !url.includes("api/")) {
-//         history.unshift(url);
-//     }
-//     next();
-// });
+app.use((req, res, next) => {
+    let { history } = req.session;
+    if (!history) {
+        history = [];
+        req.session.history = history;
+    }
+    const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+    if (!url.endsWith("js") && !url.endsWith("css") && !url.endsWith("jpg") && !url.endsWith("png") && !url.includes("api/")) {
+        history.unshift(url);
+    }
+    next();
+});
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use('/', indexRouter)
@@ -77,7 +77,6 @@ app.use("/api/search", searchRouter)
 app.use((req, res, next) => {
     const err = new Error("The requested resource couldn't be found.");
     err.errors = ["The requested resource couldn't be found."];
-    err.title = "Page Not Found"
     err.status = 404;
     next(err);
 });
@@ -88,7 +87,7 @@ app.use((err, req, res, next) => {
     if (err instanceof ValidationError) {
         err.errors = err.errors.map((e) => e.message);
         err.title = "Sequelize Error";
-        // console.log(err)
+        console.log(err)
     }
     next(err);
 });
@@ -98,20 +97,12 @@ app.use((err, req, res, next) => {
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
     const isProduction = environment === "production";
-    // res.json({
-    //     title: err.title || "Server Error",
-    //     message: err.message,
-    //     errors: err.errors,
-    //     stack: isProduction ? null : err.stack,
-    // });
-    res.render("error",
-        {
-            title: err.title || "Server Error",
-            message: err.message,
-            errors: err.errors,
-            stack: isProduction ? null : err.stack,
-        }
-    )
+    res.json({
+        title: err.title || "Server Error",
+        message: err.message,
+        errors: err.errors,
+        stack: isProduction ? null : err.stack,
+    });
 });
 
 
