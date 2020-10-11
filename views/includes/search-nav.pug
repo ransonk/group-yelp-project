@@ -1,0 +1,15 @@
+nav.main-nav
+    .main-nav__container
+        .main-nav__logo-container
+            a(href='/'): img(src="./images/logo.jpg" class="main-nav__logo")
+        .main-nav__search-container
+            form.search.main-nav__search
+                formgroup.main-nav__search-group
+                    input(type="text" name="search" placeholder="search..." class="main-nav__search-bar searchbar")
+                    button(type="submit" class="main-nav__search-button") search
+        .main-nav__buttons-container
+            a(href='/log-in'): div.main-nav__button.main-nav__log-in-button Log In
+            a(href='/sign-up'): div.main-nav__button.main-nav__sign-up-button Sign Up
+            a(href)
+            a: div.main-nav__button.main-nav__log-out-button Log Out
+            a(href='/my-business'): div.main-nav__button.main-nav__my-business-button My Business
