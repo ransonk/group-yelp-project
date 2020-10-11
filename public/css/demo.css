@@ -7,14 +7,14 @@
 
     width: 435px;
     height: 500px;
-    background-image: url("./images/empty-person.png");
+    background-image: url("../images/empty-person.png");
     background-size: cover;
 }
 
 .demo__bubble {
     width: 400px;
     height: 300px;
-    background-image: url("./images/WELCOMdEMO.png");
+    background-image: url("../images/WELCOMdEMO.png");
     background-size: cover;
     position: absolute;
     top: 5px;
@@ -25,7 +25,7 @@
 .demo__bubble2{
     width: 400px;
     height: 300px;
-    background-image: url("./images/enjoyFeatures.png");
+    background-image: url("../images/enjoyFeatures.png");
     background-size: cover;
     position: absolute;
     top: 5px;
