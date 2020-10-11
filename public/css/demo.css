@@ -80,13 +80,13 @@
     flex-direction: column;
     border-radius: 5px;
     border: 1px solid black;
-    width: 15rem;
+    /* width: 18rem; */
+    min-width: 18rem;
     padding: 1rem;
     box-shadow: 5px 5px #5494c6;
     animation: pulse 2s infinite;
     animation-direction: alternate;
     font-family: Arial, Helvetica, sans-serif;
-
 }
 
 
