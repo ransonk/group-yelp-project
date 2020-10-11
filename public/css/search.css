@@ -22,6 +22,7 @@
     top: 100px;
     box-sizing: border-box;
     height: 100%;
+<<<<<<< HEAD:public/search.css
     padding: 20px;
     margin-top: 20px;
 }
@@ -67,6 +68,22 @@
     height: 205px;
     border-radius: 6px;
     align-self: center;
+=======
+    padding: 2rem;
+}
+.search__res-div{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr .75fr .75fr;
+    border: solid .5px gray;
+    border-radius: 3px;
+    padding: 1rem;
+    grid-template-areas: '';
+}
+
+.search__restaurant-id {
+
+>>>>>>> master:public/css/search.css
 }
 
 .search__restaurant-name {
@@ -245,6 +262,7 @@
     width: 300px;
 }
 
+<<<<<<< HEAD:public/search.css
 a {
     text-decoration: none;
 }
@@ -286,3 +304,11 @@ a {
         left: 20px;
     }
 } */
+=======
+}
+
+.search__restaurants-container a {
+    color: black;
+    text-decoration: none;
+}
+>>>>>>> master:public/css/search.css

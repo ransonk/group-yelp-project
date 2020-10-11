@@ -38,7 +38,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     if (localStorage.getItem("foodCategory")) {
         const localResult = await fetchRestaurants(localStorage.getItem("foodCategory").value)
+<<<<<<< HEAD
         return searchRender(localResult);
+=======
+        console.log("LCOALRESULT: ", localResult);
+        searchRender(localResult);
+>>>>>>> master
     }
     if (localStorage.getItem("services")) {
         const localResult = await fetchRestaurants(localStorage.getItem("services"))
@@ -83,8 +88,12 @@ function searchRender(localResult) {
                     return accum + ele.rating;
                 }, 0);
                 rating /= Reviews.length;
+<<<<<<< HEAD
                 rating = Math.ceil(rating);
-            } 
+            }
+=======
+            }
+>>>>>>> master
             let imgUrl;
             if (!Images.length) {
                 imgUrl = '../images/imgs/hangryimg11.jpg';
@@ -97,18 +106,18 @@ function searchRender(localResult) {
             if (delivery) services += "<i class='fas fa-check' style='color:green'></i> Delivery";
             console.log(services);
             if (rating === 0) {
-                        starRating = "No reviews yet";
-                    } else if (rating === 1) {
-                        starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span> ${rating}`
-                    } else if (rating === 2) {
-                        starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span> ${rating}`
-                    } else if (rating === 3) {
-                        starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span> ${rating}`
-                    } else if (rating === 4) {
-                        starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span> ${rating}`
-                    } else if (rating === 5) {
-                        starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span> ${rating}`
-                    }
+                starRating = "No reviews yet";
+            } else if (rating === 1) {
+                starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(1)}</span> ${rating}`
+            } else if (rating === 2) {
+                starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(2)}</span> ${rating}`
+            } else if (rating === 3) {
+                starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(3)}</span> ${rating}`
+            } else if (rating === 4) {
+                starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(4)}</span> ${rating}`
+            } else if (rating === 5) {
+                starRating = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(5)}</span> ${rating}`
+            }
 
 
             return `
@@ -134,7 +143,13 @@ function searchRender(localResult) {
                                     <p>${city}, ${state}</p>
                                 </div>
                             </div>
-                        </a>`
+                            <div class='search__address'>
+                            <p>${phone}</p>
+                            <p>${address}</p>
+                            <p>${city}, ${state}</p>
+                            </div>
+                        </div>
+                    </a>`
         })
     const resHTML = restaurantsHTML.join('');
     restaurantsContainer.innerHTML += resHTML;

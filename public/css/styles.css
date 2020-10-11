@@ -1,0 +1,627 @@
+* {
+    box-sizing: border-box;
+    font-family: Poppins,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+html{
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+/* index.pug css */
+.recentRestaurants{
+    display: flex;
+    justify-content: center;
+}
+
+.recRestaurants {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #DC603E;
+}
+
+.restaurant1,
+.restaurant2,
+.restaurant3,
+.restaurant4{
+    border: 1px solid rgb(184, 184, 184);
+    border-radius: 5px;
+    margin: 2rem 2rem;
+    padding: 1rem;
+    width: 30rem;
+    height: 25rem;
+}
+
+.restaurant1__name,
+.restaurant2__name,
+.restaurant3__name,
+.restaurant4__name {
+    color: #0073BB;
+    font-weight: bold;
+}
+
+.recentRestaurants a{
+    text-decoration: none;
+}
+
+.recentRestaurants .info {
+    margin-top: 0.5rem;
+}
+
+.restaurant1__image,
+.restaurant2__image,
+.restaurant3__image,
+.restaurant4__image {
+    width: 100%;
+    height: 60%;
+    background-image: url('../images/jay-wennington-N_Y88TWmGwA-unsplash.jpg');
+    background-size: cover;
+    margin-bottom: 1rem;
+}
+
+.nav__bar{
+    /* background-color: blue; */
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hidden{
+    display: none;
+}
+
+.container{
+    /* display: flex; */
+    background-image: url('../images/Experts-weigh-in-on-what-makes-people-become-hangry.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 30rem;
+    /* background-color: green; */
+
+}
+
+.nav__btn{
+    border-radius: 5px;
+    background-color: black;
+    padding: 0.3rem;
+    color: white;
+    align-self: center;
+    margin: 5px;
+    opacity: 60%;
+}
+
+.nav__btn:hover{
+    cursor: pointer;
+}
+
+.logoSearchChunk{
+    display: flex;
+    flex-direction: column;
+}
+
+.nav__logo{
+    align-self: center;
+    margin-bottom: 10px;
+    background-image: url('../images/hangry-alt-logo.png');
+    background-size: contain;
+    width: 10rem;
+    height: 10rem;
+    opacity: 90%;
+    border-radius: 100px;
+}
+
+.services-search {
+    background-color: #eb3e32ef;
+    border: none;
+    border-radius: 3px;
+    margin-left: .5rem;
+    color: white;
+    padding: 4px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.services-search:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+
+.dropdown-list {
+    padding: 4px;
+    background-color: #eb3e32ef;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* login page css */
+
+.form-image{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 5rem;
+}
+
+.log-in-container{
+    position: relative;
+    top: 7rem;
+    width: 20rem;
+    height: 20rem;
+}
+
+.log-in__image{
+    background-image: url('../images/woman-cooking-pizza-home-illustration-retro-comic-pop-art-style_88813-234.png');
+    background-size: contain;
+    width: 16.5rem;
+    height: 20rem;
+
+}
+
+/* profile page css */
+
+.profile__nav-bar{
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #F43939;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.profile__nav-logo{
+    position: absolute;
+    left: 48%;
+    top: 0.5px;
+    align-self: center;
+    /* z-index: 2; */
+    /* left: 50%; */
+    background-image: url('../images/hangry-alt-logo.png');
+    background-size: cover;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    box-shadow: 3px 3px 3px #e78267;
+}
+
+.profile__nav-logo:hover{
+    cursor: pointer;
+}
+
+.nav__search{
+    text-align: center;
+    margin-top: 1rem;
+
+}
+
+.profile__main{
+    display: flex;
+    justify-content: center;
+    height: 80rem;
+    background-image: url('../images/fast-food-delicious-pop-art-style_24908-61820.jpg');
+    background-repeat: space;
+}
+
+
+.user-reviews-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: 40rem;;
+    background-color: white;
+    margin: 10% 0;
+    border-radius: 5px;
+    border: 4px solid black;
+    opacity: 98%;
+    overflow: scroll;
+    scrollbar-width: none;
+    position: relative;
+    bottom: 5%;
+}
+
+.profile__user-pic img{
+  max-width: 220px;
+  max-height: 246px;
+
+}
+
+.profile__picture-edit{
+    border-radius: 5px;
+    background-color: black;
+    padding: 0.3rem;
+    color: white;
+    align-self: center;
+    margin: 5px;
+    opacity: 60%;
+    margin-bottom: 1rem;
+}
+
+.profile__picture-edit:hover{
+    cursor: pointer;
+}
+
+ .profile__user-container{
+        align-self: center;
+        background-color: white;
+        border-radius: 5px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
+
+ .profile__reviews-container{
+        align-self: center;
+        background-color: white;
+        opacity: 95%;
+        border-radius: 5px;
+        padding-left: 3rem;
+        border-top: 2px solid #ECECEC;
+        border-bottom: 2px solid #ECECEC;
+        padding-right: 3rem;
+        width: 90%;
+        /* height: 40rem; */
+
+    }
+
+    #username.form-control{
+    border-radius: 5px;
+    line-height: 3rem;
+    width: 25rem;
+}
+
+.form-group button{
+    border-radius: 5px;
+    line-height: 3rem;
+    width: 6rem;
+    background-color: rgb(230, 76, 56);
+    font-weight: bold;
+}
+
+.form-group button:hover{
+    background-color: rgb(252, 119, 102);
+    transition-duration: 0.3s;
+
+}
+
+.options {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0.3rem;
+    /* background-color: black;
+    opacity: 50%; */
+}
+
+.options a{
+    text-decoration: none;
+    color: white;
+    padding: 0.3rem;
+    margin-left: 0.3rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.sign-up-main-container{
+    display: flex;
+    height: 400px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-up-side-picture-container{
+    margin: 10px;
+    background-image: url("../images/LOGINpIC2.png");
+    background-size: cover;
+    height: 20em;
+    width: 17em;
+}
+
+.sign-up-container{
+margin: 10px;
+}
+
+.sign-up-button {
+justify-content: center;
+}
+
+.sign-up-form #firstName{
+    width: 105px;
+    margin:5px
+}
+
+.sign-up-form #lastName{
+    width: 105px;
+    margin-left: 5px
+
+
+}
+.sign-up-form #email{
+    width: 220px;
+    margin: 5px;
+
+}
+.sign-up-form #password{
+    width: 220px;
+    margin: 5px;
+
+}
+.sign-up-form #confirmPassword{
+    width: 220px;
+    margin: 5px;
+
+}
+
+.log-in-form #email {
+    width: 220px;
+    margin: 5px;
+}
+.log-in-form #password {
+    width: 220px;
+    margin: 5px;
+}
+
+
+/* restaurant view page */
+
+.image-bar {
+    width: 100%;
+    height: 400px;
+    background-color: grey;
+}
+
+.restaurant-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+}
+
+.restaurant-name {
+    font-size: 20px;
+
+}
+
+.restaurant-name > h2 {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.restaurant-rating {
+    display: flex;
+    align-items: center;
+}
+
+.review-number {
+    color: grey;
+    margin-left: 5px;
+}
+
+.food-categories {
+    color: grey;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    border-bottom: 1px solid #eeeeef;
+    padding-bottom: 15px;
+    display: flex;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+.write-review-button {
+    cursor: pointer;
+    border-radius: 4px;
+    height: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background: #f43939;
+    border: 1px solid #f43939;
+    color: white;
+    font-weight: 400;
+    margin-right: 8px;
+}
+
+.write-review__form{
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 500px;
+    padding: 1rem;
+    box-shadow: 5px 10px #888888;
+    padding-bottom: 20px;
+
+}
+
+.restaurant-name{
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    color: #2A73BB;
+}
+
+.write-review__form input,label{
+    padding: 10px;
+}
+
+.write-review__form textarea{
+    margin-top: 10px;
+}
+
+.restaurant__delete-button {
+    cursor: pointer;
+    border-radius: 4px;
+    height: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background: #f43939;
+    border: 1px solid #f43939;
+    color: white;
+    font-weight: 400;
+}
+
+.services-container > h3 {
+    width: auto;
+}
+
+.services-container {
+    border-bottom: 1px solid #eeeeef;
+    padding-bottom: 15px;
+    width: 80%;
+}
+.services-container > p {
+    display: inline-block;
+    margin: 7px;
+
+}
+.services-container > p::before {
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f00c";
+    color: green;
+    margin-right: 3px;
+}
+
+.services-title {
+    margin: 5px 0;
+}
+
+.services-container :nth-child(2) {
+    margin-left: 0px;
+}
+
+#map {
+    height: 350px;
+    width: 350px;
+    /* flex-grow: 2; */
+}
+
+.map-container {
+    /* height: 500px; */
+    width: 350px;
+    border: 1px solid #eeeeef;
+    padding: 0;
+}
+
+.map-container p {
+    margin: 0;
+}
+
+.address-container {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 350px;
+    padding: 0;
+}
+
+.address-container p {
+    padding: 5px;
+    flex-basis: 200px;
+}
+
+.address-container  a {
+    padding: 3px;
+    height: 25px;
+    width: 100px;
+    align-self: center;
+    margin: 10px;
+    border: 1px solid #bbbac0;
+    border-radius: 3px;
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.reviews__review-div {
+    display: flex;
+    margin: 10px 0;
+    border-bottom: 1px solid #bbbac0;
+    width: 80%;
+}
+
+.reviews-container > h3 {
+    font-weight: 900;
+}
+
+.review__user {
+    display: flex;
+    justify-content: flex-start;
+    flex-basis: 100px;
+}
+
+.review__user--image {
+    width: 80px;
+}
+
+.review__user--name  {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    line-height: 15px;
+    font-size: 14px;
+}
+
+.reviews__review-div  h3 {
+    margin: 0;
+}
+
+.review__description--container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+}
+
+.review__rating > p {
+    margin: 0;
+}
+
+.review__buttons--container {
+    margin: 10px;
+    text-align: right;
+}
+
+.review__description {
+    word-break: break-word;
+}
+
+.profile__home-button {
+    display: none;
+}
+@media screen and (max-width: 800px) {
+    .profile__nav-logo {
+        /* content: url('/'); */
+        display: none;
+    }
+
+    .profile__home-button {
+        display: inline-block;
+        color: white;
+        text-decoration: none;
+        width: 100px;
+        font-size: 15px;
+        font-weight: bold;
+        align-self: center;
+        position: absolute;
+        left:10px;
+        /* height: 10px; */
+    }
+}

@@ -1,0 +1,51 @@
+.my-business-main-container {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 500px;
+    padding: 1rem;
+    box-shadow: 5px 10px #888888;
+}
+
+.my-business-main-container p {
+    font-size: 20px;
+    font-weight: 500;
+
+}
+.my-business-main-container #city,#state {
+    margin-left:1.25rem;
+
+}
+
+.create-business{
+    font-weight: bold;
+    color: rgb(36, 36, 36);
+    font-size: 20px;
+}
+
+.form-group{
+  border-radius: 5px;
+  /* background-color: #f2f2f2; */
+  padding-top: 3px;
+}
+
+.my-business-sign-up-button{
+    position: absolute;
+    right: 10%;
+    bottom: 4%;
+    border-radius: 5px;
+    background-color: #47a54a;
+    padding: 0.5rem;
+    color: white;
+
+}
+
+.my-business-sign-up-button:hover{
+    transition-duration: 0.3s;
+    background-color: #3a863b;
+    cursor: pointer;
+
+}
