@@ -38,12 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     if (localStorage.getItem("foodCategory")) {
         const localResult = await fetchRestaurants(localStorage.getItem("foodCategory").value)
-<<<<<<< HEAD
         return searchRender(localResult);
-=======
-        console.log("LCOALRESULT: ", localResult);
-        searchRender(localResult);
->>>>>>> master
     }
     if (localStorage.getItem("services")) {
         const localResult = await fetchRestaurants(localStorage.getItem("services"))
@@ -88,12 +83,8 @@ function searchRender(localResult) {
                     return accum + ele.rating;
                 }, 0);
                 rating /= Reviews.length;
-<<<<<<< HEAD
                 rating = Math.ceil(rating);
             }
-=======
-            }
->>>>>>> master
             let imgUrl;
             if (!Images.length) {
                 imgUrl = '../images/imgs/hangryimg11.jpg';
@@ -142,11 +133,6 @@ function searchRender(localResult) {
                                     <p>${address}</p>
                                     <p>${city}, ${state}</p>
                                 </div>
-                            </div>
-                            <div class='search__address'>
-                            <p>${phone}</p>
-                            <p>${address}</p>
-                            <p>${city}, ${state}</p>
                             </div>
                         </div>
                     </a>`
