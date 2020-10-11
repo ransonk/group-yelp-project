@@ -37,22 +37,39 @@
     position: absolute;
     top: 200px;
     left: 480px;
+    border-radius: 5px;
+    background-color: #5494c6;
+    padding: 0.3rem;
+    color: white;
+    align-self: center;
+    margin: 5px;
+    opacity: .2;
 
 }
 
 .next_button2 {
     position: absolute;
-    top: 230px;
+    top: 220px;
     left: 480px;
+    border-radius: 5px;
+    background-color: #5494c6;
+    padding: 0.3rem;
+    color: white;
+    align-self: center;
+    margin: 5px;
+    opacity: .2;
 
 }
 
 .next_button2:hover{
     cursor: pointer;
-    background-color: #5494c6;
+    background-color: #556FC6;
+    transition-duration: 0.3s;
 }
 .next_button1:hover{
     cursor: pointer;
+    background-color: #556FC6;
+    transition-duration: 0.3s;
 }
 
 .developedBy{
@@ -66,6 +83,24 @@
     width: 15rem;
     padding: 1rem;
     box-shadow: 5px 5px #5494c6;
+    animation: pulse 2s infinite;
+    animation-direction: alternate;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+.developedBy .alfredo {
+    font-weight: 500;
+}
+
+@keyframes pulse {
+     0% {
+       background-color: #F0EAD6;
+     }
+     100% {
+       background-color: #F98865;
+     }
 }
 
 .hangry{
@@ -117,4 +152,3 @@
 		opacity: 0;
 	}
 }
-

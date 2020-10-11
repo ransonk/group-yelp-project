@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const demoPicture = document.querySelector(".demo__picture");
     const demoBubble = document.querySelector(".demo__bubble");
+    const demoBubble2 = document.querySelector(".demo__bubble2");
+
     const firstButton = document.querySelector(".next_button1")
     const secondButton = document.querySelector(".next_button2")
     secondButton.classList.add("hidden")
@@ -27,16 +29,22 @@ document.addEventListener("DOMContentLoaded", (event) => {
             demoBubble.classList.add("hidden")
             secondButton.classList.add("fade-in")
             secondButton.classList.remove("hidden")
-            demoBubble.classList.add("fade-in")
-            demoBubble.classList.remove("hidden")
-            demoBubble.classList.add("demo__bubble2")
+            demoBubble2.classList.add("fade-in")
+            demoBubble2.classList.add("demo__bubble2")
+            demoBubble2.classList.remove("hidden")
         }, 2000)
-        // demoBubble.classList.add("demo__bubble2")
-
-
     })
 
     secondButton.addEventListener("click", (event) => {
-        window.location.href = '/'
+        secondButton.classList.add("fade-out")
+        demoBubble2.classList.add("fade-out")
+
+
+        setTimeout(function () {
+            demoBubble2.classList.add("hidden")
+            secondButton.classList.add("hidden")
+
+            window.location.href = '/'
+        }, 2000)
     })
 })
