@@ -1,7 +1,9 @@
 extends layout.pug
 
 block content
-  div(class="my-business-main-container") Create your Business Page
+  include includes/nav-bar
+  div(class="my-business-main-container")
+    p Create your Business Page
     div(class="my-business-container")
       div(class="errors-container")
       form(class="my-business-form")

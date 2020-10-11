@@ -435,6 +435,28 @@ justify-content: center;
     font-weight: 400;
     margin-right: 8px;
 }
+
+.write-review__form{
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 500px;
+    padding: 1rem;
+    box-shadow: 5px 10px #888888;
+    padding-bottom: 20px;
+}
+
+.write-review__form input,label{
+    padding: 10px;
+}
+
+.write-review__form textarea{
+    margin-top: 10px;
+}
+
 .restaurant__delete-button {
     cursor: pointer;
     border-radius: 4px;

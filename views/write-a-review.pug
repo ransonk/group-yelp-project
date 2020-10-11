@@ -1,10 +1,10 @@
 extends layout
 
 block content
-  include includes/nav-search
-  h1 Write a review
-
+  include includes/nav-bar
   form.write-review__form
+    h1 Write a review!
+    div.restaurant-name hi
     input(type='hidden' name='_csrf' value=csrfToken)
     label(for='rating') Rating
     select(name='rating' id='rating' required)
