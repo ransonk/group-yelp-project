@@ -280,7 +280,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     } catch (err) {
-        console.log(err)
+
+        //
+        handleErrors(err);
+        // console.log(err)
     }
     writeReviewButton.addEventListener('click', (e) => {
         window.location.href = `/restaurants/${restaurantId}/reviews/new`;
@@ -335,7 +338,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
             catch (err) {
-                // console.log(err);
+                // console.log(err);]
+                handleErrors(err)
+                //try this
             }
         })
     });

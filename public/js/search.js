@@ -8,7 +8,7 @@ const fetchRestaurants = async (input) => {
         query = `/api/search/dropdown/${localStorage.getItem("foodCategory")}`;
     } else if (localStorage.getItem("services")) {
         query = `/api/search/services/${localStorage.getItem("services")}`;
-        console.log(query)
+        // console.log(query)
     } else {
         query = `/api/restaurants`;
     }
