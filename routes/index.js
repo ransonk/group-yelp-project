@@ -114,7 +114,7 @@ router.get('/restaurants/:id(\\d+)/reviews/new', (req, res) => {
     res.render('write-a-review');
 })
 
-router.get('/restaurants/:id(\\d+)/reviews/new', (req, res) => {
+router.get('/restaurants/:id(\\d+)/reviews/:id(\\d+)/edit', (req, res) => {
     res.render('edit-a-review');
 })
 

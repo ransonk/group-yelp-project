@@ -392,7 +392,7 @@ justify-content: center;
 
 .restaurant-name {
     font-size: 20px;
-    
+
 }
 
 .restaurant-name > h2 {
@@ -576,6 +576,17 @@ justify-content: center;
 .profile__home-button {
     display: none;
 }
+
+.edit-review-form {
+    position: absolute;
+    margin: 0 auto;
+    left: 300px;
+    top: 500px;
+    bottom: 100px;
+    border: 1px solid black;
+    background-color: #e78267;
+}
+
 @media screen and (max-width: 800px) {
     .profile__nav-logo {
         /* content: url('/'); */

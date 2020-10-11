@@ -128,9 +128,40 @@ router.delete('/:id(\\d+)/reviews', requireAuth, asyncHandler(async (req, res, n
     }
 }))
 
-router.put('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
+router.put('/:id(\\d+)/reviews', requireAuth, asyncHandler(async (req, res, next) => {
+    const { rating, description, userId, restaurantId, reviewId } = req.body;
+    const editedReview = await Review.findByPk(reviewId, {
+        include: User
+    })
+    await editedReview.update({
+        rating,
+        description
+    })
+    res.json({ rating, description });
+}));
 
-}))
+// router.post('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
+//     const { reviewId, currentUserId, token } = req.body;
+//     // console.log(reviewId, currentUserId, token);
+//     const review = await Review.findByPk(reviewId);
+//     if (review.userId.toString() !== currentUserId) {
+//         const err = new Error("Unauthorized Action");
+//         err.status = 401;
+//         err.title = "Unauthorized";
+//         err.errors = ["Only the user who wrote this review is authorized to edit it."];
+//         return next(err);
+//     } else {
+//         await review.create({
+//             rating,
+//             description,
+//             userId,
+//             restaurantId
+//         });
+//         res.json({ msg: "Review Edited" });
+//     }
+// }))
+
+
 
 // needs requireAuth middleware ?
 router.post('/', validateRestaurants, handleValidationErrors, asyncHandler(async (req, res, next) => {
@@ -207,7 +238,6 @@ router.get("/user/:id(\\d+)/restaurant", asyncHandler(async (req, res) => {
     })
     res.json({ restaurant });
 }))
-
 
 
 
