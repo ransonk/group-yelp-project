@@ -58,7 +58,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const restaurantId = parseInt(req.params.id);
     const { currentUserId } = req.body;
-    console.log(currentUserId)
+    // console.log(currentUserId)
     const restaurant = await Restaurant.findByPk(restaurantId,
         {
             include: [
