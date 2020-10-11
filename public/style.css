@@ -108,6 +108,36 @@
     border-radius: 100px;
 }
 
+.services-search {
+    background-color: #eb3e32ef;
+    border: none;
+    border-radius: 3px;
+    margin-left: .5rem;
+    color: white;
+    padding: 4px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.services-search:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+
+.dropdown-list {
+    padding: 4px;
+    background-color: #eb3e32ef;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
 /* login page css */
 
 .form-image{
@@ -227,8 +257,9 @@
 .form-group button{
     border-radius: 5px;
     line-height: 3rem;
-    width: 4rem;
+    width: 6rem;
     background-color: rgb(230, 76, 56);
+    font-weight: bold;
 }
 
 .form-group button:hover{

@@ -30,7 +30,7 @@ routes.get(`/dropdown/:category`, asyncHandler(async (req, res) => {
     },
     include: [Review, Image]
   })
-  console.log("dropdown", results);
+  // console.log("dropdown", results);
   res.json({ results });
 }))
 
