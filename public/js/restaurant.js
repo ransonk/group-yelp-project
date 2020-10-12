@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
         editReviewForm.classList.add('hidden');
-
+        console.log('hellooo')
         try {
             const res = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
                 method: 'PUT',
