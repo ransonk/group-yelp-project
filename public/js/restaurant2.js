@@ -13,7 +13,7 @@ const buttonContainer = document.querySelector('.button-container');
 const servicesContainer = document.querySelector('.services-container');
 const locationHoursContainer = document.querySelector('.location-and-hours-container');
 const reviewsContainer = document.querySelector('.reviews-container');
-const restaurantId = window.location.href.match(/\/(\d+)$/)[1]
+const restaurantId = window.location.href.match(/\/(\d+)$/)[1];
 const editReviewForm = document.querySelector('.edit-review-form');
 
 // instantiating map objecct
@@ -28,7 +28,6 @@ const baseUrl = `${mapboxgl.baseApiUrl + '/geocoding/v5/mapbox.places/'}`;
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-
     const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
     const id = localStorage.getItem("HANGRY_CURRENT_USER_ID");
     const token = localStorage.getItem("HANGRY_ACCESS_TOKEN")
@@ -130,60 +129,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             dineIn, takeOut, delivery, userId, Reviews, Images
         } = restaurant;
 
-        //seting up pics on business page
-        let imageURL = [];
-        switch (foodCategory.toLowerCase()) {
-            case "bar":
-                imageURL.push(`<img class="newPic" src="../images/bar.jpg"/>`)
-                break;
-            case "chinese":
-                imageURL.push(`<img class="newPic" src="../images/chinese.jpg"/>`)
-                break;
-            case "cafe":
-                imageURL.push(`<img class="newPic" src="../images/cafe.jpg"/>`)
-                break;
-            case "fast food":
-                imageURL.push(`<img class="newPic" src="../images/fast-food.jpg"/>`)
-                break;
-            case "homeStyle":
-                imageURL.push(`<img class="newPic" src="../images/homeStyle.jpg"/>`)
-                break;
-            case "italian":
-                imageURL.push(`<img class="newPic" src="../images/italian.jpg"/>`)
-                break;
-            case "japanese":
-                imageURL.push(`<img class="newPic" src="../images/japanese.jpg"/>`)
-                break;
-            case "middle eastern":
-                imageURL.push(`<img class="newPic" src="../images/mediterranean.jpg"/>`)
-                break;
-            case "mexican":
-                imageURL.push(`<img class="newPic" src="../images/mexican.jpg"/>`)
-                break;
-            case "pizza":
-                imageURL.push(`<img class="newPic" src="../images/pizza.jpg"/>`)
-                break;
-            case "vegetarian":
-                imageURL.push(`<img class="newPic" src="../images/vegetarian.jpg"/>`)
-                break;
-            default:
-                imageURL.push(`<img class="newPic" src="../images/default.jpg"/>`)
-        }
-
-        dineIn && imageURL.push(`<img class="newPic" src="../images/dine-in.png"/>`)
-        takeOut && imageURL.push(`<img class="newPic" src="../images/takeout.jpg"/>`)
-        delivery && imageURL.push(`<img class="newPic" src="../images/delivery.png"/>`)
-
-        const imageBar = document.querySelector(".image-bar");
-
-        imageBar.innerHTML = imageURL.join('')
-
-
-
-
-
-
-
         // anchor element for directions
         let anchorEl;
 
@@ -281,14 +226,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     } catch (err) {
-
-        //
-        handleErrors(err);
-        // console.log(err)
+        console.log(err)
     }
+
     writeReviewButton.addEventListener('click', (e) => {
         window.location.href = `/restaurants/${restaurantId}/reviews/new`;
     })
+
     deleteButton.addEventListener('click', async (e) => {
         const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
         const id = localStorage.getItem("HANGRY_CURRENT_USER_ID");
@@ -339,12 +283,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
             catch (err) {
-                // console.log(err);]
-                handleErrors(err)
-                //try this
+                // console.log(err);
             }
         })
     });
+
 
     let ratingElement, descriptionElement, reviewId;
     editReviewButtons.length !== 0 && editReviewButtons.forEach(editReviewButton => {
