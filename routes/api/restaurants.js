@@ -49,16 +49,16 @@ const validateReviews = [
         .withMessage('Please provide a description between 30 and 5000 characters')
 ]
 router.get('/', asyncHandler(async (req, res, next) => {
-    const restaurants = await Restaurant.findAll({
+    const results = await Restaurant.findAll({
         include: [Review, Image]
     });
-    res.json({ restaurants });
+    res.json({ results });
 }));
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const restaurantId = parseInt(req.params.id);
     const { currentUserId } = req.body;
-    console.log(currentUserId)
+    // console.log(currentUserId)
     const restaurant = await Restaurant.findByPk(restaurantId,
         {
             include: [

@@ -28,6 +28,7 @@ const baseUrl = `${mapboxgl.baseApiUrl + '/geocoding/v5/mapbox.places/'}`;
 
 
 document.addEventListener('DOMContentLoaded', async () => {
+
     const currentUserId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
     const id = localStorage.getItem("HANGRY_CURRENT_USER_ID");
     const token = localStorage.getItem("HANGRY_ACCESS_TOKEN")
@@ -129,6 +130,62 @@ document.addEventListener('DOMContentLoaded', async () => {
             dineIn, takeOut, delivery, userId, Reviews, Images
         } = restaurant;
 
+
+        //seting up pics on business page
+        let imageURL = [];
+        switch (foodCategory.toLowerCase()) {
+            case "bar":
+                imageURL.push(`<img class="newPic" src="../images/bar.jpg"/>`)
+                break;
+            case "chinese":
+                imageURL.push(`<img class="newPic" src="../images/chinese.jpg"/>`)
+                break;
+            case "cafe":
+                imageURL.push(`<img class="newPic" src="../images/cafe.jpg"/>`)
+                break;
+            case "fast food":
+                imageURL.push(`<img class="newPic" src="../images/fast-food.jpg"/>`)
+                break;
+            case "homeStyle":
+                imageURL.push(`<img class="newPic" src="../images/homeStyle.jpg"/>`)
+                break;
+            case "italian":
+                imageURL.push(`<img class="newPic" src="../images/italian.jpg"/>`)
+                break;
+            case "japanese":
+                imageURL.push(`<img class="newPic" src="../images/japanese.jpg"/>`)
+                break;
+            case "middle eastern":
+                imageURL.push(`<img class="newPic" src="../images/mediterranean.jpg"/>`)
+                break;
+            case "mexican":
+                imageURL.push(`<img class="newPic" src="../images/mexican.jpg"/>`)
+                break;
+            case "pizza":
+                imageURL.push(`<img class="newPic" src="../images/pizza.jpg"/>`)
+                break;
+            case "vegetarian":
+                imageURL.push(`<img class="newPic" src="../images/vegetarian.jpg"/>`)
+                break;
+            default:
+                imageURL.push(`<img class="newPic" src="../images/default.jpg"/>`)
+        }
+
+        dineIn && imageURL.push(`<img class="newPic" src="../images/dine-in.png"/>`)
+        takeOut && imageURL.push(`<img class="newPic" src="../images/takeout.jpg"/>`)
+        delivery && imageURL.push(`<img class="newPic" src="../images/delivery.png"/>`)
+
+        const imageBar = document.querySelector(".image-bar");
+
+        imageBar.innerHTML = imageURL.join('')
+
+
+
+
+
+
+
+
         // anchor element for directions
         let anchorEl;
 
@@ -226,7 +283,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     } catch (err) {
-        console.log(err)
+
+        
+    
+
+
+
+      
+        handleErrors(err);
+        
     }
 
     writeReviewButton.addEventListener('click', (e) => {
@@ -283,7 +348,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
             catch (err) {
-                // console.log(err);
+                // console.log(err);]
+                handleErrors(err)
+                //try this
             }
         })
     });
@@ -293,6 +360,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     editReviewButtons.length !== 0 && editReviewButtons.forEach(editReviewButton => {
         editReviewButton.addEventListener('click', async (e) => {
             e.preventDefault()
+
             reviewId = e.target.value;
             const description = e.target;
             descriptionElement = document.getElementById(`review-description-${reviewId}`);
@@ -347,6 +415,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     const cancelEditReview = document.querySelector('.edit-review-cancel');
     cancelEditReview.addEventListener('click', (e) => {
         editReviewForm.classList.add('hidden');
+    })
+
+
+            //const reviewId = e.target.value;
+
+            // try {
+            //     const res = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //             Authorization: `Bearer ${token}`
+            //         },
+            //         body: JSON.stringify({
+            //             reviewId
+            //         })
+            //     });
+            //     const resJSON = await res.json();
+            // } catch (err) {
+            //     console.log(err);
+            // }
+        });
     })
 
 });
