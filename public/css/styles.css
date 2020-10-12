@@ -606,37 +606,6 @@ justify-content: center;
 .profile__home-button {
     display: none;
 }
-
-.edit-review-form {
-    display: flex;
-    position: fixed;
-    align-items: center;
-    justify-content: center;
-    padding: 6rem;
-    top: 50%;
-    left: 50%;
-    width: 20rem;
-    height: 5rem;
-    margin: 0 auto;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: #e78267;
-    z-index: 1;
-    box-shadow: 8px 8px 2px .5px rgba(255, 0, 0, .2);
-}
-
-.edit-review-rating {
-    padding-right: 1rem;
-}
-
-.edit-review-description {
-
-}
-
-.edit-review-buttons {
-
-}
-
 @media screen and (max-width: 800px) {
     .profile__nav-logo {
         /* content: url('/'); */
@@ -658,7 +627,6 @@ justify-content: center;
 }
 
 
-
 /* restaurant picture */
 .newPic{
     width: 365px;
@@ -671,4 +639,3 @@ justify-content: center;
     display: flex;
     justify-content: center;
 }
-
