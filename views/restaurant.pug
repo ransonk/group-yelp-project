@@ -1,9 +1,24 @@
 extends layout
-
 block content
+    div(class="edit-review-form hidden")
+        form(class="edit-review__form")
+          div(class="edit-review-rating")
+            label(for='rating') Rating
+            select(name='rating' id='rating' required)
+                option(name='1' value=1) 1
+                option(name='2' value=2) 2
+                option(name='3' value=3) 3
+                option(name='4' value=4) 4
+                option(name='5' value=5) 5
+          div(class="edit-review-description")
+            label(for='description') Description
+            textarea(rows="3" cols="40" name='description' id='description' required)
+          div(class="edit-review-buttons")
+            button(type='submit') Submit
+            button(class='edit-review-cancel') Cancel
     //- include includes/nav-search
     div.profile__nav-bar
-      a(href="/" class="profile__home-button") Hangry App  
+      a(href="/" class="profile__home-button") Hangry App
       div(class="profile__nav-logo" onclick="window.location.href='/'")
       button(id='sign-up' class='nav__btn' onclick="window.location.href='/sign-up'") Sign Up
       button(id='log-in' class='nav__btn' onclick="window.location.href='/log-in'") Log In
@@ -18,7 +33,7 @@ block content
                 div.stars-bar
                 div.review-number
             div.food-categories
-            div.business-hours    
+            div.business-hours
         div.button-container
             button(class="write-review-button") Write a Review
             button(class="restaurant__delete-button") Delete Restaurant
