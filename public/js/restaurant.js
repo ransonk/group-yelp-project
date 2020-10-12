@@ -403,6 +403,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const cancelEditReview = document.querySelector('.edit-review-cancel');
     cancelEditReview.addEventListener('click', (e) => {
+        e.preventDefault();
         editReviewForm.classList.add('hidden');
     })
 
