@@ -217,6 +217,7 @@ router.get("/user/:id(\\d+)/restaurant", asyncHandler(async (req, res) => {
     res.json({ restaurant });
 }))
 
+
 // router.put('/:id(\\d+)/reviews', requireAuth, validateReviews, handleValidationErrors, asyncHandler(async (req, res, next) => {
 //     const { rating, description, userId, restaurantId, reviewId } = req.body;
 //     const editedReview = await Review.findByPk(reviewId, {
@@ -229,6 +230,7 @@ router.get("/user/:id(\\d+)/restaurant", asyncHandler(async (req, res) => {
 //     })
 //     res.json({ rating, description });
 // }));
+
 
 
 
