@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", (event) => {
     /////////////////database must have a demo user and save the token and hard code in here //////////////
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyOCwiZW1haWwiOiJkZW1vdXNlckBnbWFpbC5jb20ifSwiaWF0IjoxNjAyMzg4MDE0LCJleHAiOjMwMDAwMDAwMTYwMjM4ODAzMH0.6Ko0ue_10evIUg7PTTPmFeXv1JB3dQ2SOF6k462XGVU"
-    const id = 28;
+
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMCwiZW1haWwiOiJkZW1vQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MDI0NjI0MTgsImV4cCI6MzAwMDAwMDAxNjAyNDYyNDAwfQ.yJfx5wOnNecg1920eEZUufNii81myY82lkBHDAFSick"
+    const id = 30;
 
     localStorage.setItem("HANGRY_ACCESS_TOKEN", token)
     localStorage.setItem("HANGRY_CURRENT_USER_ID", id)

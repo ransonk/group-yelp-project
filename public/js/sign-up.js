@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const signUpForm = document.querySelector(".sign-up-form")
     signUpForm.addEventListener("submit", async (event) => {
         event.preventDefault();
-        console.log("hi")
 
         const formData = new FormData(signUpForm);
         const firstName = formData.get("firstName");
@@ -96,7 +95,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const previousPage = userData.previousPage
             localStorage.setItem("HANGRY_ACCESS_TOKEN", token);
             localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
-            window.history.back();
+            // window.history.back();
+            window.location.href = '/'
 
         } catch (err) {
             handleErrors(err)

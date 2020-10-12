@@ -49,16 +49,16 @@ const validateReviews = [
         .withMessage('Please provide a description between 30 and 5000 characters')
 ]
 router.get('/', asyncHandler(async (req, res, next) => {
-    const restaurants = await Restaurant.findAll({
+    const results = await Restaurant.findAll({
         include: [Review, Image]
     });
-    res.json({ restaurants });
+    res.json({ results });
 }));
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const restaurantId = parseInt(req.params.id);
     const { currentUserId } = req.body;
-    console.log(currentUserId)
+    // console.log(currentUserId)
     const restaurant = await Restaurant.findByPk(restaurantId,
         {
             include: [
@@ -128,41 +128,9 @@ router.delete('/:id(\\d+)/reviews', requireAuth, asyncHandler(async (req, res, n
     }
 }))
 
-router.put('/:id(\\d+)/reviews', requireAuth, validateReviews, handleValidationErrors, asyncHandler(async (req, res, next) => {
-    const { rating, description, userId, restaurantId, reviewId } = req.body;
-    const editedReview = await Review.findByPk(reviewId, {
-        include: User
-    })
-    console.log(editedReview)
-    await editedReview.update({
-        rating,
-        description,
-    })
-    res.json({ rating, description });
-}));
+router.put('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
 
-// router.post('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
-//     const { reviewId, currentUserId, token } = req.body;
-//     // console.log(reviewId, currentUserId, token);
-//     const review = await Review.findByPk(reviewId);
-//     if (review.userId.toString() !== currentUserId) {
-//         const err = new Error("Unauthorized Action");
-//         err.status = 401;
-//         err.title = "Unauthorized";
-//         err.errors = ["Only the user who wrote this review is authorized to edit it."];
-//         return next(err);
-//     } else {
-//         await review.create({
-//             rating,
-//             description,
-//             userId,
-//             restaurantId
-//         });
-//         res.json({ msg: "Review Edited" });
-//     }
-// }))
-
-
+}))
 
 // needs requireAuth middleware ?
 router.post('/', validateRestaurants, handleValidationErrors, asyncHandler(async (req, res, next) => {
@@ -241,5 +209,6 @@ router.get("/user/:id(\\d+)/restaurant", asyncHandler(async (req, res) => {
 }))
 
 //
+
 
 module.exports = router
