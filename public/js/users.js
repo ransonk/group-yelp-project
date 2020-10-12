@@ -157,10 +157,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </a>
             </div>
             <div class="profile__review-rating">
-                <p>${rating} ${new Date(createdAt).toLocaleString()}</p>
+                <p >${rating} ${new Date(createdAt).toLocaleString()}</p>
             </div>
             <div class="profile__review-description">
-                <p>${description}</p>
+                <p style="word-break: break-word">${description}</p>
             </div>
         `
     })
