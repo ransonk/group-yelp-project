@@ -1,12 +1,27 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", async (event) => {
     /////////////////database must have a demo user and save the token and hard code in here //////////////
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMCwiZW1haWwiOiJkZW1vQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MDI0NjI0MTgsImV4cCI6MzAwMDAwMDAxNjAyNDYyNDAwfQ.yJfx5wOnNecg1920eEZUufNii81myY82lkBHDAFSick"
-    const id = 30;
+    // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMCwiZW1haWwiOiJkZW1vQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MDI0NjI0MTgsImV4cCI6MzAwMDAwMDAxNjAyNDYyNDAwfQ.yJfx5wOnNecg1920eEZUufNii81myY82lkBHDAFSick"
+    // const id = 30;
+    //////////////////////////////////////////////////////
+    const email = "demo@gmail.com";
+    const password = "demo";
 
-    localStorage.setItem("HANGRY_ACCESS_TOKEN", token)
-    localStorage.setItem("HANGRY_CURRENT_USER_ID", id)
+    const body = { email, password };
 
+    const loginResult = await fetch("/api/user/token", {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const userData = await loginResult.json();
+    const token = userData.token;
+    const id = userData.user.id;
+    localStorage.setItem("HANGRY_ACCESS_TOKEN", token);
+    localStorage.setItem("HANGRY_CURRENT_USER_ID", id);
+    /////////////////////////////////////////////////////////////////
     const demoPicture = document.querySelector(".demo__picture");
     const demoBubble = document.querySelector(".demo__bubble");
     const demoBubble2 = document.querySelector(".demo__bubble2");
