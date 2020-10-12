@@ -39,3 +39,8 @@ content-type: "application/json"
     "profileUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/stayuber/128.jpg",
     "businessOwner": true
 }
+
+
+###
+
+PATCH http://localhost:8080/api/restaurants/
