@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const newDescription = formData.get('description');
         const userId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
         // const reviewId = document.getElementById(`review-${id}`);
-        
+
 
         editReviewForm.classList.add('hidden');
 
@@ -343,4 +343,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(err);
         }
     })
+
+    const cancelEditReview = document.querySelector('.edit-review-cancel');
+    cancelEditReview.addEventListener('click', (e) => {
+        editReviewForm.classList.add('hidden');
+    })
+
 });
