@@ -643,18 +643,6 @@ justify-content: center;
     box-shadow: 8px 8px 2px .5px rgba(255, 0, 0, .2);
 }
 
-.edit-review-rating {
-    padding-right: 1rem;
-}
-//
-.edit-review-description {
-
-}
-
-.edit-review-buttons {
-
-}
-
 
 @media screen and (max-width: 800px) {
     .profile__nav-logo {
