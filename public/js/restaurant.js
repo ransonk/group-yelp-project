@@ -174,18 +174,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         delivery && imageURL.push(`<img class="newPic" src="../images/delivery.png"/>`)
 
         const imageBar = document.querySelector(".image-bar");
-
         imageBar.innerHTML = imageURL.join('')
-
-
-
-
-
-
-
         // anchor element for directions
         let anchorEl;
-
         // making query to forward geocoding api
         const queryUrl = new URL(`${address + ' ' + city + ' ' + state}.json?limit=1&access_token=${mapboxgl.accessToken}`, baseUrl).href;
         console.log(queryUrl)
@@ -231,14 +222,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             servicesContainer.appendChild(delivery)
         }
         const locationAddressNode = document.createElement('p');
-
-
         locationAddressNode.innerHTML = `<p>${address} ${city} ${state}</p>`
-
         const mapContainer = document.querySelector('.address-container');
         mapContainer.appendChild(locationAddressNode);
-
-
         let reviewsArray;
         if (Reviews.length !== 0) {
             reviewsArray = Reviews.map(({ id, User, description, rating, userId, createdAt }) => {
@@ -280,14 +266,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     } catch (err) {
-
-        //
-        handleErrors(err);
-        // console.log(err)
+        handleErrors(err);     
     }
     writeReviewButton.addEventListener('click', (e) => {
         window.location.href = `/restaurants/${restaurantId}/reviews/new`;
-    })
+    });
+
     deleteButton.addEventListener('click', async (e) => {
         const token = localStorage.getItem("HANGRY_ACCESS_TOKEN");
         const id = localStorage.getItem("HANGRY_CURRENT_USER_ID");
@@ -307,7 +291,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const deleteReviewButtons = document.querySelectorAll('.restaurant__review-delete-button');
     const editReviewButtons = document.querySelectorAll('.restaurant__review-edit-button');
-
 
     // try {
     //     const res = await fetch(`/api/restaurants/user/${currentUserId}`)
@@ -348,23 +331,60 @@ document.addEventListener('DOMContentLoaded', async () => {
     editReviewButtons.length !== 0 && editReviewButtons.forEach(editReviewButton => {
         editReviewButton.addEventListener('click', async (e) => {
             e.preventDefault()
-            const reviewId = e.target.value;
 
-            // try {
-            //     const res = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
-            //         method: 'POST',
-            //         headers: {
-            //             'Content-Type': 'application/json',
-            //             Authorization: `Bearer ${token}`
-            //         },
-            //         body: JSON.stringify({
-            //             reviewId
-            //         })
-            //     });
-            //     const resJSON = await res.json();
-            // } catch (err) {
-            //     console.log(err);
-            // }
+            reviewId = e.target.value;
+            const description = e.target;
+            descriptionElement = document.getElementById(`review-description-${reviewId}`);
+            ratingElement = document.getElementById(`review-rating-${reviewId}`);
+            // console.log(description);
+            // console.log(reviewId);
+
+
+            editReviewForm.classList.remove('hidden');
+
         });
+    })
+
+    const submitEditReview = document.querySelector('.edit-review__form');
+    submitEditReview.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = await new FormData(submitEditReview);
+        const newRating = formData.get('rating');
+        const newDescription = formData.get('description');
+        const userId = localStorage.getItem("HANGRY_CURRENT_USER_ID");
+        // const reviewId = document.getElementById(`review-${id}`);
+
+
+        editReviewForm.classList.add('hidden');
+
+        try {
+            const res = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    rating: newRating,
+                    description: newDescription,
+                    // userId,
+                    // restaurantId,
+                    reviewId
+                })
+            });
+            const { rating, description } = await res.json();
+            console.log(rating, description);
+            ratingElement.innerHTML = `<p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(rating)}</span>`}</p>
+                                            <em style="font-size: 14px"> Posted: ${new Date().toLocaleString()}</em>`;
+            descriptionElement.innerText = description;
+        } catch (err) {
+            console.log(err);
+        }
+    })
+
+    const cancelEditReview = document.querySelector('.edit-review-cancel');
+    cancelEditReview.addEventListener('click', (e) => {
+        editReviewForm.classList.add('hidden');
     })
 });
