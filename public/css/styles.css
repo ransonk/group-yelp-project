@@ -458,20 +458,22 @@ justify-content: center;
     width: 100%;
     display: flex;
     justify-content: center;
-    top: 80px;
+    align-items: center;
+    position: relative;
+    top: 40px;
 }
 
 .write-review__container {
     position: relative;
-    min-height: 300px;
-    min-width: 500px;
-    width: 50%;
+    min-height: 200px;
+    min-width: 550px;
+    width: 60%;
 }
 
 .write-review__form{
     border: 1.5px solid black;
     border-radius: 5px;
-    padding: 1rem;
+    padding: 2rem;
     box-shadow: 5px 10px #888888;
     padding-bottom: 20px;
     display: flex;
