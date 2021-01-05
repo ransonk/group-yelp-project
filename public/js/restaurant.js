@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // })
 
     let revs;
+    let avgRating;
 
 
     try {
@@ -133,6 +134,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         } = restaurant;
 
         revs = Reviews;
+        avgRating = averageRating;
 
         //seting up pics on business page
         let imageURL = [];
@@ -340,7 +342,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const resJSON = await res.json();
                 if (resJSON.msg === "Review Deleted") {
                     console.log('deleted')
-                     delRevA(revs, currentUserId, reviewId)
+                     deleteReview(revs, currentUserId, reviewId, avgRating)
                     // window.location.href = `/restaurants/${restaurantId}`;
                 }
             }
@@ -419,50 +421,60 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 
-function delRevA(revs, currentUserId, reviewId) {
+function deleteReview(revs, currentUserId, reviewId, avgRating) {
     console.log(revs)
-    reviewsContainer.innerHTML = '';
+    let newAvg = avgRating;
     let reviewsArray;
     try {
         if (revs.length !== 0) {
-        reviewsArray = revs.map(({ id, User, description, rating, userId, createdAt }) => {
-            console.log('id: ', id, 'reviewId: ', reviewId)
-            if (id === parseInt(reviewId)) return '';
-            const reviewModifyButtons = userId.toString() === currentUserId ?
+            reviewsArray = revs.map(({ id, User, description, rating, userId, createdAt }) => {
+                console.log('id: ', id, 'reviewId: ', reviewId)
+                if (id === parseInt(reviewId)) {
+                    newAvg = Math.round(((newAvg * revs.length) - rating) / (revs.length - 1))
+                    return '';
+                }
+                const reviewModifyButtons = userId.toString() === currentUserId ?
                 `
-                    <div class='review__buttons--container'>
-                        <button class="restaurant__review-delete-button" value=${id}>delete</button>
-                        <button class="restaurant__review-edit-button" value="${id}">edit</button>
-                    </div>
-                    `
+                <div class='review__buttons--container'>
+                <button class="restaurant__review-delete-button" value=${id}>delete</button>
+                <button class="restaurant__review-edit-button" value="${id}">edit</button>
+                </div>
+                `
                 : '';
-            return (
-                `<div class="reviews__review-div">
+                return (
+                    `<div class="reviews__review-div">
                     <div class="review__user">
-                        <a href="/user/${User.id}">
-                        <img class="review__user--image" src="${User.profileUrl}"/>
-                        </a>
-                        <a class="review__user--name" href="/user/${User.id}">
-                        <h3>${User.firstName} ${User.lastName}</h3>
-                        </a>
+                    <a href="/user/${User.id}">
+                    <img class="review__user--image" src="${User.profileUrl}"/>
+                    </a>
+                    <a class="review__user--name" href="/user/${User.id}">
+                    <h3>${User.firstName} ${User.lastName}</h3>
+                    </a>
                     </div>
                     <div class="review__description--container" id="review-${id}">
-                        <div class="review__rating" id="review-rating-${id}">
-                            <p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(rating)}</span>`}</p>
-                            <em style="font-size: 14px"> Posted: ${new Date(createdAt).toLocaleString()}</em>
-                        </div>
-                        <div class="review__description">
-                            <p id="review-description-${id}">${description}</p>
-                            ${reviewModifyButtons}
-                        </div>
+                    <div class="review__rating" id="review-rating-${id}">
+                    <p>${`<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(rating)}</span>`}</p>
+                    <em style="font-size: 14px"> Posted: ${new Date(createdAt).toLocaleString()}</em>
                     </div>
-                </div>`)
-        });
-        } else {
-            reviewsArray = ['<p>No reviews yet</p>']
-        }
-        const reviewsHTML = reviewsArray.join('');
-        reviewsContainer.innerHTML += reviewsHTML;
+                    <div class="review__description">
+                    <p id="review-description-${id}">${description}</p>
+                    ${reviewModifyButtons}
+                    </div>
+                    </div>
+                    </div>`)
+                });
+            } else {
+                reviewsArray = ['<p>No reviews yet</p>']
+            }
+            const reviewsHTML = reviewsArray.join('');
+            reviewsContainer.innerHTML = '' + reviewsHTML;
+            if (newAvg === 0) {
+                starsBar.innerHTML = "No reviews yet";
+            } else {
+                starsBar.innerHTML = `<span style='color:gold;'>${'<i class="fas fa-star"></i>'.repeat(newAvg)}</span>`
+            }
+            restaurantName.innerHTML = `<h2>${name}</h2>`;
+            reviewCount.innerHTML = `<p>${revs.length - 1} reviews</p>`;
     } catch (e) {
         console.log(e)
         handleErrors(e)
