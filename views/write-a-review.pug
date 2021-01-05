@@ -2,19 +2,23 @@ extends layout
 
 block content
   include includes/nav-bar
-  div.restaurant-name2
-  form.write-review__form
-    h1 Write a review!
-    input(type='hidden' name='_csrf' value=csrfToken)
-    label(for='rating') Rating
-    select(name='rating' id='rating' required)
-      option(name='1' value=1) 1
-      option(name='2' value=2) 2
-      option(name='3' value=3) 3
-      option(name='4' value=4) 4
-      option(name='5' value=5) 5
-    label(for='description') Description
-    textarea(name='description' id='description' required)
-    button(type='submit' class='write-review__submit-button') Submit
+  div.write-review__main
+    div.write-review__container
+      div.restaurant-name2
+      form.write-review__form
+        h1 Write a review!
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div(class="form-group")
+          label(for='rating') Rating
+          select(name='rating' id='rating' required)
+            option(name='1' value=1) 1
+            option(name='2' value=2) 2
+            option(name='3' value=3) 3
+            option(name='4' value=4) 4
+            option(name='5' value=5) 5
+        div(class="form-group")
+          label(for='description') Description
+          textarea(name='description' id='description' required)
+        button(type='submit' class='write-review__submit-button') Submit
 
   script(type="module" src="/js/write-a-review.js")

@@ -453,14 +453,33 @@ justify-content: center;
     margin-right: 8px;
 }
 
+.write-review__main {
+    height: 100vh;
+    width: 100vw;
+    /* box-sizing: border-box; */
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    /* align-content: center; */
+    justify-content: center;
+}
+
+.write-review__container {
+    position: relative;
+    min-height: 300px;
+    min-width: 500px;
+    width: 55%;
+}
+
 .write-review__form{
-    position: absolute;
-    top: 30%;
-    left: 35%;
+    /* position: absolute; */
+    /* top: 30%; */
+    /* left: 35%; */
     border: 1.5px solid black;
     border-radius: 5px;
-    margin: 0 auto;
-    width: 500px;
+    /* margin: 0 auto; */
+    /* width: 70%; */
+    /* min-width: 500px; */
     padding: 1rem;
     box-shadow: 5px 10px #888888;
     padding-bottom: 20px;
@@ -468,10 +487,12 @@ justify-content: center;
 }
 
 .restaurant-name2{
-    position: absolute;
-    top: 20%;
-    left: 35%;
+    /* position: absolute;
+    top: -60px; */
+    /* top: 20%; */
+    /* left: 35%; */
     color: #2A73BB;
+    margin: 1px !important;
 }
 
 .write-review__form input,label{
