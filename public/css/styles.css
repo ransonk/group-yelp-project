@@ -459,16 +459,18 @@ justify-content: center;
     /* box-sizing: border-box; */
     display: flex;
     /* flex-direction: column; */
-    align-items: center;
+    /* align-items: center; */
     /* align-content: center; */
     justify-content: center;
+    position: absolute;
+    top: 120px;
 }
 
 .write-review__container {
     position: relative;
     min-height: 300px;
     min-width: 500px;
-    width: 55%;
+    width: 50%;
 }
 
 .write-review__form{
@@ -499,8 +501,37 @@ justify-content: center;
     padding: 10px;
 }
 
+.write-review__form-rating {
+    display: flex;
+    align-items: center;
+}
+
+.write-review__form select {
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.write-review__form-textarea {
+    display: flex;
+    flex-direction: column;
+}
+
 .write-review__form textarea{
-    margin-top: 10px;
+    outline: none;
+    border: none;
+    /* margin-top: 10px; */
+}
+
+.write-review__form button {
+    outline: none;
+    border: none;
+    padding: 10px;
+    background-color: #0073BB;
+    color: white;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 0 auto;
 }
 
 .restaurant__delete-button {
