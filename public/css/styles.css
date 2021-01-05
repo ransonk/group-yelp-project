@@ -514,6 +514,7 @@ justify-content: center;
     min-height: 250px;
     border: 1px solid rgb(121, 121, 121);
     border-radius: 7px;
+    padding: 15px;
 }
 
 .write-review__form button {
