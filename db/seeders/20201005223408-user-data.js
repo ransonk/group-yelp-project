@@ -4,6 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
+        profileUrl: '',
         lastName: 'Smitham',
         firstName: 'Mavis',
         email: 'Felicia_Pfeffer@hotmail.com',
@@ -12,6 +13,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
+        profileUrl: '',
         lastName: 'Streich',
         firstName: 'Pearline',
         email: 'Clare31@hotmail.com',
@@ -20,6 +22,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
+        profileUrl: '',
         lastName: 'Jerde',
         firstName: 'Clyde',
         email: 'Lukas5@hotmail.com',
@@ -28,6 +31,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
+        profileUrl: '',
         lastName: 'Terry',
         firstName: 'Jefferey',
         email: 'Xavier71@yahoo.com',
@@ -36,6 +40,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
+        profileUrl: '',
         lastName: 'Cormier',
         firstName: 'Andy',
         email: 'Cristal87@yahoo.com',
@@ -80,6 +85,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
+        profileUrl: '',
         lastName: 'Lang',
         firstName: 'Mae',
         email: 'Maximillia15@yahoo.com',
@@ -88,7 +94,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F49%2F8b%2F5e%2F498b5ed0533b838e5c326a2a2ff5e069.png&imgrefurl=https%3A%2F%2Fin.pinterest.com%2Fpin%2F828521662688136698%2F&tbnid=2RmHZI49CgfbRM&vet=12ahUKEwiUqofOp4buAhV6koQIHT8LCosQMyggegQIARB4..i&docid=D3ao87V3WTxKzM&w=256&h=256&itg=1&q=profile%20picture%20stock%20photos&hl=en&ved=2ahUKEwiUqofOp4buAhV6koQIHT8LCosQMyggegQIARB4',
+        profileUrl: 'https://globalnews.ca/wp-content/uploads/2020/06/althea-normal-e1593181781146.jpg?quality=85&strip=all',
         lastName: 'Grimes',
         firstName: 'Marie',
         email: 'Simeon.Bahringer@gmail.com',
@@ -169,6 +175,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
+        profileUrl: '',
         lastName: 'Veum',
         firstName: 'Stephanie',
         email: 'Heloise.Maggio21@yahoo.com',
