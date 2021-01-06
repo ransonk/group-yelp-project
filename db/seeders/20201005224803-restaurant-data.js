@@ -12,7 +12,6 @@ module.exports = {
       {name: 'Hong Kong Express', phone: 5553333, city: 'Bushkill', state: 'PA', address: '22 Smith Street', foodCategory: 'Chinese', dineIn: true, takeOut: true, delivery: true, userId: 7, createdAt: new Date(), updatedAt: new Date()},
       {name: 'Loco Pez', phone: 5554444, city: 'Cleveland', state: 'OH', address: '123 High Street', foodCategory: 'Mexican', dineIn: true, takeOut: true, delivery: true, userId: 8, createdAt: new Date(), updatedAt: new Date()},
       {name: 'We Serve Coffee', phone: 5550050, city: 'Austin', state: 'TX', address: '123 Street Road', foodCategory: 'Coffee', dineIn: true, takeOut: true, delivery: false, userId: 9, createdAt: new Date(), updatedAt: new Date()},
-
       {name: 'Taco House', phone: 5557071, city: 'New York', state: 'NY', address: '99 Blvrd', foodCategory: 'Mexican', dineIn: true, takeOut: true, delivery: true, userId: 10, createdAt: new Date(), updatedAt: new Date()},
       {name: 'Pizza Palace', phone: 5558090, city: 'Miami', state: 'FL', address: '48 Larry Street', foodCategory: 'Pizza', dineIn: true, takeOut: true, delivery: true, userId: 11, createdAt: new Date(), updatedAt: new Date()},
       {name: 'Panda Kitchen', phone: 5553020, city: 'Dallas', state: 'TX', address: '123 Lane Avenue', foodCategory: 'Chinese', dineIn: true, takeOut: true, delivery: false, userId: 12, createdAt: new Date(), updatedAt: new Date()},
