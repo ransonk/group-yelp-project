@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       })
 
       if (!res.ok) {
+        console.log(res)
         throw res
       }
       const restaurants = await res.json()
