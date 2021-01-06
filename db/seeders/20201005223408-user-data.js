@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
-        profileUrl: '',
+        profileUrl: '/images/empty-profile.png',
         lastName: 'Smitham',
         firstName: 'Mavis',
         email: 'Felicia_Pfeffer@hotmail.com',
@@ -13,16 +13,16 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: '',
+        profileUrl: 'https://i.pinimg.com/originals/33/27/c6/3327c62c1624d9d06a08180c85b3f4a2.jpg',
         lastName: 'Streich',
-        firstName: 'Pearline',
+        firstName: 'Pat',
         email: 'Clare31@hotmail.com',
         hashedPassword: 'XSG3cxdWyZGlzqzt8nhPG5JnSs7pZD',
         businessOwner: true,
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: '',
+        profileUrl: 'https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_1000x1000_$&$product=PartyCity/P537074',
         lastName: 'Jerde',
         firstName: 'Clyde',
         email: 'Lukas5@hotmail.com',
@@ -31,7 +31,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: '',
+        profileUrl: '/images/empty-profile.png',
         lastName: 'Terry',
         firstName: 'Jefferey',
         email: 'Xavier71@yahoo.com',
@@ -40,7 +40,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: '',
+        profileUrl: 'https://assets3.thrillist.com/v1/image/1385010/747x498/flatten;crop;jpeg_quality=70',
         lastName: 'Cormier',
         firstName: 'Andy',
         email: 'Cristal87@yahoo.com',
@@ -68,7 +68,7 @@ module.exports = {
         updatedAt: new Date()
       }, {
         profileUrl: 'https://static.billboard.com/files/2020/03/Lady-Gaga-press-2020-by-Norbert-Schoerner-billboard-1548-1583179375-compressed.jpg',
-        lastName: 'Wilkinson',
+        lastName: 'W.',
         firstName: 'Dawn',
         email: 'Rey16@hotmail.com',
         hashedPassword: 'JseqVWbzzxhqSmckBlWlDT8R1klcU1',
@@ -85,7 +85,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: '',
+        profileUrl: 'https://rlv.zcache.com/la_di_da_lady_pop_art_stickers-r2d36da804de24720a164ddda37d4670a_0ugmc_8byvr_307.jpg',
         lastName: 'Lang',
         firstName: 'Mae',
         email: 'Maximillia15@yahoo.com',
@@ -175,9 +175,9 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: '',
+        profileUrl: '/images/empty-profile.png',
         lastName: 'Veum',
-        firstName: 'Stephanie',
+        firstName: 'Stephie',
         email: 'Heloise.Maggio21@yahoo.com',
         hashedPassword: 'uGDCX7D0KzOUWRguJeZZrVSQv_9m1f',
         businessOwner: false,
