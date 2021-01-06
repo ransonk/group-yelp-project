@@ -1,5 +1,6 @@
 
 ### Backend Routes
+
 |                Path                 | HTTP Verb |                      Meaning                           |
 |-------------------------------------|-----------|--------------------------------------------------------|
 | /api/users/token                    |   POST    |                   logs in user                         |
@@ -16,3 +17,4 @@
 | /api/restaurants/user/id/restaurant |   GET     |           gets specific restaurant by user ID          |
 | /api/search/name/query              |   GET     |     gets restaurants that match the search query       |
 | /api/search/dropdown/category       |   GET     | gets restaurants that match the selected food category |
+| /api/search/services/type           |   GET     | gets restaurants that match the selected services type |
