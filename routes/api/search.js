@@ -7,8 +7,8 @@ const Op = sequelize.Op
 const { Restaurant, User, Review, Image, Like } = db;
 
 
-routes.get(`/name/:name`, asyncHandler(async (req, res) => {
-  const searchingPhrase = req.params.name;
+routes.get(`/name/:query`, asyncHandler(async (req, res) => {
+  const searchingPhrase = req.params.query;
   console.log(searchingPhrase)
   const results = await db.Restaurant.findAll({
     where: {
