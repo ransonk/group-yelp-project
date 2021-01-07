@@ -4,6 +4,9 @@
 <br>
 [![Ranson Knorr][linkedin-shield]][linkedin-url-ranson]Ranson Knorr
 <br>
+[![Ryan Young][linkedin-shield]][linkedin-url-ryan]Ryan Young
+<br>
+![Akmal Anvarov][linkedin-shield]Akmal Anvarov
 
 [Live Site](https://hangry-yelp-clone.herokuapp.com/)
 
@@ -190,3 +193,4 @@ Users can explore businesses/restaurants in this platform. They can also create 
 [linkedin-url-peter]: https://www.linkedin.com/in/peter-kang-129184166/
 [linkedin-url-ranson]:https://www.linkedin.com/in/ranson-knorr-b132391b7/
 [linkedin-url-wren]:https://www.linkedin.com/in/wren-mcpherson-415223bb/
+[linkedin-url-ryan]:https://www.linkedin.com/in/ryan-young-b67a7aab/
