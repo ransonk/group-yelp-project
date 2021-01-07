@@ -8,9 +8,9 @@ Hangry is a Yelp clone web application that allows users to list their restauran
 
 ## Built With
 
-    * [JavaScript](https://www.javascript.com/)
-    * [Express.js](https://expressjs.com/)
-    * [Pug](https://pugjs.org/api/getting-started.html)
+* [JavaScript](https://www.javascript.com/)
+* [Express.js](https://expressjs.com/)
+* [Pug](https://pugjs.org/api/getting-started.html)
 
 
 ## Getting Started
@@ -26,14 +26,14 @@ Hangry is a Yelp clone web application that allows users to list their restauran
 
 
 ## Features
-    * List your business
-        * 
-    * Review restaurants
-    * Search for restaurants
-    * Mangage your profile
+* List your business
+* Review restaurants
+* Search for restaurants
+* Mangage your profile
 
 
 ## Database
+
 
 | USER TABLE |
 | ---------  |
@@ -44,6 +44,8 @@ Hangry is a Yelp clone web application that allows users to list their restauran
 | email  VARCHAR  not null unique |
 | Password  VARCHAR not null|
 | type VARCHAR not null |
+
+
 
 | RESTAURANT TABLE  |
 |-------------------|
@@ -59,12 +61,16 @@ Hangry is a Yelp clone web application that allows users to list their restauran
 | delivery boolean not null |
 | userId integer not null |
 
+
+
 | IMAGES TABLE |
 |--------------|
 | imagecategory|
 | restaurantid |
 | imageurl     |
 | userId      |
+
+
 
 | REVIEW TABLE |
 |--------------|
@@ -75,6 +81,8 @@ Hangry is a Yelp clone web application that allows users to list their restauran
 | restaurantid FK integer not null |
 | parentId integer |
 
+
+
 | LIKES TABLE |
 |-------------|
 | reviewid |
@@ -83,10 +91,8 @@ Hangry is a Yelp clone web application that allows users to list their restauran
 
 
 
-[Live Site](https://hangry-yelp-clone.herokuapp.com/)
-[Features](/documentation/features.md)
+## Links
+
 [Database Schema (image)](/documentation/DBschema.png)
-[Database Schema (text)](/documentation/DBschema.md)
-[Frontent Routes](/documentation/frontendRoutes.md)
+
 [API Routes](/documentation/apiRoutes.md)
-[Redux Store Tree](/documentation/store.md)
