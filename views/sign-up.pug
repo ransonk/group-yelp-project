@@ -5,10 +5,13 @@ block content
   div(class="sign-up-main-container")
     div(class="sign-up-container")
       div(class="errors-container")
+      //- div.signup-and-image
       form(class="sign-up-form")
         div(class="form-group")
+          h2(class="sign-up-header") Create Account
           label(for="firstName")
           input(id="firstName" type="text" name="firstName" placeholder="first name")
+          div(class="form-group")
           label(for="lastName")
           input(id="lastName" type="text" name="lastName" placeholder="last name")
           div(class="form-group")
@@ -22,10 +25,10 @@ block content
           input(id="confirmPassword" type="password" name="confirmPassword" placeholder="confirm password")
           div(class="form-group")
           label(for="businessOwner") Business Owner?
-          select(name="businessOwner" required)
+          select(name="businessOwner" id="business-owner" required)
             option(value="" disabled selected) Choose One
             option(value="true" ) Yes
             option(value="false") No
         button(type="submit" class="sign-up-button")  sign up
-    div(class="sign-up-side-picture-container")
+      div(class="sign-up-side-picture-container")
   script(type="module" src="js/sign-up.js")
