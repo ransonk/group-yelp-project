@@ -1,12 +1,12 @@
 [![Wren McPherson][linkedin-shield]][linkedin-url-wren] Wren McPherson
 <br>
-[![Peter Kang][linkedin-shield]][linkedin-url-peter]Peter Kang
+[![Peter Kang][linkedin-shield]][linkedin-url-peter] Peter Kang
 <br>
-[![Ranson Knorr][linkedin-shield]][linkedin-url-ranson]Ranson Knorr
+[![Ranson Knorr][linkedin-shield]][linkedin-url-ranson] Ranson Knorr
 <br>
-[![Ryan Young][linkedin-shield]][linkedin-url-ryan]Ryan Young
+[![Ryan Young][linkedin-shield]][linkedin-url-ryan] Ryan Young
 <br>
-![Akmal Anvarov][linkedin-shield]Akmal Anvarov
+![Akmal Anvarov][linkedin-shield] Akmal Anvarov
 
 [Live Site](https://hangry-yelp-clone.herokuapp.com/)
 
@@ -14,7 +14,7 @@
 <br />
 <p align="center">
 <a href="https://hangry-yelp-clone.herokuapp.com/">
-    <img src="readMeImages/hangry-alt-logo.png" alt="Logo" width="120" height="auto"
+    <img src="./readMeImages/hangry-alt-logo.png" alt="Logo" width="120" height="auto"
     ></a>
 <a href="https://hangry-yelp-clone.herokuapp.com/">
   <h3 align="center">Hangry</h3></a>
