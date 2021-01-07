@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/stayuber/128.jpg',
+        profileUrl: '/images/empty-profile.png',
         lastName: 'Smitham',
         firstName: 'Mavis',
         email: 'Felicia_Pfeffer@hotmail.com',
@@ -13,16 +13,16 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/santi_urso/128.jpg',
+        profileUrl: 'https://i.pinimg.com/originals/33/27/c6/3327c62c1624d9d06a08180c85b3f4a2.jpg',
         lastName: 'Streich',
-        firstName: 'Pearline',
+        firstName: 'Pat',
         email: 'Clare31@hotmail.com',
         hashedPassword: 'XSG3cxdWyZGlzqzt8nhPG5JnSs7pZD',
         businessOwner: true,
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/the_winslet/128.jpg',
+        profileUrl: 'https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_1000x1000_$&$product=PartyCity/P537074',
         lastName: 'Jerde',
         firstName: 'Clyde',
         email: 'Lukas5@hotmail.com',
@@ -31,7 +31,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/allthingssmitty/128.jpg',
+        profileUrl: '/images/empty-profile.png',
         lastName: 'Terry',
         firstName: 'Jefferey',
         email: 'Xavier71@yahoo.com',
@@ -40,7 +40,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/samihah/128.jpg',
+        profileUrl: 'https://assets3.thrillist.com/v1/image/1385010/747x498/flatten;crop;jpeg_quality=70',
         lastName: 'Cormier',
         firstName: 'Andy',
         email: 'Cristal87@yahoo.com',
@@ -49,7 +49,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/brandonburke/128.jpg',
+        profileUrl: 'hhttps://static.vecteezy.com/system/resources/previews/000/241/070/non_2x/flat-boy-with-vintage-glasses-avatar-vector-illustration.jpg',
         lastName: 'Flatley',
         firstName: 'Alda',
         email: 'Dayana.Cummings@gmail.com',
@@ -58,7 +58,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/davidsasda/128.jpg',
+        profileUrl: 'https://up.quizlet.com/tkdox-vv9Qc-256s.jpg',
         lastName: 'Goyette',
         firstName: 'Cassidy',
         email: 'Noel_Parisian@hotmail.com',
@@ -67,8 +67,8 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/derienzo777/128.jpg',
-        lastName: 'Wilkinson',
+        profileUrl: 'https://static.billboard.com/files/2020/03/Lady-Gaga-press-2020-by-Norbert-Schoerner-billboard-1548-1583179375-compressed.jpg',
+        lastName: 'W.',
         firstName: 'Dawn',
         email: 'Rey16@hotmail.com',
         hashedPassword: 'JseqVWbzzxhqSmckBlWlDT8R1klcU1',
@@ -76,7 +76,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/ripplemdk/128.jpg',
+        profileUrl: 'https://up.quizlet.com/1gall3-mjcZz-256s.jpg',
         lastName: 'Cassin',
         firstName: 'Omari',
         email: 'Britney98@yahoo.com',
@@ -85,7 +85,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/brandonflatsoda/128.jpg',
+        profileUrl: 'https://rlv.zcache.com/la_di_da_lady_pop_art_stickers-r2d36da804de24720a164ddda37d4670a_0ugmc_8byvr_307.jpg',
         lastName: 'Lang',
         firstName: 'Mae',
         email: 'Maximillia15@yahoo.com',
@@ -94,7 +94,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/jjsiii/128.jpg',
+        profileUrl: 'https://globalnews.ca/wp-content/uploads/2020/06/althea-normal-e1593181781146.jpg?quality=85&strip=all',
         lastName: 'Grimes',
         firstName: 'Marie',
         email: 'Simeon.Bahringer@gmail.com',
@@ -103,7 +103,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/andysolomon/128.jpg',
+        profileUrl: 'https://dy5vgx5yyjho5.cloudfront.net/images/v2/profile-F6h9mTgB23qCW5ox74231.jpg',
         lastName: 'Larkin',
         firstName: 'Marian',
         email: 'Kameron_Reynolds@yahoo.com',
@@ -112,7 +112,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/derekebradley/128.jpg',
+        profileUrl: 'https://cachedimages.podchaser.com/256x256/aHR0cHM6Ly91c2VyLWltYWdlcy5wb2RjaGFzZXIuY29tL2ViMzEzNWVlNzhjMWUwNTM4ZDgwNmEwYTZhZGI5MTczMWYwZTNkYWQ5OTkwODM0NWY3NDM5ZjhmZmFiZGZmYzQucG5n/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D',
         lastName: 'West',
         firstName: 'Francis',
         email: 'Jakob32@hotmail.com',
@@ -121,7 +121,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/amywebbb/128.jpg',
+        profileUrl: 'https://assets.quizlet.com/a/j/dist/i/animals/31.f18ad37e9a91770.jpg',
         lastName: 'Schumm',
         firstName: 'Shayna',
         email: 'Dayne_Gorczany@hotmail.com',
@@ -130,7 +130,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/ninjad3m0/128.jpg',
+        profileUrl: 'https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=1.0&px=999',
         lastName: 'White',
         firstName: 'Cristina',
         email: 'Cecilia43@yahoo.com',
@@ -139,7 +139,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/carlosjgsousa/128.jpg',
+        profileUrl: 'https://www.esquireme.com/public/images/2018/01/10/tom-selleck-1.jpg',
         lastName: 'Streich',
         firstName: 'Hosea',
         email: 'Elsie_Rowe@yahoo.com',
@@ -148,7 +148,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/al_li/128.jpg',
+        profileUrl: 'https://uploads-ssl.webflow.com/5c6ef9c489c368149f717a22/5c92c9ec938b786710b53a3b__Q4A1175.jpg',
         lastName: 'Sawayn',
         firstName: 'Boris',
         email: 'Nicolette49@gmail.com',
@@ -157,7 +157,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/kapaluccio/128.jpg',
+        profileUrl: 'https://d3clc8w717qc4g.cloudfront.net/assets/audioblocks/images/home/guitarist_hero.png',
         lastName: 'Friesen',
         firstName: 'Evert',
         email: 'Wilson97@yahoo.com',
@@ -166,7 +166,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/aio___/128.jpg',
+        profileUrl: 'https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/styles/simple_image/public/images/media/images/best-practices-stock-photos-guy-on-blue-background.jpg?.dhR3EhqSa.vTRhG6KOPUS8DN1JGAOWh&itok=mO8pFAo3',
         lastName: 'Schmitt',
         firstName: 'Gustave',
         email: 'Mina6@gmail.com',
@@ -175,9 +175,9 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        profileUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/kurtinc/128.jpg',
+        profileUrl: '/images/empty-profile.png',
         lastName: 'Veum',
-        firstName: 'Stephanie',
+        firstName: 'Stephie',
         email: 'Heloise.Maggio21@yahoo.com',
         hashedPassword: 'uGDCX7D0KzOUWRguJeZZrVSQv_9m1f',
         businessOwner: false,

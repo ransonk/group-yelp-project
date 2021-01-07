@@ -56,14 +56,14 @@
     - List of reviews
 
 ### Backend
-|    Path    |   HTTP Verb   |          Meaning            |
-|------------|---------------|-----------------------------|
-|    /api/users/token     |      GET      |     logs in user      |
-|    /api/users     |     POST      |       logs in user          |
-|  /api/businesses  |      GET      |   shows a list of restaur    |
-|   /api/users/id/reviews    |      GET      |    gets list of reviews     |
-|  /api/businesses/id/reviews  |  GET  | gets all reviews for one business |
-|  /api/businesses/id/reviews  |  POST  | gets all reviews for one business |
+|             Path             |   HTTP Verb   |            Meaning                |
+|------------------------------|---------------|-----------------------------------|
+|  /api/users/token            |      GET      |         logs in user              |
+|  /api/users                  |     POST      |         logs in user              |
+|  /api/businesses             |      GET      |    shows a list of restaurants    |
+|  /api/users/id/reviews       |      GET      |      gets list of reviews         |
+|  /api/businesses/id/reviews  |      GET      | gets all reviews for one business |
+|  /api/businesses/id/reviews  |     POST      | gets all reviews for one business |
 
 ### Frontend
 |    Path            |   HTTP Verb   |          Meaning                   |

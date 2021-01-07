@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       description: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.TEXT(5000)
       },
       userId: {

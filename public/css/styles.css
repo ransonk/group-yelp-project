@@ -506,33 +506,79 @@ margin-top: 10px;
     margin-right: 8px;
 }
 
+.write-review__main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 40px;
+}
+
+.write-review__container {
+    position: relative;
+    min-height: 200px;
+    min-width: 550px;
+    width: 60%;
+}
+
 .write-review__form{
-    position: absolute;
-    top: 30%;
-    left: 35%;
     border: 1.5px solid black;
     border-radius: 5px;
-    margin: 0 auto;
-    width: 500px;
-    padding: 1rem;
+    padding: 2rem;
     box-shadow: 5px 10px #888888;
     padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 
 }
 
 .restaurant-name2{
-    position: absolute;
-    top: 20%;
-    left: 35%;
     color: #2A73BB;
+    margin: 1px !important;
 }
 
-.write-review__form input,label{
-    padding: 10px;
+.write-review__form label{
+    margin-right: 10px;
+}
+
+.write-review__form-rating {
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 10px 0px;
+}
+
+.write-review__form select {
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.write-review__form-textarea {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px 25px 0px;
 }
 
 .write-review__form textarea{
-    margin-top: 10px;
+    outline: none;
+    border: none;
+    min-height: 250px;
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 7px;
+    padding: 15px;
+}
+
+.write-review__form button {
+    outline: none;
+    border: none;
+    padding: 10px;
+    background-color: #0073BB;
+    color: white;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 0 auto;
 }
 
 .restaurant__delete-button {

@@ -45,7 +45,7 @@ const validateReviews = [
     check('description')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a description')
-        .isLength({ min: 30, max: 5000 })
+        .isLength({ min: 0, max: 5000 })
         .withMessage('Please provide a description between 30 and 5000 characters')
 ]
 router.get('/', asyncHandler(async (req, res, next) => {
