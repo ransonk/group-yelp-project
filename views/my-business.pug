@@ -2,46 +2,47 @@ extends layout.pug
 
 block content
   include includes/nav-bar
-  div(class="my-business-main-container")
-    p Create your Business Page
-    div(class="my-business-container")
-      div(class="errors-container")
-      form(class="my-business-form")
-        div(class="form-group")
-          div(class="form-group") Provide your Restaurant Name
-          label(for="name")
-          input(id="name" type="text" name="name" placeholder="business name")
-          div(class="form-group") Provide your Restaurant Phone Number
-          label(for="phone")
-          input(id="phone" type="integer" name="phone" placeholder="xxx-xxx-xxxx")
-          div(class="form-group") Provide your Restaurant address
-          label(for="address")
-          input(id="address" type="text" name="address" placeholder="ex) 12345 street st")
-          label(for="city")
-          input(id="city" type="text" name="city" placeholder="city")
-          label(for="state")
-          input(id="state" type="text" name="state" placeholder="state")
-          div(class="form-group") Provide your Restaurant Food Category
-          label(for="foodCategory")
-          input(id="foodCategory" type="text" name="foodCategory" placeholder="ex) seafood, mexican, fastfood...")
-          div(class="form-group")  Do you have Dine-In service?
-          label(for="dineIn")
-          select(name="dineIn" required)
-            option(value="" disabled selected) Choose One
-            option(value="true" ) Yes
-            option(value="false") No
-          div(class="form-group")  Do you have Take-Out service?
-          label(for="takeOut")
-          select(name="takeOut" required)
-            option(value="" disabled selected) Choose One
-            option(value="true" ) Yes
-            option(value="false") No
-          div(class="form-group") Do you have Delivery service?
-          label(for="delivery")
-          select(name="delivery" required)
-            option(value="" disabled selected) Choose One
-            option(value="true" ) Yes
-            option(value="false") No
-        button(type="submit" class="my-business-sign-up-button")  Register
-    div(class="my-business-side-picture-container")
+  div.business-main
+    div(class="my-business-main-container")
+      p Create your Business Page
+      div(class="my-business-container")
+        div(class="errors-container")
+        form(class="my-business-form")
+          div(class="form-group")
+            div(class="form-group") Provide your Restaurant Name
+            label(for="name")
+            input(id="name" type="text" name="name" placeholder="business name")
+            div(class="form-group") Provide your Restaurant Phone Number
+            label(for="phone")
+            input(id="phone" type="integer" name="phone" placeholder="8005551234")
+            div(class="form-group") Provide your Restaurant address
+            label(for="address")
+            input(id="address" type="text" name="address" placeholder="ex) 12345 street st")
+            label(for="city")
+            input(id="city" type="text" name="city" placeholder="city")
+            label(for="state")
+            input(id="state" type="text" name="state" placeholder="state")
+            div(class="form-group") Provide your Restaurant Food Category
+            label(for="foodCategory")
+            input(id="foodCategory" type="text" name="foodCategory" placeholder="ex) seafood, mexican, fastfood...")
+            div(class="form-group")  Do you have Dine-In service?
+            label(for="dineIn")
+            select(name="dineIn" required)
+              option(value="" disabled selected) Choose One
+              option(value="true" ) Yes
+              option(value="false") No
+            div(class="form-group")  Do you have Take-Out service?
+            label(for="takeOut")
+            select(name="takeOut" required)
+              option(value="" disabled selected) Choose One
+              option(value="true" ) Yes
+              option(value="false") No
+            div(class="form-group") Do you have Delivery service?
+            label(for="delivery")
+            select(name="delivery" required)
+              option(value="" disabled selected) Choose One
+              option(value="true" ) Yes
+              option(value="false") No
+          button(type="submit" class="my-business-sign-up-button")  Register
+      div(class="my-business-side-picture-container")
   script(type="module" src="js/my-business.js")

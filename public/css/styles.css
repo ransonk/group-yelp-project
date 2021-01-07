@@ -507,23 +507,26 @@ margin-top: 10px;
 }
 
 .write-review__main {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 40px;
+    /* top: 40px; */
+    background: linear-gradient(to top, #fe7c1a, #ffdd29);
 }
 
 .write-review__container {
     position: relative;
     min-height: 200px;
     min-width: 550px;
-    width: 60%;
+    width: 40%;
+    bottom: 40px;
 }
 
 .write-review__form{
+    background-color: white;
     border: 1.5px solid black;
     border-radius: 5px;
     padding: 2rem;
