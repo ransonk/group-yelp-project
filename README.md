@@ -17,7 +17,7 @@ Hangry is a Yelp clone web application that allows users to list their restauran
 
 1. Clone this repository
 2. Install dependencies (npm install)
-3. Create a .env file using the .env.example file as a basis
+3. Create a .env file using the .envExample file as a basis
 4. Create a user and database with that user as owner that match the .env file you created
 5. Run
     * `npx dotenv sequelize db:migrate`
@@ -29,7 +29,7 @@ Hangry is a Yelp clone web application that allows users to list their restauran
 * List your business
 * Review restaurants
 * Search for restaurants
-* Mangage your profile
+* Manage your profile
 
 
 ## Database
