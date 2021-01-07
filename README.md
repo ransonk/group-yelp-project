@@ -6,9 +6,13 @@ Hangry is a Yelp clone web application that allows users to list their restauran
 [Live Site](https://hangry-yelp-clone.herokuapp.com/)
 
 
+
+
 ## Built With
 
 * [JavaScript](https://www.javascript.com/)
+* [Node.js]()
+* [Sequelize]()
 * [Express.js](https://expressjs.com/)
 * [Pug](https://pugjs.org/api/getting-started.html)
 
@@ -16,20 +20,25 @@ Hangry is a Yelp clone web application that allows users to list their restauran
 ## Getting Started
 
 1. Clone this repository
-2. Install dependencies (npm install)
+* `git clone https://github.com/ransonk/group-yelp-project.git`
+2. Install dependencies
+* `npm install`
 3. Create a .env file using the .envExample file as a basis
 4. Create a user and database with that user as owner that match the .env file you created
 5. Run
-    * `npx dotenv sequelize db:migrate`
-    * `npx dotenv sequelize db:seed:all`
-    * `npm start`
+* `npx dotenv sequelize db:migrate`
+* `npx dotenv sequelize db:seed:all`
+* `npm start`
 
 
-## Features
+## MVPs
 * List your business
 * Review restaurants
 * Search for restaurants
 * Manage your profile
+
+![GitHub Logo](/documentation/images/logo.png)
+Format: ![Alt Text](url)
 
 
 ## Database
