@@ -10,6 +10,7 @@
     font-size: 14px;
     font-weight: lighter;
     color: #2a2a1e;
+
 }
 
 .search__restaurants-container {
@@ -19,11 +20,12 @@
     min-width: 600px;
     /* width: 75%; */
     width: 85%;
-    top: 100px;
+    padding-top: 110px;
+    padding-bottom: 20px;
     box-sizing: border-box;
-    height: 100%;
-    padding: 20px;
-    margin-top: 20px;
+    /* height: 90%; */
+    /* padding: 20px; */
+    /* margin-top: 20px; */
 }
 
 .search-res-container__header {
@@ -45,6 +47,7 @@
     transition-duration: .2s;
     padding: 20px;
     overflow: hidden;
+    background-color: white;
     grid-template-areas:
         "picture . title title address"
         "picture . title title ."
@@ -129,7 +132,10 @@
 }
 
 .search-main {
-
+    height: 110%;
+    background-color: whitesmoke;
+    /* position: relative; */
+    /* bottom: 100px; */
 }
 .search-sidenav {
     display: none;

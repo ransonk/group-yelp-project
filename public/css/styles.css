@@ -387,7 +387,12 @@ body{
     min-width: 700px;
     padding: 2rem;
     height: 25rem;
-/* padding: 3px; */
+    /* padding: 3px; */
+}
+
+.search-background{
+    background-color: whitesmoke;
+    height: 100%;
 }
 
 .sign-up-button {
