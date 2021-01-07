@@ -14,7 +14,7 @@
 <br />
 <p align="center">
 <a href="https://hangry-yelp-clone.herokuapp.com/">
-    <img src="./readMeImages/hangry-alt-logo.png" alt="Logo" width="120" height="auto"
+    <img src="readmeImages/hangry-alt-logo.png" alt="Logo" width="120" height="auto"
     ></a>
 <a href="https://hangry-yelp-clone.herokuapp.com/">
   <h3 align="center">Hangry</h3></a>
@@ -55,31 +55,31 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 *Pop art Splash page with restaurants.
-![splash](readMeImages/splashpage.png)
+![splash](readmeImages/splashpage.png)
 
 *User can Login with their account.
-![login](readMeImages/login.png)
+![login](readmeImages/login.png)
 
 *User can signup as non business owner or business owner.
-![signup](readMeImages/signup.png)
+![signup](readmeImages/signup.png)
 
 *User can explore business page with google map and reviews.
-![business](readMeImages/business.png)
+![business](readmeImages/business.png)
 
 *Only logged in user can leave reviews for businesses.
-![review](readMeImages/review.png)
+![review](readmeImages/review.png)
 
 *All users can search for businesses.
-![search](readMeImages/search.png)
+![search](readmeImages/search.png)
 
 *Business owner user can create business.
-![createbusiness](readMeImages/createbusiness.png)
+![createbusiness](readmeImages/createbusiness.png)
 
 *User can change their avatar picture and see all the reviews.
-![profile](readMeImages/profile.png)
+![profile](readmeImages/profile.png)
 
 *Database Schema
-![database](readMeImages/DBschema.png)
+![database](readmeImages/DBschema.png)
 
 
 ### Technical Stack
