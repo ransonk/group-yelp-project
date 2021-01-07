@@ -1,107 +1,192 @@
-
-# Hangry
-
-Hangry is a Yelp clone web application that allows users to list their restaurants as well as search for restaurants and leave reviews.
+[![Wren McPherson][linkedin-shield]][linkedin-url-wren] Wren McPherson
+<br>
+[![Peter Kang][linkedin-shield]][linkedin-url-peter]Peter Kang
+<br>
+[![Ranson Knorr][linkedin-shield]][linkedin-url-ranson]Ranson Knorr
+<br>
 
 [Live Site](https://hangry-yelp-clone.herokuapp.com/)
 
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+<a href="https://hangry-yelp-clone.herokuapp.com/">
+    <img src="readMeImages/hangry-alt-logo.png" alt="Logo" width="120" height="auto"
+    ></a>
+<a href="https://hangry-yelp-clone.herokuapp.com/">
+  <h3 align="center">Hangry</h3></a>
+  
+
+
+</p>
 
 
 
-## Built With
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#technical-stack">Technical Stack</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#mvp">MVP</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#api-frontend">API Frontend</a></li>
+    <li><a href="#api-backend">API Backend</a></li>
+  </ol>
+</details>
 
-* [JavaScript](https://www.javascript.com/)
-* [Node.js]()
-* [Sequelize]()
-* [Express.js](https://expressjs.com/)
-* [Pug](https://pugjs.org/api/getting-started.html)
 
 
+<!-- ABOUT THE PROJECT -->
+## About The Project
+*Pop art Splash page with restaurants.
+![splash](readMeImages/splashpage.png)
+
+*User can Login with their account.
+![login](readMeImages/login.png)
+
+*User can signup as non business owner or business owner.
+![signup](readMeImages/signup.png)
+
+*User can explore business page with google map and reviews.
+![business](readMeImages/business.png)
+
+*Only logged in user can leave reviews for businesses.
+![review](readMeImages/review.png)
+
+*All users can search for businesses.
+![search](readMeImages/search.png)
+
+*Business owner user can create business.
+![createbusiness](readMeImages/createbusiness.png)
+
+*User can change their avatar picture and see all the reviews.
+![profile](readMeImages/profile.png)
+
+*Database Schema
+![database](readMeImages/DBschema.png)
+
+
+### Technical Stack
+
+* Frontend built with JavaScript, Node.js and Pug.js.
+* Backend built with Express and Sequelize.
+
+
+### introduction
+
+Are you Hangry? Hangry is a One-stop hub for restaurants and consumers inspired by Yelp.
+
+
+### MVP
+the MVP for this website encompasses the following:
+
+1.  Login/Sign-up
+    1. Users can login as a demo account.
+    2. Users can create account in sign-up page.
+2.  Main Page
+    1. Shows restaurants with star ratings.
+    2. Search bar where user can select food categories and service types.
+3. Business
+    1. Show the detail of the business including rating, type of food/business, location and reviews.
+    2. User can click on the map to get directions to the business.
+4. Review
+    1. Shows all reviews associated with the business.
+    2. User can leave a review with rating.
+    
+
+
+<!-- GETTING STARTED -->
 ## Getting Started
+-----------
 
-1. Clone this repository
-* `git clone https://github.com/ransonk/group-yelp-project.git`
-2. Install dependencies
-* `npm install`
-3. Create a .env file using the .envExample file as a basis
-4. Create a user and database with that user as owner that match the .env file you created
-5. Run
-* `npx dotenv sequelize db:migrate`
-* `npx dotenv sequelize db:seed:all`
-* `npm start`
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+
+Express, react, s3...
+
+### Installation
 
 
-## MVPs
-* List your business
-* Review restaurants
-* Search for restaurants
-* Manage your profile
+1. Clone the repo
+   ```sh
+   git clone https://github.com/ransonk/group-yelp-project.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Create your postgres database and connect it to the app.
 
-![GitHub Logo](/documentation/images/logo.png)
-Format: ![Alt Text](url)
-
-
-## Database
-
-
-| USER TABLE |
-| ---------  |
-| ID  pk not null not null   |
-| profilePic url  |
-| lastName  VARCHAR not null|
-| firstName VARCHAR not null|
-| email  VARCHAR  not null unique |
-| Password  VARCHAR not null|
-| type VARCHAR not null |
+4. On the root directory to run frontend and backend
+   ```sh
+   npm start
+   ```
+5. browse to http://locahost:8080.
 
 
-
-| RESTAURANT TABLE  |
-|-------------------|
-| ID pk not null    |
-| name  VARCHAR(50) not null |
-| phone integer            |
-| city VARCHAR not null  |
-| state VARCHAR not null    |
-| address VARCHAR not null |
-| food category VARCHAR not null |
-| dine-in boolean not null|
-| takeout boolean not null |
-| delivery boolean not null |
-| userId integer not null |
+<!-- USAGE EXAMPLES -->
+## Usage
+-----------
+Users can explore businesses/restaurants in this platform. They can also create an account to add their business. User can leave and view reviews.
 
 
+## API Frontend
+--------------------------
+|    Path            |   HTTP Verb   |          Meaning                   |
+|--------------------|---------------|------------------------------------|
+|         /          |      GET      |       Show main page               |
+|         /          |      POST     |      search restaurants            |
+|       /log-in      |      GET      |      Show a log-in form            |
+|       /log-in      |      POST     |         logs in user               |
+|      /sign-up      |      GET      |      show a sign-up form           |
+|      /sign-up      |      POST     |      creates a new user            |
+|      /search       |      GET      |   gets list of businesses          |
+|      /search       |      POST     |    searches for businesses         |
+| /write-a-review/2  |      GET      |        shows review form           |
+| /write-a-review/2  |     POST      |    creates a review for restaurant |
+|  /restaurants/id   |      GET      |  lists the restaurant and its info |
+|      /users/id     |      GET      |        shows uer info              |
 
-| IMAGES TABLE |
-|--------------|
-| imagecategory|
-| restaurantid |
-| imageurl     |
-| userId      |
+--------------------------
 
-
-
-| REVIEW TABLE |
-|--------------|
-| ID pk not null |
-| rating integer not null|
-| description text(5000) not null |
-| userid FK integer not null    |
-| restaurantid FK integer not null |
-| parentId integer |
-
-
-
-| LIKES TABLE |
-|-------------|
-| reviewid |
-| userid |
-| likeType |
+## API Backend
+-----------
+|                Path                 | HTTP Verb |                      Meaning                           |
+|-------------------------------------|-----------|--------------------------------------------------------|
+| /api/users/token                    |   POST    |                   logs in user                         |
+| /api/users                          |   POST    |                   logs in user                         |
+| /api/users/id                       |   GET     |            gets user for user profile                  |
+| /api/users/check                    |   POST    |            check if user is logged in                  |
+| /api/users/image/edit               |   PATCH   |             edit user's profile image                  |
+| /api/restaurants/                   |   POST    |      user lists their restaurant (create new)          |
+| /api/restaurants/id                 |   GET     |          gets all specific restaurant data             |
+| /api/restaurants/id                 |   DELETE  |              remove specific restaurant                |
+| /api/restaurants/id/reviews         |   POST    |           create new review for restaurant             |
+| /api/restaurants/id/reviews         |   DELETE  |     delete specific review if current user made it     |
+| /api/restaurants/id/reviews         |   PUT     |           edit review if current user made it          |
+| /api/restaurants/user/id/restaurant |   GET     |           gets specific restaurant by user ID          |
+| /api/search/name/query              |   GET     |     gets restaurants that match the search query       |
+| /api/search/dropdown/category       |   GET     | gets restaurants that match the selected food category |
+| /api/search/services/type           |   GET     | gets restaurants that match the selected services type |
 
 
 
-## Links
 
-[Database Schema (image)](/documentation/DBschema.png)
-
-[API Routes](/documentation/apiRoutes.md)
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url-peter]: https://www.linkedin.com/in/peter-kang-129184166/
+[linkedin-url-ranson]:https://www.linkedin.com/in/ranson-knorr-b132391b7/
+[linkedin-url-wren]:https://www.linkedin.com/in/wren-mcpherson-415223bb/

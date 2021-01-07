@@ -116,10 +116,15 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         const restaurantFoodCategory = document.querySelector(`.restaurant${i + 1}__foodCategory`)
         const restaurantCityState = document.querySelector(`.restaurant${i + 1}__cityState`)
         // calculating average rating
-        const averageRating = restaurant.Reviews.reduce((total, review) => {
+        let averageRating = restaurant.Reviews.reduce((total, review) => {
             total += review.rating;
-            return Math.round(total / restaurant.Reviews.length);
+            // return Math.round(total / restaurant.Reviews.length);
+            return total
+            
         }, 0)
+        averageRating = Math.round(averageRating / restaurant.Reviews.length)
+
+
         // checking if the restaurant has reviews if it is not returning with 'No reviews yet' text
         if (averageRating === 0) {
             restaurantRating.innerHTML = "No reviews yet";

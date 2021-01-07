@@ -1,8 +1,21 @@
 'use strict';
-
+const bcrypt = require('bcryptjs');
+function createHashedPassword () {
+  return bcrypt.hashSync('demo')
+}
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
+      {
+      profileUrl: '/images/empty-profile.png',
+      lastName: 'user',
+      firstName: 'demo',
+      email: 'demo@gmail.com',
+      hashedPassword: createHashedPassword(),
+      businessOwner: true,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
       {
         profileUrl: '/images/empty-profile.png',
         lastName: 'Smitham',
