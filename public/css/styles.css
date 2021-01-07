@@ -8,6 +8,13 @@ html{
     scrollbar-width: none;
 }
 
+body{
+    /* background-image: url('../images/38422872-dotted-pop-art-background-pop-art-pattern-symbolic-background-of-art-of-1960s-.jpg'); */
+
+    /* background-color: tomato; */
+}
+
+
 /* index.pug css */
 .recentRestaurants{
     display: flex;
@@ -168,14 +175,27 @@ html{
     display: flex;
     justify-content: center;
     align-content: center;
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
+    padding-top: 10rem;
+    background: linear-gradient(to top, #fe7c1a, #ffdd29);
+    height: 100vh;
+    position: relative;
 }
 
 .log-in-container{
+    display: flex;
     position: relative;
-    top: 7rem;
-    width: 20rem;
-    height: 20rem;
+    justify-content: space-around;
+    align-items: center;
+    /* top: 7rem; */
+    width: 40rem;
+    height: 25rem;
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: white;
+    padding: 3px;
+    /* margin: 10px; */
+
 }
 
 .log-in__image{
